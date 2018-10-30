@@ -2,8 +2,10 @@ package cn.kewen.hms.controller;
 
 
 import cn.kewen.hms.pojo.PageData;
+import cn.kewen.hms.pojo.PageParams;
 import cn.kewen.hms.pojo.Student;
 import cn.kewen.hms.service.StudentService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,13 +24,16 @@ import java.util.List;
 @Controller
 //@RequestMapping("student")
 public class StudentController {
+
+    private Logger logger = Logger.getLogger(StudentController.class);
+
     @Autowired
-    StudentService studentService;
+    private StudentService studentService;
 
     @RequestMapping("findStudents")
-    public ModelAndView findStudents(ModelAndView mav) throws Exception {
-        PageData<Student> students = studentService.findStudents();
-        System.out.println(students);
+    public ModelAndView findStudents(ModelAndView mav, PageParams params) throws Exception {
+        PageData<Student> students = studentService.findStudents(params);
+        logger.info("findStudents:" + students);
         mav.addObject("students", students);
         mav.setViewName("student-list");
         return mav;

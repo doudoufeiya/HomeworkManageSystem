@@ -1,6 +1,7 @@
 package cn.kewen.hms.service;
 
 import cn.kewen.hms.pojo.PageData;
+import cn.kewen.hms.pojo.PageParams;
 import cn.kewen.hms.pojo.Student;
 
 import java.util.List;
@@ -11,8 +12,9 @@ public interface StudentService {
      *
      * @return
      * @throws Exception
+     * @param params
      */
-    PageData<Student> findStudents() throws Exception;
+    PageData<Student> findStudents(PageParams params) throws Exception;
 
     /**
      * 登录，根据用户id和密码查找

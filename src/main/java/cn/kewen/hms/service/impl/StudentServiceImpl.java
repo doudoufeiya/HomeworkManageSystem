@@ -2,6 +2,7 @@ package cn.kewen.hms.service.impl;
 
 import cn.kewen.hms.mapper.StudentMapper;
 import cn.kewen.hms.pojo.PageData;
+import cn.kewen.hms.pojo.PageParams;
 import cn.kewen.hms.pojo.Student;
 import cn.kewen.hms.service.StudentService;
 import com.github.pagehelper.Page;
@@ -21,12 +22,19 @@ public class StudentServiceImpl implements StudentService {
     private StudentMapper studentMapper;
 
     @Override
-    public PageData<Student> findStudents() throws Exception {
-        Page page = PageHelper.startPage(1, 5, true);
+    public PageData<Student> findStudents(PageParams params) throws Exception {
+
+        if (params == null) {
+            params = new PageParams();
+        }
+
+        Page page = PageHelper.startPage(params.getPageNumber().intValue(), params.getPageSize().intValue(), true);
         PageData<Student> result = new PageData<>();
         result.setData(studentMapper.findStudents());
-        result.setTotal(page.getTotal());
-        result.setNowPage(1);
+        result.setPageNumber(page.getPageNum());
+        result.setPageSize(params.getPageSize());
+        result.setTotalRow(page.getTotal());
+        result.setTotalPage(page.getPages());
         return result;
     }
 

@@ -1,12 +1,13 @@
 $(function () {
+    var contextPath = $("input[name='test']").val()
+
     $('#page1').bPage({
-        url: 'https://terryz.github.io/bpage/demo.html',
-        totalPage: 3,
-        totalRow: 28,
-        pageSize: 10,
-        pageNumber: 1,
+        url: "findStudents.action",
+        totalPage: $('#totalPage').val(),
+        totalRow: $('#totalRow').val(),
+        pageSize: $('#pageSize').val(),
+        pageNumber: $('#pageNumber').val(),
         params: function () {
-            alert(1)
             return {
                 userName: 'zhangsan',
                 age: 42

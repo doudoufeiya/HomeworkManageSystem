@@ -9,27 +9,14 @@ import java.util.List;
  * @version 1.0.0
  * @since 2018/10/30
  */
-public class PageData<T> {
+public class PageData<T> extends PageParams {
 
-    private Long total;
-    private Integer nowPage;
+
+    /**
+     * 返回的数据
+     */
     private List<T> data;
 
-    public Long getTotal() {
-        return total;
-    }
-
-    public void setTotal(Long total) {
-        this.total = total;
-    }
-
-    public Integer getNowPage() {
-        return nowPage;
-    }
-
-    public void setNowPage(Integer nowPage) {
-        this.nowPage = nowPage;
-    }
 
     public List<T> getData() {
         return data;
@@ -39,12 +26,12 @@ public class PageData<T> {
         this.data = data;
     }
 
+
     @Override
     public String toString() {
         return "PageData{" +
-                "total=" + total +
-                ", nowPage=" + nowPage +
-                ", data=" + data +
+                "data=" + data +
+                super.toString() +
                 '}';
     }
 }
