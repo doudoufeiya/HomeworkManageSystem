@@ -39,12 +39,28 @@ public class StudentController {
         return mav;
     }
 
+    /**
+     * 跳转到添加学生页面
+     *
+     * @param mav
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("addStudentPage")
-    public ModelAndView addStudentPage(ModelAndView mav, PageParams params) throws Exception {
+    public ModelAndView addStudentPage(ModelAndView mav) throws Exception {
         mav.setViewName("student-add");
         return mav;
     }
 
+
+    /**
+     * 删除学生
+     *
+     * @param mav
+     * @param s_cid
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("deleteStudent")
     public ModelAndView deleteStudent(ModelAndView mav, Integer s_cid) throws Exception {
         if (s_cid != null) {
@@ -88,27 +104,32 @@ public class StudentController {
         return mav;
     }
 
+    /**
+     * 添加学生
+     *
+     * @param student
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("addStudent")
-    public ModelAndView addStudent(Student student, HttpServletRequest request) throws Exception {
+    public ModelAndView addStudent(Student student) throws Exception {
         ModelAndView mav = new ModelAndView();
-        String s_id = request.getParameter("s_id");
-        String s_pwd = request.getParameter("s_pwd");
-        String s_name = request.getParameter("s_name");
-        student.setS_id(Integer.parseInt(s_id));
-        student.setS_pwd(s_pwd);
-        student.setS_name(s_name);
-        int i = studentService.addStudent(student);
+        studentService.addStudent(student);
         //添加成功，跳转到其他页面
-        if (i > 0) {
-            mav.addObject("student", student);
-            mav.setViewName("index");
-        } else {
+        {
             mav.addObject("student", student);
             mav.setViewName("index");
         }
         return mav;
     }
 
+    /**
+     * 修改学生
+     *
+     * @param student
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("updateStudent")
     public String updateStudent(Student student) throws Exception {
         boolean i = studentService.updateStudent(student);

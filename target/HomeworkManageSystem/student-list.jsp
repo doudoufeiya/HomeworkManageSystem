@@ -51,10 +51,10 @@
             <i class="Hui-iconfont">&#xe6e2;</i>
             批量删除
         </a>
-        <a href="../student-add.jsp" onclick="admin_add('添加管理员','admin-add.html','800','500')"
+        <a onclick="stu_add('添加学生','addStudentPage.action','800','500')"
            class="btn btn-primary radius">
             <i class="Hui-iconfont">&#xe600;</i>
-            添加管理员
+            添加学生
         </a>
     </span>
     </div>
@@ -134,12 +134,12 @@
         w		弹出层宽度（缺省调默认值）
         h		弹出层高度（缺省调默认值）
     */
-    /*管理员-增加*/
-    function admin_add(title, url, w, h) {
+    /*学生-增加*/
+    function stu_add(title, url, w, h) {
         layer_show(title, url, w, h);
     }
 
-    /*管理员-删除*/
+    /*学生-删除*/
     function admin_del(obj, id) {
         layer.confirm('确认要删除吗？', function (index) {
             //此处请求后台程序，下方是成功后的前台处理……
@@ -148,13 +148,13 @@
         });
     }
 
-    /*管理员-编辑*/
+    /*学生-编辑*/
     function admin_edit(title, url, id, w, h) {
         layer_show(title, url, w, h);
     }
 
 
-    /*管理员-启用*/
+    /*学生-启用*/
     function admin_start(obj, id) {
         layer.confirm('确认要启用吗？', function (index) {
             //此处请求后台程序，下方是成功后的前台处理……
