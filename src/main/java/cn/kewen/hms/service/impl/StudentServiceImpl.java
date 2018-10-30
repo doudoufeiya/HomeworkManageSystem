@@ -1,8 +1,11 @@
 package cn.kewen.hms.service.impl;
 
 import cn.kewen.hms.mapper.StudentMapper;
+import cn.kewen.hms.pojo.PageData;
 import cn.kewen.hms.pojo.Student;
 import cn.kewen.hms.service.StudentService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,11 +18,16 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
     //加载mapper文件
     @Resource
-    StudentMapper studentMapper;
+    private StudentMapper studentMapper;
 
     @Override
-    public List<Student> findStudents() throws Exception {
-        return studentMapper.findStudents();
+    public PageData<Student> findStudents() throws Exception {
+        Page page = PageHelper.startPage(1, 5, true);
+        PageData<Student> result = new PageData<>();
+        result.setData(studentMapper.findStudents());
+        result.setTotal(page.getTotal());
+        result.setNowPage(1);
+        return result;
     }
 
     @Override

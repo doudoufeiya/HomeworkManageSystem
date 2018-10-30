@@ -1,6 +1,7 @@
 package cn.kewen.hms.controller;
 
 
+import cn.kewen.hms.pojo.PageData;
 import cn.kewen.hms.pojo.Student;
 import cn.kewen.hms.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,8 @@ public class StudentController {
 
     @RequestMapping("findStudents")
     public ModelAndView findStudents(ModelAndView mav) throws Exception {
-        List<Student> students = studentService.findStudents();
-        System.out.println(students.size());
+        PageData<Student> students = studentService.findStudents();
+        System.out.println(students);
         mav.addObject("students", students);
         mav.setViewName("student-list");
         return mav;

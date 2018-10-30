@@ -10,7 +10,6 @@
     <packaging>war</packaging>
 
     <name>HomeworkManageSystem Maven Webapp</name>
-    <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
     <properties>
@@ -33,9 +32,6 @@
         </dependency>
 
 
-        <!-- 加入ServletAPI -->
-        <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-        <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -164,6 +160,12 @@
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
             <version>1.4.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>4.1.5</version>
         </dependency>
 
 

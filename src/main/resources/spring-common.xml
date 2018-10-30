@@ -38,6 +38,9 @@
         <property name="typeAliasesPackage" value="cn.kewen.hms.pojo"></property>
         <!-- sql映射文件路径 -->
         <property name="mapperLocations" value="classpath*:mapper/*Mapper.xml"></property>
+
+        <property name="configLocation" value="classpath:mybatis-config.xml"></property>
+
     </bean>
 
 
