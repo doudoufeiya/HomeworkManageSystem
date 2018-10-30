@@ -48,7 +48,7 @@ public class StudentController {
      */
     @RequestMapping("addStudentPage")
     public ModelAndView addStudentPage(ModelAndView mav) throws Exception {
-        mav.setViewName("student-add");
+        mav.setViewName("stu/student-add");
         return mav;
     }
 
@@ -57,14 +57,14 @@ public class StudentController {
      * 删除学生
      *
      * @param mav
-     * @param s_cid
+     * @param s_id
      * @return
      * @throws Exception
      */
     @RequestMapping("deleteStudent")
-    public ModelAndView deleteStudent(ModelAndView mav, Integer s_cid) throws Exception {
-        if (s_cid != null) {
-            studentService.deleteStudent(s_cid);
+    public ModelAndView deleteStudent(ModelAndView mav, Integer s_id) throws Exception {
+        if (s_id != null) {
+            studentService.deleteStudent(s_id);
 
         }
         PageData<Student> students = studentService.findStudents(null);
@@ -112,15 +112,15 @@ public class StudentController {
      * @throws Exception
      */
     @RequestMapping("addStudent")
-    public ModelAndView addStudent(Student student) throws Exception {
+    public void addStudent(Student student) throws Exception {
         ModelAndView mav = new ModelAndView();
         studentService.addStudent(student);
-        //添加成功，跳转到其他页面
-        {
-            mav.addObject("student", student);
-            mav.setViewName("index");
-        }
-        return mav;
+//        //添加成功，跳转到其他页面
+//        PageData<Student> students = studentService.findStudents(null);
+//        logger.info("findStudents:" + students);
+//        mav.addObject("students", students);
+//        mav.setViewName("student-list");
+//        return mav;
     }
 
     /**

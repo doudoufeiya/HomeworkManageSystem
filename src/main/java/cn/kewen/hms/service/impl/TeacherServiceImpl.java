@@ -1,8 +1,12 @@
 package cn.kewen.hms.service.impl;
 
 import cn.kewen.hms.mapper.TeacherMapper;
+import cn.kewen.hms.pojo.PageData;
+import cn.kewen.hms.pojo.PageParams;
 import cn.kewen.hms.pojo.Teacher;
 import cn.kewen.hms.service.TeacherService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,8 +21,19 @@ public class TeacherServiceImpl implements TeacherService {
     TeacherMapper teacherMapper;
 
     @Override
-    public List<Teacher> findTeachers() throws Exception {
-        return teacherMapper.findTeachers();
+    public PageData<Teacher> findTeachers(PageParams params) throws Exception {
+        if (params == null) {
+            params = new PageParams();
+        }
+
+        Page page = PageHelper.startPage(params.getPageNumber().intValue(), params.getPageSize().intValue(), true);
+        PageData<Teacher> result = new PageData<>();
+        result.setData(teacherMapper.findTeachers());
+        result.setPageNumber(page.getPageNum());
+        result.setPageSize(params.getPageSize());
+        result.setTotalRow(page.getTotal());
+        result.setTotalPage(page.getPages());
+        return result;
     }
 
     @Override

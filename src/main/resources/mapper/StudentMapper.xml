@@ -21,11 +21,11 @@
         where s_name = #{s_name}
     </select>
     <!-- 根据账号查询学生信息 -->
-    <select id="findStudentById" parameterType="int" resultType="Student">
-        select *
-        from student
-        where s_id = #{s_id}
-    </select>
+    <!--<select id="findStudentById" parameterType="int" resultType="Student">-->
+        <!--select *-->
+        <!--from student-->
+        <!--where s_id = #{s_id}-->
+    <!--</select>-->
     <!-- 修改学生信息 -->
     <update id="updateStudent" parameterType="Student">
         update student
@@ -36,8 +36,8 @@
     </update>
     <!-- 添加信息 -->
     <insert id="addStudent" parameterType="Student">
-        insert into student (s_pwd, s_name)
-        values (#{s_pwd}, #{s_name})
+        insert into student (s_pwd, s_name, s_number, s_sex, s_phone, s_major, s_points, s_cid)
+        values (#{s_pwd}, #{s_name}, #{s_number}, #{s_sex}, #{s_phone}, #{s_major}, #{s_points}, #{s_cid})
     </insert>
     <!-- 根据id删除信息 -->
     <delete id="deleteStudent" parameterType="int">

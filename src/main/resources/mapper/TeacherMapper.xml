@@ -36,8 +36,8 @@
     </update>
     <!-- 添加信息 -->
     <insert id="addTeacher" parameterType="Teacher">
-        insert into teacher (t_id, t_pwd, t_name)
-        values (#{t_id}, #{t_pwd}, #{t_name})
+        insert into teacher (t_pwd, t_name, t_lesson, t_phone, t_number, t_sex)
+        values (#{t_pwd}, #{t_name}, #{t_lesson}, #{t_phone}, #{t_number}, #{t_sex})
     </insert>
     <!-- 根据id删除信息 -->
     <delete id="deleteTeacher" parameterType="int">

@@ -1,5 +1,7 @@
 package cn.kewen.hms.controller;
 
+import cn.kewen.hms.pojo.PageData;
+import cn.kewen.hms.pojo.PageParams;
 import cn.kewen.hms.pojo.Teacher;
 import cn.kewen.hms.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +19,35 @@ public class TeacherController {
     TeacherService teacherService;
 
     @RequestMapping("findTeachers")
-    public ModelAndView findTeachers(ModelAndView mav) throws Exception {
-        List<Teacher> teachers = teacherService.findTeachers();
+    public ModelAndView findTeachers(ModelAndView mav, PageParams params) throws Exception {
+        PageData<Teacher> teachers = teacherService.findTeachers(params);
+        mav.addObject("teachers", teachers);
+        mav.setViewName("teacher-list");
+        return mav;
+    }
+
+    /**
+     * 删除老师
+     *
+     * @param mav
+     * @param t_id
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("deleteTeacher")
+    public ModelAndView deleteTeacher(ModelAndView mav, Integer t_id) throws Exception {
+        if (t_id != null) {
+            teacherService.deleteTeacher(t_id);
+
+        }
+        PageData<Teacher> teachers = teacherService.findTeachers(null);
         mav.addObject("teachers", teachers);
         mav.setViewName("teacher-list");
         return mav;
     }
 
     @RequestMapping("teacherlogin")
-    public ModelAndView studentlogin(HttpServletRequest request, ModelAndView mav, Teacher teacher,
+    public ModelAndView teacherlogin(HttpServletRequest request, ModelAndView mav, Teacher teacher,
                                      HttpSession session) throws Exception {
         String pwd = teacherService.login(teacher.getT_id());
         if (null == pwd) {
@@ -43,6 +65,21 @@ public class TeacherController {
         return mav;
     }
 
+    /**
+     * 跳转到添加老师页面
+     *
+     * @param mav
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("addTeacherPage")
+    public ModelAndView addTeacherPage(ModelAndView mav) {
+        mav.clear();
+        mav.setViewName("teach/teacher-add");
+        return mav;
+    }
+
+
     @RequestMapping("findTeacherByName")
     public ModelAndView findTeacherByName(String s_name, HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
@@ -55,23 +92,17 @@ public class TeacherController {
     }
 
     @RequestMapping("addTeacher")
-    public ModelAndView addTeacher(Teacher teacher, HttpServletRequest request) throws Exception {
+    public ModelAndView addTeacher(Teacher teacher) throws Exception {
         ModelAndView mav = new ModelAndView();
-        String t_id = request.getParameter("t_id");
-        String t_pwd = request.getParameter("t_pwd");
-        String t_name = request.getParameter("t_name");
-        teacher.setT_id(Integer.parseInt(t_id));
-        teacher.setT_pwd(t_pwd);
-        teacher.setT_name(t_name);
-        int i = teacherService.addTeacher(teacher);
+        teacherService.addTeacher(teacher);
         //添加成功，跳转到其他页面
-        if (i > 0) {
-            mav.addObject("teacher", teacher);
-            mav.setViewName("index");
-        } else {
-            mav.addObject("teacher", teacher);
-            mav.setViewName("index");
-        }
+//        if (i > 0) {
+//            mav.addObject("teacher", teacher);
+//            mav.setViewName("index");
+//        } else {
+//            mav.addObject("teacher", teacher);
+//            mav.setViewName("index");
+//        }
         return mav;
     }
 

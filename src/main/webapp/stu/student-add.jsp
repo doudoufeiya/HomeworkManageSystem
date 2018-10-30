@@ -49,35 +49,28 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>姓名：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="password" class="input-text" autocomplete="off" value="" placeholder="密码" id="s_name"
+                <input type="text" class="input-text" autocomplete="off" value="" placeholder="姓名" id="s_name"
                        name="s_name">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="password" class="input-text" autocomplete="off" value="" placeholder="密码" id="s_sex"
-                       name="s_sex">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="password" class="input-text" autocomplete="off" value="" placeholder="密码" id="s_sex"
+                <input type="text" class="input-text" autocomplete="off" value="" placeholder="性别" id="s_sex"
                        name="s_sex">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>电话：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="password" class="input-text" autocomplete="off" value="" placeholder="密码" id="s_phone"
+                <input type="text" class="input-text" autocomplete="off" value="" placeholder="电话" id="s_phone"
                        name="s_phone">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>电话：</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>专业：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="password" class="input-text" autocomplete="off" value="" placeholder="专业" id="s_major"
+                <input type="text" class="input-text" autocomplete="off" value="" placeholder="专业" id="s_major"
                        name="s_major">
             </div>
         </div>
@@ -85,15 +78,15 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>照片：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="password" class="input-text" autocomplete="off" value="" placeholder="专业" id="s_photo"
-                       name="s_major">
+                <input type="text" class="input-text" autocomplete="off" value="" placeholder="照片" id="s_photo"
+                       name="s_photo">
             </div>
         </div>
 
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>班级编号：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="password" class="input-text" autocomplete="off" value="" placeholder="专业" id="s_cid"
+                <input type="text" class="input-text" autocomplete="off" value="" placeholder="班级编号" id="s_cid"
                        name="s_cid">
             </div>
         </div>
@@ -126,19 +119,31 @@
             increaseArea: '20%'
         });
 
-        $("#form-admin-add").validate({
+        $("#form-student-add").validate({
             rules: {
-                adminName: {
-                    required: true,
-                    minlength: 4,
-                    maxlength: 16
-                },
-                password: {
+                s_number: {
                     required: true,
                 },
-                password2: {
+                s_pwd: {
                     required: true,
-                    equalTo: "#password"
+                },
+                s_name: {
+                    required: true,
+                },
+                s_sex: {
+                    required: true,
+                },
+                s_phone: {
+                    required: true,
+                },
+                s_major: {
+                    required: true,
+                },
+                s_photo: {
+                    required: true,
+                },
+                s_cid: {
+                    required: true,
                 },
             },
             onkeyup: false,

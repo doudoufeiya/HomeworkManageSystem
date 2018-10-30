@@ -1,5 +1,7 @@
 package cn.kewen.hms.service;
 
+import cn.kewen.hms.pojo.PageData;
+import cn.kewen.hms.pojo.PageParams;
 import cn.kewen.hms.pojo.Teacher;
 
 import java.util.List;
@@ -12,7 +14,7 @@ public interface TeacherService {
      * @return
      * @throws Exception
      */
-    List<Teacher> findTeachers() throws Exception;
+    PageData<Teacher> findTeachers(PageParams params) throws Exception;
 
     /**
      * 管理员登录，根据用户id和密码查找

@@ -95,7 +95,7 @@
                         <i class="Hui-iconfont">&#xe6df;</i>
                     </a>
                     <a title="删除"
-                       href="deleteStudent.action?s_cid=${s.s_cid}"
+                       href="deleteStudent.action?s_id=${s.s_id}"
                        class="ml-5"
                        style="text-decoration:none">
                         <i class="Hui-iconfont">&#xe6e2;</i>
