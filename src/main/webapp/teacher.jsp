@@ -30,7 +30,7 @@
             </a>
             <div class="nav">
                 <a href="set.html"><i class="iconfont icon-shezhi"></i>设置</a>
-                <a href=""><i class="iconfont icon-tuichu" style="top: 0; font-size: 22px;"></i>退了</a>
+                <a href="login.action"><i class="iconfont icon-tuichu" style="top: 0; font-size: 22px;"></i>退了</a>
             </div>
         </div>
     </div>
@@ -73,7 +73,7 @@
 </div>
 </div>
 </div>
-<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="myplugs/js/plugs.js"></script>
 [
 <script>
