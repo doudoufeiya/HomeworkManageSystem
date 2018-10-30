@@ -49,3 +49,4 @@ src/main/webapp/template/product/
 src/main/webapp/template/shop/
 target/generated-sources/
 /.idea/
+/.settings/
