@@ -16,23 +16,23 @@ public class TeacherServiceImpl implements TeacherService {
     @Resource
     TeacherMapper teacherMapper;
 
+    @Override
     public List<Teacher> findTeachers() throws Exception {
-        // TODO Auto-generated method stub
         return teacherMapper.findTeachers();
     }
 
+    @Override
     public List<Teacher> findTeacherByName(String t_name) throws Exception {
-        // TODO Auto-generated method stub
         return teacherMapper.findTeacherByName(t_name);
     }
 
+    @Override
     public int addTeacher(Teacher teacher) throws Exception {
-        // TODO Auto-generated method stub
         return teacherMapper.addTeacher(teacher);
     }
 
+    @Override
     public boolean updateTeacher(Teacher teacher) throws Exception {
-        // TODO Auto-generated method stub
         int i = teacherMapper.updateTeacher(teacher);
         if (i > 0) {
             return true;
@@ -40,6 +40,7 @@ public class TeacherServiceImpl implements TeacherService {
         return false;
     }
 
+    @Override
     public int deleteTeacher(int t_id) throws Exception {
         // TODO Auto-generated method stub
         return teacherMapper.deleteTeacher(t_id);

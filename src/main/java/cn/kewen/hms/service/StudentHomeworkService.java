@@ -1,16 +1,17 @@
 package cn.kewen.hms.service;
 
-import java.util.List;
-
 import cn.kewen.hms.pojo.StudentHomework;
 
+import java.util.List;
+
 public interface StudentHomeworkService {
-	/**
-	 * 插入信息
-	 */
-	public int insertStudentHomework(StudentHomework studentHomework);
+    /**
+     * 插入信息
+     */
+    int insertStudentHomework(StudentHomework studentHomework);
+
     /**
      * 显示所有信息
      */
-	public List<StudentHomework> findStudentHomework();
+    List<StudentHomework> findStudentHomework();
 }
