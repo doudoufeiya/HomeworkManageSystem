@@ -59,13 +59,11 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public int deleteStudent(int s_id) throws Exception {
-        // TODO Auto-generated method stub
         return studentMapper.deleteStudent(s_id);
     }
 
     @Override
     public String login(int s_id) throws Exception {
-        // TODO Auto-generated method stub
         return studentMapper.findPwdById(s_id);
     }
 }

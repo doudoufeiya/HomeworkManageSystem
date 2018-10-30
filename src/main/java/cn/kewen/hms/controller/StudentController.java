@@ -39,6 +39,19 @@ public class StudentController {
         return mav;
     }
 
+    @RequestMapping("deleteStudent")
+    public ModelAndView deleteStudent(ModelAndView mav, Integer s_cid) throws Exception {
+        if (s_cid != null) {
+            studentService.deleteStudent(s_cid);
+
+        }
+        PageData<Student> students = studentService.findStudents(null);
+        logger.info("findStudents:" + students);
+        mav.addObject("students", students);
+        mav.setViewName("student-list");
+        return mav;
+    }
+
     @RequestMapping("studentlogin")
     public ModelAndView studentlogin(HttpServletRequest request, ModelAndView mav, Student student,
                                      HttpSession session) throws Exception {

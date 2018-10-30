@@ -1,5 +1,4 @@
 $(function () {
-    var contextPath = $("input[name='test']").val()
 
     $('#page1').bPage({
         url: "findStudents.action",
