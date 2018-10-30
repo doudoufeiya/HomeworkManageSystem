@@ -39,6 +39,12 @@ public class StudentController {
         return mav;
     }
 
+    @RequestMapping("addStudentPage")
+    public ModelAndView addStudentPage(ModelAndView mav, PageParams params) throws Exception {
+        mav.setViewName("student-add");
+        return mav;
+    }
+
     @RequestMapping("deleteStudent")
     public ModelAndView deleteStudent(ModelAndView mav, Integer s_cid) throws Exception {
         if (s_cid != null) {

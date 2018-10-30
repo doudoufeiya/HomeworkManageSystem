@@ -51,10 +51,10 @@
             <i class="Hui-iconfont">&#xe6e2;</i>
             批量删除
         </a>
-        <a href="../student-add.jsp" onclick="stu_add('添加学生','student-add.','800','500')"
+        <a onclick="stu_add('添加学生','addStudentPage.action','800','500')"
            class="btn btn-primary radius">
             <i class="Hui-iconfont">&#xe600;</i>
-            添加管理员
+            添加学生
         </a>
     </span>
     </div>
