@@ -17,13 +17,11 @@ public class TeacherHomeworkServiceImpl implements TeacherHomeworkService {
 
     @Override
     public int insertTeacherHomework(TeacherHomework teacherHomework) {
-        // TODO Auto-generated method stub
         return teacherHomeworkMapper.insertTeacherHomework(teacherHomework);
     }
 
     @Override
     public List<TeacherHomework> findTeacherHomework() {
-        // TODO Auto-generated method stub
         return teacherHomeworkMapper.findTeacherHomework();
     }
 

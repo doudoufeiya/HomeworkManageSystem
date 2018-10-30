@@ -19,25 +19,21 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> findStudents() throws Exception {
-        // TODO Auto-generated method stub
         return studentMapper.findStudents();
     }
 
     @Override
     public List<Student> findStudentByName(String s_name) throws Exception {
-        // TODO Auto-generated method stub
         return studentMapper.findStudentByName(s_name);
     }
 
     @Override
     public int addStudent(Student student) throws Exception {
-        // TODO Auto-generated method stub
         return studentMapper.addStudent(student);
     }
 
     @Override
     public boolean updateStudent(Student student) throws Exception {
-        // TODO Auto-generated method stub
         int i = studentMapper.updateStudent(student);
         if (i > 0) {
             return true;

@@ -29,19 +29,16 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public List<Admin> findAdminById(int a_id) throws Exception {
-        // TODO Auto-generated method stub
         return adminMapper.findAdminById(a_id);
     }
 
     @Override
     public int addAdmin(Admin admin) throws Exception {
-        // TODO Auto-generated method stub
         return adminMapper.addAdmin(admin);
     }
 
     @Override
     public boolean updateAdmin(Admin admin) throws Exception {
-        // TODO Auto-generated method stub
         int i = adminMapper.updateAdmin(admin);
         if (i > 0) {
             return true;
@@ -51,7 +48,6 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public int deleteAdmin(int a_id) throws Exception {
-        // TODO Auto-generated method stub
         return adminMapper.deleteAdmin(a_id);
     }
 }
