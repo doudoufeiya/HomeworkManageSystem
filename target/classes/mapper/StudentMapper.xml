@@ -20,11 +20,17 @@
         from student
         where s_name = #{s_name}
     </select>
+    <select id="findStudentsNoClass" resultType="Student">
+        select *
+        from student
+        where s_cid is null
+           or s_cid = ''
+    </select>
     <!-- 根据账号查询学生信息 -->
     <!--<select id="findStudentById" parameterType="int" resultType="Student">-->
-        <!--select *-->
-        <!--from student-->
-        <!--where s_id = #{s_id}-->
+    <!--select *-->
+    <!--from student-->
+    <!--where s_id = #{s_id}-->
     <!--</select>-->
     <!-- 修改学生信息 -->
     <update id="updateStudent" parameterType="Student">
@@ -33,6 +39,11 @@
             s_pwd    = #{s_pwd},
             s_name   = #{s_name}
         where s_id = #{s_id}
+    </update>
+    <update id="updateStudentClass">
+        update student
+        set s_cid = #{classId}
+        where s_id = #{studentId}
     </update>
     <!-- 添加信息 -->
     <insert id="addStudent" parameterType="Student">

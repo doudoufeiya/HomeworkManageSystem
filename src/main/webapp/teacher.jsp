@@ -42,8 +42,10 @@
                 class="layui-icon">&#xe609;</i> 首页 </a></li>
         <li class="layui-nav-item "><a href="findStudentHomework.action" target="right"> <i
                 class="layui-icon">&#xe612;</i>查看作业 </a></li>
-        <li class="layui-nav-item "><a href="user.html" target="right"> <i
-                class="layui-icon">&#xe612;</i>上传作业</a></li>
+        <li class="layui-nav-item ">
+            <a href="findWorks.action" target="right">
+                <i class="layui-icon">&#xe612;</i>发布作业</a>
+        </li>
         <!--		<li class="layui-nav-item"><a href="upload.html" target="right"> <i
             class="layui-icon">&#xe611;</i> 查看成绩 </a></li>-->
         <li class="layui-nav-item "><a href="news.html" target="right"> <i

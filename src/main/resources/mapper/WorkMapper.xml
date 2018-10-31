@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.kewen.hms.mapper.WorkMapper">
+    <!-- 显示所有学生信息 -->
+    <select id="findWorks" resultType="cn.kewen.hms.pojo.Work">
+        select *
+        from twork
+    </select>
+
+    <!-- 根据名字查询学生信息 -->
+    <select id="findWorkByName" parameterType="String" resultType="cn.kewen.hms.pojo.Work">
+        select *
+        from twork
+        where tw_name = #{c_name}
+    </select>
+    <!-- 根据账号查询学生信息 -->
+    <select id="findWorkById" parameterType="int" resultType="cn.kewen.hms.pojo.Work">
+        select *
+        from twork
+        where tw_id = #{c_id}
+    </select>
+    <!-- 修改学生信息 -->
+    <update id="updateWork" parameterType="Work">
+        update twork
+        set tw_name = #{tw_name}
+        where tw_id = #{tw_id}
+    </update>
+    <!-- 添加信息 -->
+    <insert id="addWork" parameterType="Work">
+        insert into twork (tw_name, tw_tid, tw_addTime, tw_deadLine, tw_file_name, tw_file_path)
+        values (#{tw_name}, #{tw_tid}, #{tw_addTime},#{ tw_deadLine}, #{tw_file_name}, #{tw_file_path})
+        <selectKey keyProperty="tw_tid" order="AFTER" resultType="int">
+            select last_insert_id()
+        </selectKey>
+    </insert>
+    <!-- 根据id删除信息 -->
+    <delete id="deleteWork" parameterType="int">
+        delete
+        from twork
+        where tw_id = #{c_id}
+    </delete>
+</mapper>
