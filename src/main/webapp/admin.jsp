@@ -132,6 +132,16 @@
                 </ul>
             </dd>
         </dl>
+        <dl id="menu-lesson">
+            <dt><i class="Hui-iconfont">&#xe620;</i> 课程管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    <li><a _href="findClasss.action" data-title="课程列表" href="javascript:void(0)">课程列表</a></li>
+                    <%--<li><a _href="product-category.html" data-title="分类管理" href="javascript:void(0)">分类管理</a></li>--%>
+                    <%--<li><a _href="product-list.html" data-title="产品管理" href="javascript:void(0)">产品管理</a></li>--%>
+                </ul>
+            </dd>
+        </dl>
         <dl id="menu-comments">
             <dt><i class="Hui-iconfont">&#xe622;</i> 公告管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>

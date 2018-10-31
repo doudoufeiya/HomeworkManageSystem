@@ -7,6 +7,7 @@ import cn.kewen.hms.pojo.PageParams;
 import cn.kewen.hms.pojo.Student;
 import cn.kewen.hms.service.ClassService;
 import cn.kewen.hms.service.StudentService;
+import cn.kewen.hms.service.TeacherService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,8 @@ public class ClassController {
     private ClassService classService;
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private TeacherService teacherService;
 
     @RequestMapping("findClasss")
     public ModelAndView findClasss(ModelAndView mav, PageParams params) throws Exception {
@@ -46,6 +49,7 @@ public class ClassController {
     public ModelAndView addClassPage(ModelAndView mav) throws Exception {
         PageParams params = new PageParams(1, 1000L);
         PageData<Student> students = studentService.findStudentsNoClass(params);
+//        PageData<Student> teachers = teacherService.findTeachers(params);
         mav.addObject("students", students.getData());
         mav.setViewName("jsp/class/class-add");
         return mav;

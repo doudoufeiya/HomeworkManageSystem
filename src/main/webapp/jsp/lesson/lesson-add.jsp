@@ -29,16 +29,16 @@
     <![endif]-->
     <!--/meta 作为公共模版分离出去-->
 
-    <title>新建班级 - 班级管理 </title>
+    <title>新建课程 - 课程管理 </title>
 </head>
 <body>
 <article class="page-container">
-    <form action="addClass.action" method="post" class="form form-horizontal" id="form-class-add">
+    <form action="addLesson.action" method="post" class="form form-horizontal" id="form-lesson-add">
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>班级名称：</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>课程名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="c_name" name="c_name"
-                       datatype="*4-16" nullmsg="班级名称不能为空">
+                <input type="text" class="input-text" value="" placeholder="" id="l_name" name="l_name"
+                       datatype="*4-16" nullmsg="课程名称不能为空">
             </div>
         </div>
         <%--<div class="row cl">--%>
