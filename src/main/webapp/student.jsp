@@ -43,7 +43,7 @@
         <%--<li class="layui-nav-item "><a href="upload.jsp" target="right"> <i--%>
         <%--class="layui-icon">&#xe612;</i>上传作业 </a></li>--%>
         <li class="layui-nav-item ">
-            <a href="user.html" target="right">
+            <a href="findStudentWorks.action" target="right">
                 <i class="layui-icon">&#xe612;</i> 作业列表</a>
         </li>
         <!--		<li class="layui-nav-item"><a href="newsType.html" target="right"> <i

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.kewen.hms.mapper.StudentWorkMapper">
+
+    <select id="findStudentWorks" resultType="StudentWork">
+        select twork.*, lesson.l_name, swork.*, teacher.t_name
+        from twork
+                 left join teacher on teacher.t_id = twork.tw_tid
+                 left join lesson on lesson.l_id = teacher.t_lesson
+                 left join sc_lesson on sc_lesson.l_id = lesson.l_id
+                 left join student on student.s_id = sc_lesson.s_id
+                 left join swork on swork.sw_wid = twork.tw_id
+        where sc_lesson.s_id = #{studentId}
+          and swork.sw_sid = #{studentId}
+
+
+    </select>
+</mapper>
