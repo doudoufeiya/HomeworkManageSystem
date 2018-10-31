@@ -39,4 +39,13 @@ public interface TeacherMapper {
      * 删除信息
      */
     int deleteTeacher(int t_id) throws Exception;
+
+    /**
+     * 找到未批改的作业
+     *
+     * @param workId
+     * @return
+     * @throws Exception
+     */
+    List<String> findNotReadWork(Integer workId) throws Exception;
 }

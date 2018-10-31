@@ -13,6 +13,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 //接口注入，代替Spring配置文件
@@ -54,6 +55,15 @@ public class StudentServiceImpl implements StudentService {
         result.setTotalRow(page.getTotal());
         result.setTotalPage(page.getPages());
         return result;
+    }
+
+    @Override
+    public List<String> toCommitWorkStudentNames(Integer workId) throws Exception {
+        if (workId == null) {
+            return new ArrayList<>();
+        }
+
+        return studentMapper.toCommitWorkStudentNames(workId);
     }
 
     @Override

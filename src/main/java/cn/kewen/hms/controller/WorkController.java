@@ -5,6 +5,7 @@ import cn.kewen.hms.pojo.Class;
 import cn.kewen.hms.pojo.*;
 import cn.kewen.hms.service.ClassService;
 import cn.kewen.hms.service.StudentService;
+import cn.kewen.hms.service.TeacherService;
 import cn.kewen.hms.service.WorkService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -36,6 +38,9 @@ public class WorkController {
 
     @Autowired
     private ClassService classService;
+
+    @Autowired
+    private TeacherService teacherService;
 
     @RequestMapping("findWorks")
     public ModelAndView findWorks(ModelAndView mav, PageParams params) throws Exception {
@@ -60,6 +65,23 @@ public class WorkController {
         PageData<Class> classs = classService.findClasss(params);
         mav.addObject("classs", classs.getData());
         mav.setViewName("jsp/work/work-add");
+        return mav;
+    }
+
+    /**
+     * 跳转到添加学生页面
+     *
+     * @param mav
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("viewWorkPage")
+    public ModelAndView viewWorkPage(ModelAndView mav, Integer workId) throws Exception {
+        List<String> notCommitStudentNames = studentService.toCommitWorkStudentNames(workId);
+        List<String> notReadStudentNames = teacherService.findNotReadWork(workId);
+        mav.addObject("notCommitStudentNames", Arrays.asList("222","222","222","222","222","222","222","222","222","222","222","222","222","222","222"));
+        mav.addObject("notReadStudentNames", Arrays.asList("222","222","222","222","222","222","222","222","222","222","222","222","222","222","222","222","222","222","222","222","222"));
+        mav.setViewName("jsp/work/work-detail");
         return mav;
     }
 
@@ -129,7 +151,7 @@ public class WorkController {
             work.setTw_file_path("http://localhost:8080/filedown?fileName=" + URLDecoder.decode(fileName));
         }
 
-        if (null == work.getTw_file_path()){
+        if (null == work.getTw_file_path()) {
             return;
         }
         work.setTw_name(tw_name);

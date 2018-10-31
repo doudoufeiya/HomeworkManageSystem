@@ -12,7 +12,6 @@ public interface StudentMapper {
     List<Student> findStudents() throws Exception;
 
     /**
-     *
      * @return
      * @throws Exception
      */
@@ -50,4 +49,14 @@ public interface StudentMapper {
      * 删除学生信息
      */
     int deleteStudent(int s_id) throws Exception;
+
+
+    /**
+     * 查询没有提交作业的学生
+     *
+     * @param workId 作业ID
+     * @return
+     * @throws Exception
+     */
+    List<String> toCommitWorkStudentNames(@Param("workId") Integer workId) throws Exception;
 }

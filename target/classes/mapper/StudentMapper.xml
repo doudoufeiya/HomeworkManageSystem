@@ -56,4 +56,15 @@
         from student
         where s_id = #{s_id}
     </delete>
+
+    <select id="toCommitWorkStudentNames" resultType="string">
+        select student.s_name
+        from twork
+                 left join teacher on teacher.t_id = twork.tw_tid
+                 left join lesson on lesson.l_id = teacher.t_lesson
+                 left join sc_lesson on sc_lesson.l_id = lesson.l_id
+                 left join student on student.s_id = sc_lesson.s_id
+        where student.s_id not in (select swork.sw_sid from swork where sw_wid = #{workId})
+
+    </select>
 </mapper>

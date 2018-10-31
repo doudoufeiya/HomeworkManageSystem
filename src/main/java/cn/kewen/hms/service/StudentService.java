@@ -25,6 +25,8 @@ public interface StudentService {
      */
     PageData<Student> findStudentsNoClass(PageParams params) throws Exception;
 
+    List<String> toCommitWorkStudentNames(Integer workId) throws Exception;
+
     /**
      * 登录，根据用户id和密码查找
      *

@@ -89,6 +89,14 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    public List<String> findNotReadWork(Integer workId) throws Exception {
+        if (workId == null){
+            return null;
+        }
+        return teacherMapper.findNotReadWork(workId);
+    }
+
+    @Override
     public String login(int t_id) throws Exception {
         // TODO Auto-generated method stub
         return teacherMapper.findPwdById(t_id);
