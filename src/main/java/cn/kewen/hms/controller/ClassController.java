@@ -24,9 +24,9 @@ public class ClassController {
 
     @RequestMapping("findClasss")
     public ModelAndView findClasss(ModelAndView mav, PageParams params) throws Exception {
-        PageData<Class> classs = classService.findClasss(params);
-        logger.info("classs:" + classs);
-        mav.addObject("classs", classs);
+        PageData<Class> classes = classService.findClasss(params);
+        logger.info("classes:" + classes);
+        mav.addObject("classes", classes);
         mav.setViewName("jsp/class/class-list");
         return mav;
     }
@@ -57,11 +57,10 @@ public class ClassController {
     public ModelAndView deleteClass(ModelAndView mav, Integer s_id) throws Exception {
         if (s_id != null) {
             classService.deleteClass(s_id);
-
         }
-        PageData<Class> classs = classService.findClasss(null);
-        logger.info("findclasss:" + classs);
-        mav.addObject("classs", classs);
+        PageData<Class> classes = classService.findClasss(null);
+        logger.info("findclasss:" + classes);
+        mav.addObject("classes", classes);
         mav.setViewName("jsp/class/class-list");
         return mav;
     }
@@ -81,7 +80,7 @@ public class ClassController {
     /**
      * 添加学生
      *
-     * @param student
+     * @param class1
      * @return
      * @throws Exception
      */
@@ -100,7 +99,7 @@ public class ClassController {
     /**
      * 修改学生
      *
-     * @param student
+     * @param class1
      * @return
      * @throws Exception
      */

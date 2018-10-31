@@ -51,7 +51,7 @@
             <i class="Hui-iconfont">&#xe6e2;</i>
             批量删除
         </a>
-        <a onclick="stu_add('添加班级','addStudentPage.action','800','500')"
+        <a onclick="stu_add('添加班级','addClassPage.action','800','500')"
            class="btn btn-primary radius">
             <i class="Hui-iconfont">&#xe600;</i>
             添加班级
@@ -61,33 +61,21 @@
     <table class="table table-border table-bordered table-bg row-fluid">
         <thead>
         <tr>
-            <th scope="col" colspan="11">学生列表</th>
+            <th scope="col" colspan="11">班级列表</th>
         </tr>
         <tr class="text-c">
             <th width="25"><input type="checkbox" name="" value=""></th>
-            <th width="100">账号</th>
-            <th width="50">密码</th>
-            <th width="90">姓名</th>
-            <th width="90">性别</th>
-            <th width="90">电话</th>
-            <th width="90">专业</th>
-            <th width="90">积分</th>
-            <th width="90">班级</th>
+            <th width="100">序号</th>
+            <th width="50">班级名</th>
             <th width="100">操作</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${students.data}" var="s">
+        <c:forEach items="${classes.data}" var="s">
             <tr class="text-c">
                 <td><input type="checkbox" value="1" name=""></td>
-                <td>${s.s_number}</td>
-                <td>${s.s_pwd}</td>
-                <td>${s.s_name}</td>
-                <td>${s.s_sex}</td>
-                <td>${s.s_phone}</td>
-                <td>${s.s_major}</td>
-                <td>${s.s_points}</td>
-                <td>${s.s_cid}</td>
+                <td>${s.c_id}</td>
+                <td>${s.c_name}</td>
                 <td class="td-manage">
                     <a title="编辑" href="javascript:;"
                        onclick="admin_edit('管理员编辑','admin-add.html','1','800','500')"
@@ -95,7 +83,7 @@
                         <i class="Hui-iconfont">&#xe6df;</i>
                     </a>
                     <a title="删除"
-                       href="deleteStudent.action?s_id=${s.s_id}"
+                       href="deleteClass.action?s_id=${s.c_id}"
                        class="ml-5"
                        style="text-decoration:none">
                         <i class="Hui-iconfont">&#xe6e2;</i>
@@ -106,11 +94,11 @@
         </tbody>
     </table>
     <input type="hidden" name="contextPath" value=<%= request.getContextPath() %>>
-    <c:if test="${students != null}">
-        <input type="hidden" id="pageNumber" value="${students.pageNumber}">
-        <input type="hidden" id="pageSize" value="${students.pageSize}">
-        <input type="hidden" id="totalPage" value="${students.totalPage}">
-        <input type="hidden" id="totalRow" value="${students.totalRow}">
+    <c:if test="${classes != null}">
+        <input type="hidden" id="pageNumber" value="${classes.pageNumber}">
+        <input type="hidden" id="pageSize" value="${classes.pageSize}">
+        <input type="hidden" id="totalPage" value="${classes.totalPage}">
+        <input type="hidden" id="totalRow" value="${classes.totalRow}">
     </c:if>
 
     <div class="row-fluid">
@@ -124,7 +112,7 @@
 <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
 <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
 <script type="text/javascript" src="bPage/b.page.min.js"></script>
-<script type="text/javascript" src="bPage/demo.js"></script>
+<script type="text/javascript" src="jsp/class/page.js"></script>
 <script type="text/javascript">
     /*
         参数解释：

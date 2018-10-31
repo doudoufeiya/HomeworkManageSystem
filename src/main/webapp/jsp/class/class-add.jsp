@@ -29,68 +29,17 @@
     <![endif]-->
     <!--/meta 作为公共模版分离出去-->
 
-    <title>添加学生 - 学生管理 - </title>
+    <title>添加班级 - 班级管理 - </title>
 </head>
 <body>
 <article class="page-container">
-    <form action="addStudent.action" method="post" class="form form-horizontal" id="form-student-add">
+    <form action="addClass.action" method="post" class="form form-horizontal" id="form-class-add">
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>学号：</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>班级名：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="" class="input-text" value="" placeholder="" id="s_number" name="s_number">
+                <input type="" class="input-text" value="" placeholder="" id="c_name" name="c_name">
             </div>
         </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>密码：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="s_pwd" name="s_pwd">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>姓名：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" autocomplete="off" value="" placeholder="姓名" id="s_name"
-                       name="s_name">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" autocomplete="off" value="" placeholder="性别" id="s_sex"
-                       name="s_sex">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>电话：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" autocomplete="off" value="" placeholder="电话" id="s_phone"
-                       name="s_phone">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>专业：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" autocomplete="off" value="" placeholder="专业" id="s_major"
-                       name="s_major">
-            </div>
-        </div>
-
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>照片：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" autocomplete="off" value="" placeholder="照片" id="s_photo"
-                       name="s_photo">
-            </div>
-        </div>
-
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>班级编号：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" autocomplete="off" value="" placeholder="班级编号" id="s_cid"
-                       name="s_cid">
-            </div>
-        </div>
-
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
                 <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
@@ -119,30 +68,9 @@
             increaseArea: '20%'
         });
 
-        $("#form-student-add").validate({
+        $("#form-class-add").validate({
             rules: {
-                s_number: {
-                    required: true,
-                },
-                s_pwd: {
-                    required: true,
-                },
-                s_name: {
-                    required: true,
-                },
-                s_sex: {
-                    required: true,
-                },
-                s_phone: {
-                    required: true,
-                },
-                s_major: {
-                    required: true,
-                },
-                s_photo: {
-                    required: true,
-                },
-                s_cid: {
+                c_name: {
                     required: true,
                 },
             },
