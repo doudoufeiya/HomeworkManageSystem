@@ -67,7 +67,7 @@ public class AdminController {
         return mav;
     }
 
-    @RequestMapping("addAdmin")
+    @RequestMapping(value = "addAdmin", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView addAdmin(Admin admin, HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
         String a_id = request.getParameter("a_id");

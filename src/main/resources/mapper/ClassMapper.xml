@@ -31,6 +31,9 @@
     <insert id="addClass" parameterType="Class">
         insert into class (c_name)
         values (#{c_name})
+        <selectKey keyProperty="c_id" order="AFTER" resultType="int">
+            select  last_insert_id()
+        </selectKey>
     </insert>
     <!-- 根据id删除信息 -->
     <delete id="deleteClass" parameterType="int">

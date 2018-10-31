@@ -10,11 +10,20 @@ public interface StudentService {
     /**
      * 查询所有学生信息
      *
+     * @param params
      * @return
      * @throws Exception
-     * @param params
      */
     PageData<Student> findStudents(PageParams params) throws Exception;
+
+    /**
+     * 查询没有班级的学生
+     *
+     * @param params
+     * @return
+     * @throws Exception
+     */
+    PageData<Student> findStudentsNoClass(PageParams params) throws Exception;
 
     /**
      * 登录，根据用户id和密码查找
@@ -47,6 +56,14 @@ public interface StudentService {
      * @throws Exception
      */
     boolean updateStudent(Student student) throws Exception;
+
+    /**
+     * 添加学生的班级
+     *
+     * @param students
+     * @param classId
+     */
+    void updateStudentClass(List<Integer> students, Integer classId);
 
     /**
      * 删除学生信息

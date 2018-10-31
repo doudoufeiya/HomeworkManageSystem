@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -32,7 +33,7 @@
 </head>
 <body>
 <article class="page-container">
-    <form action="" method="post" class="form form-horizontal" id="form-admin-role-add">
+    <form action="addClass.action" method="post" class="form form-horizontal" id="form-class-add">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>班级名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
@@ -46,60 +47,20 @@
             <div class="formControls col-xs-8 col-sm-9">
                 <dl class="permission-list">
                     <dd>
-                        <dl class="cl permission-list2">
+                        <dl class="cl student-list">
                             <dt>
                                 <label class="">
                                     <input type="checkbox" value="" name="user-Character-0-0" id="user-Character-0-0">
                                     全部</label>
                             </dt>
                             <dd>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-0-0-0"
-                                           id="user-Character-0-0-0">
-                                    添加</label>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-0-0-0"
-                                           id="user-Character-0-0-1">
-                                    修改</label>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-0-0-0"
-                                           id="user-Character-0-0-2">
-                                    删除</label>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-0-0-0"
-                                           id="user-Character-0-0-3">
-                                    查看</label>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-0-0-0"
-                                           id="user-Character-0-0-4">
-                                    审核</label>
-                                <label class="c-orange">
-                                    <input type="checkbox" value="" name="user-Character-0-0-0"
-                                           id="user-Character-0-0-6">是是 </label><label class="c-orange">
-                                <input type="checkbox" value="" name="user-Character-0-0-0"
-                                       id="user-Character-0-0-7">是是 </label><label class="c-orange">
-                                <input type="checkbox" value="" name="user-Character-0-0-0"
-                                       id="user-Character-0-0-8">是是 </label><label class="c-orange">
-                                <input type="checkbox" value="" name="user-Character-0-0-0"
-                                       id="user-Character-0-0-9">是是 </label><label class="c-orange">
-                                <input type="checkbox" value="" name="user-Character-0-0-0"
-                                       id="user-Character-0-0-10">是是 </label><label class="c-orange">
-                                <input type="checkbox" value="" name="user-Character-0-0-0"
-                                       id="user-Character-0-0-11">是是 </label><label class="c-orange">
-                                <input type="checkbox" value="" name="user-Character-0-0-0"
-                                       id="user-Character-0-0-12">是是 </label><label class="c-orange">
-                                <input type="checkbox" value="" name="user-Character-0-0-0"
-                                       id="user-Character-0-0-13">是是 </label><label class="c-orange">
-                                <input type="checkbox" value="" name="user-Character-0-0-0"
-                                       id="user-Character-0-0-14">是是 </label><label class="c-orange">
-                                <input type="checkbox" value="" name="user-Character-0-0-0"
-                                       id="user-Character-0-0-15">是是 </label><label class="c-orange">
-                                <input type="checkbox" value="" name="user-Character-0-0-0"
-                                       id="user-Character-0-0-16">是是 </label><label class="c-orange">
-                                <input type="checkbox" value="" name="user-Character-0-0-0"
-                                       id="user-Character-0-0-17">是是 </label><label class="c-orange">
-                                <input type="checkbox" value="" name="user-Character-0-0-0"
-                                       id="user-Character-0-0-18">是是 </label>
+                                <c:forEach items="${students}" var="student">
+                                    <label class="">
+                                        <input type="checkbox" value="${student.s_id}" name="students"
+                                               id="student-${student.s_id}">
+                                            ${student.s_name}
+                                    </label>
+                                </c:forEach>
                             </dd>
                         </dl>
                     </dd>
@@ -131,7 +92,7 @@
         $(".permission-list dt input:checkbox").click(function () {
             $(this).closest("dl").find("dd input:checkbox").prop("checked", $(this).prop("checked"));
         });
-        $(".permission-list2 dd input:checkbox").click(function () {
+        $(".student-list dd input:checkbox").click(function () {
             var l = $(this).parent().parent().find("input:checked").length;
             var l2 = $(this).parents(".permission-list").find(".permission-list2 dd").find("input:checked").length;
             if ($(this).prop("checked")) {
@@ -148,7 +109,7 @@
             }
         });
 
-        $("#form-admin-role-add").validate({
+        $("#form-class-add").validate({
             rules: {
                 roleName: {
                     required: true,

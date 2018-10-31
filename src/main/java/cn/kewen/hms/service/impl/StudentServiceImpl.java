@@ -9,6 +9,8 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -39,6 +41,22 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public PageData<Student> findStudentsNoClass(PageParams params) throws Exception {
+        if (params == null) {
+            params = new PageParams();
+        }
+
+        Page page = PageHelper.startPage(params.getPageNumber().intValue(), params.getPageSize().intValue(), true);
+        PageData<Student> result = new PageData<>();
+        result.setData(studentMapper.findStudentsNoClass());
+        result.setPageNumber(page.getPageNum());
+        result.setPageSize(params.getPageSize());
+        result.setTotalRow(page.getTotal());
+        result.setTotalPage(page.getPages());
+        return result;
+    }
+
+    @Override
     public List<Student> findStudentByName(String s_name) throws Exception {
         return studentMapper.findStudentByName(s_name);
     }
@@ -55,6 +73,17 @@ public class StudentServiceImpl implements StudentService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void updateStudentClass(List<Integer> students, Integer classId) {
+        if (StringUtils.isEmpty(classId) || CollectionUtils.isEmpty(students)) {
+            return;
+        }
+
+        for (Integer student : students) {
+            studentMapper.updateStudentClass(student, classId);
+        }
     }
 
     @Override
