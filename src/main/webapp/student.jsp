@@ -40,10 +40,12 @@
     <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
         <li class="layui-nav-item layui-this"><a href="student.jsp"> <i
                 class="layui-icon">&#xe609;</i> 首页 </a></li>
-        <li class="layui-nav-item "><a href="upload.jsp" target="right"> <i
-                class="layui-icon">&#xe612;</i>上传作业 </a></li>
-        <li class="layui-nav-item "><a href="user.html" target="right"> <i
-                class="layui-icon">&#xe612;</i> 历史作业</a></li>
+        <%--<li class="layui-nav-item "><a href="upload.jsp" target="right"> <i--%>
+        <%--class="layui-icon">&#xe612;</i>上传作业 </a></li>--%>
+        <li class="layui-nav-item ">
+            <a href="user.html" target="right">
+                <i class="layui-icon">&#xe612;</i> 作业列表</a>
+        </li>
         <!--		<li class="layui-nav-item"><a href="newsType.html" target="right"> <i
             class="layui-icon">&#xe611;</i> 查看成绩 </a></li>-->
         <li class="layui-nav-item "><a href="news.html" target="right"> <i
@@ -61,7 +63,8 @@
     </div>
     <div class="site-mobile-shade"></div>
 
-    <div class="fly-panel fly-panel-user"">
+    <div class="fly-panel fly-panel-user"
+    ">
     <div class="layui-tab layui-tab-brief" lay-filter="user">
 
         <div class="layui-tab-content" style="padding: 20px;padding-top: 0px;">
