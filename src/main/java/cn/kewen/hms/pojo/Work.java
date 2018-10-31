@@ -8,11 +8,28 @@ import java.util.Date;
 public class Work {
     private Integer tw_id;
     private String tw_name;
+    private Integer tw_cid;
     private Integer tw_tid;
     private Date tw_addTime;
     private Date tw_deadLine;
     private String tw_file_name;
     private String tw_file_path;
+
+    public Integer getTw_cid() {
+        return tw_cid;
+    }
+
+    public void setTw_cid(Integer tw_cid) {
+        this.tw_cid = tw_cid;
+    }
+
+    public Integer getTw_tid() {
+        return tw_tid;
+    }
+
+    public void setTw_tid(Integer tw_tid) {
+        this.tw_tid = tw_tid;
+    }
 
     public Integer getTw_id() {
         return tw_id;
@@ -30,13 +47,6 @@ public class Work {
         this.tw_name = tw_name;
     }
 
-    public Integer getTw_tid() {
-        return tw_tid;
-    }
-
-    public void setTw_tid(Integer tw_tid) {
-        this.tw_tid = tw_tid;
-    }
 
     public Date getTw_addTime() {
         return tw_addTime;

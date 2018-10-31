@@ -1,20 +1,26 @@
 package cn.kewen.hms.controller;
 
 
-import cn.kewen.hms.pojo.PageData;
-import cn.kewen.hms.pojo.PageParams;
-import cn.kewen.hms.pojo.Student;
-import cn.kewen.hms.pojo.Work;
+import cn.kewen.hms.pojo.Class;
+import cn.kewen.hms.pojo.*;
+import cn.kewen.hms.service.ClassService;
 import cn.kewen.hms.service.StudentService;
-import cn.kewen.hms.service.TeacherService;
 import cn.kewen.hms.service.WorkService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.net.URLDecoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -24,10 +30,12 @@ public class WorkController {
 
     @Autowired
     private WorkService workService;
+
     @Autowired
     private StudentService studentService;
+
     @Autowired
-    private TeacherService teacherService;
+    private ClassService classService;
 
     @RequestMapping("findWorks")
     public ModelAndView findWorks(ModelAndView mav, PageParams params) throws Exception {
@@ -46,11 +54,11 @@ public class WorkController {
      * @throws Exception
      */
     @RequestMapping("addWorkPage")
-    public ModelAndView addWorkPage(ModelAndView mav) throws Exception {
+    public ModelAndView addWorkPage(ModelAndView mav, HttpSession session) throws Exception {
         PageParams params = new PageParams(1, 1000L);
         PageData<Student> students = studentService.findStudentsNoClass(params);
-//        PageData<Student> teachers = teacherService.findTeachers(params);
-        mav.addObject("students", students.getData());
+        PageData<Class> classs = classService.findClasss(params);
+        mav.addObject("classs", classs.getData());
         mav.setViewName("jsp/work/work-add");
         return mav;
     }
@@ -89,14 +97,47 @@ public class WorkController {
     }
 
     /**
-     * 添加学生
-     *
-     * @param class1
-     * @return
+     * @param work
+     * @param session
+     * @param file
      * @throws Exception
      */
-    @RequestMapping("addWork")
-    public void addClass(Work work) throws Exception {
+    @RequestMapping(value = "addWork", method = RequestMethod.POST)
+    public void addWork(HttpServletRequest request, @RequestParam("uploadfile") MultipartFile file) throws Exception {
+        String tw_name = request.getParameter("tw_name");
+        String c_id = request.getParameter("c_id");
+        String tw_deadLine = request.getParameter("tw_deadLine");
+        String fileName = file.getOriginalFilename();
+        Object tw_tid = request.getSession().getAttribute("t_id");
+        if (tw_name == null || c_id == null || tw_deadLine == null || fileName == null
+                || tw_tid == null) {
+            return;
+        }
+        Work work = new Work();
+        //如果文件不为空，写入上传路径
+        if (!file.isEmpty()) {
+            //上传文件路径
+            String path = request.getServletContext().getRealPath("/upload");
+            //上传文件名
+            String filename = file.getOriginalFilename();
+            File filepath = new File(path, filename);
+            //判断路径是否存在，不存在则创建一个
+            if (!filepath.getParentFile().exists()) {
+                filepath.getParentFile().mkdirs();
+            }
+            file.transferTo(new File(path + File.separator + filename));
+            work.setTw_file_path("http://localhost:8080/filedown?fileName=" + URLDecoder.decode(fileName));
+        }
+
+        if (null == work.getTw_file_path()){
+            return;
+        }
+        work.setTw_name(tw_name);
+        work.setTw_cid(Integer.parseInt(c_id));
+        work.setTw_tid(Integer.parseInt(tw_tid.toString()));
+        work.setTw_addTime(new Date());
+        work.setTw_deadLine(new SimpleDateFormat("yyyy-MM-dd").parse(tw_deadLine));
+        work.setTw_file_name(fileName);
         workService.addWork(work);
 //        studentService.updateStudentClass(class1.getStudents(), class1.getC_id());
 //        //添加成功，跳转到其他页面
@@ -108,9 +149,7 @@ public class WorkController {
     }
 
     /**
-     * 修改学生
-     *
-     * @param class1
+     * @param work
      * @return
      * @throws Exception
      */

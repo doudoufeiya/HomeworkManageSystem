@@ -29,54 +29,50 @@
     <![endif]-->
     <!--/meta 作为公共模版分离出去-->
 
-    <title>新建课程 - 课程管理 </title>
+    <title>新建作业 - 作业管理 </title>
 </head>
 <body>
 <article class="page-container">
-    <form action="addLesson.action" method="post" class="form form-horizontal" id="form-lesson-add">
+    <form action="addWork.action" method="post" class="form form-horizontal" enctype="multipart/form-data"
+          id="form-work-add">
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>课程名称：</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>作业名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="l_name" name="l_name"
-                       datatype="*4-16" nullmsg="课程名称不能为空">
+                <input type="text" class="input-text" value="" placeholder="" id="tw_name" name="tw_name"
+                       datatype="*4-16" nullmsg="作业名称不能为空">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>老师：</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>课程：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <select class="select" id="t_id" name="t_id">
-                    <option value="0">选择老师</option>
-                    <c:forEach items="${teachers}" var="teacher">
-                        <option value="${teacher.t_id}">${teacher.t_name}</option>
+                <select class="select" id="c_id" name="c_id">
+                    <option value="0">选择课程</option>
+                    <c:forEach items="${classs}" var="class1">
+                        <option value="${class1.c_id}">${class1.c_name}</option>
                     </c:forEach>
                 </select>
             </div>
         </div>
 
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">勾选学生：</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>截止日期：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <dl class="permission-list">
-                    <dd>
-                        <dl class="cl student-list">
-                            <dt>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-0-0" id="user-Character-0-0">
-                                    全部</label>
-                            </dt>
-                            <dd>
-                                <c:forEach items="${students}" var="student">
-                                    <label class="">
-                                        <input type="checkbox" value="${student.s_id}" name="students"
-                                               id="student-${student.s_id}">
-                                            ${student.s_name}
-                                    </label>
-                                </c:forEach>
-                            </dd>
-                        </dl>
-                    </dd>
-                </dl>
+                <input name="tw_deadLine" type="text"
+                       onfocus="WdatePicker({minDate: '%y-%M-%d 00:00:00'})" id="tw_deadLine"
+                       class="input-text Wdate" style="width:120px;">
             </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">作业文件：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <span class="btn-upload form-group">
+				<input class="input-text upload-url" type="text" name="uploadfile" id="uploadfile1" readonly
+                       nullmsg="请添加附件！" style="width:200px">
+				<a href="javascript:void();" class="btn btn-primary radius upload-btn"><i
+                        class="Hui-iconfont">&#xe642;</i> 浏览文件</a>
+				<input type="file" multiple name="uploadfile" id="uploadfile" class="input-file">
+				</span></div>
         </div>
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
@@ -96,6 +92,8 @@
 <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
 <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
 <script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="lib/My97DatePicker/WdatePicker.js"></script>
+
 <!--/_footer /作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
@@ -121,23 +119,23 @@
             }
         });
 
-        $("#form-class-add").validate({
-            rules: {
-                roleName: {
-                    required: true,
-                },
-            },
-            onkeyup: false,
-            focusCleanup: true,
-            success: "valid",
-            submitHandler: function (form) {
-                debugger
-                $(form).ajaxSubmit();
-                var index = parent.layer.getFrameIndex(window.name);
-                parent.layer.close(index);
-                return false
-            }
-        });
+        // $("#form-work-add").validate({
+        //     rules: {
+        //         roleName: {
+        //             required: true,
+        //         },
+        //     },
+        //     onkeyup: false,
+        //     focusCleanup: true,
+        //     success: "valid",
+        //     submitHandler: function (form) {
+        //         debugger
+        //         $(form).ajaxSubmit();
+        //         var index = parent.layer.getFrameIndex(window.name);
+        //         parent.layer.close(index);
+        //         return false
+        //     }
+        // });
     });
 </script>
 <!--/请在上方写此页面业务相关的脚本-->

@@ -4,6 +4,7 @@ import cn.kewen.hms.pojo.StudentHomework;
 import cn.kewen.hms.service.StudentHomeworkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,8 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.*;
 import java.io.*;
+import java.net.URL;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.List;
 
@@ -50,7 +52,6 @@ public class StudentHomeworkController {
             homework.setSw_file_name(filename);
             homework.setSw_file_path(path);
             studentHomeworkService.insertStudentHomework(homework);
-            JOptionPane.showMessageDialog(null, "上传成功！");
             return "upload";
         } else {
             return "upload";
@@ -64,18 +65,17 @@ public class StudentHomeworkController {
      * @param response
      * @throws Exception
      */
-    @RequestMapping("filedown")
-    public void down(HttpServletRequest request, HttpServletResponse response, String sw_file_path) throws Exception {
+    @GetMapping("filedown")
+    public void down(HttpServletRequest request, HttpServletResponse response, String fileName) throws Exception {
+        String path = URLDecoder.decode(fileName, "UTF-8");
         //模拟文件，myfile.txt为需要下载的文件
-        String path = request.getSession().getServletContext().getRealPath("upload") + "/myfile.txtf";
+        path = request.getSession().getServletContext().getRealPath("upload") + File.separator + path;
         File file = new File(path);
-        File[] files = file.listFiles();
         //获取输入流
-        InputStream bis = new BufferedInputStream(new FileInputStream(new File(path)));
+        InputStream bis = new BufferedInputStream(new FileInputStream(file));
         //假如以中文名下载的话
         String filename = file.getName();
         //转码，免得文件名中文乱码
-        path = URLEncoder.encode(path, "UTF-8");
         //设置文件下载头
         response.addHeader("Content-Disposition", "attachment;filename=" + filename);
         //1.设置文件ContentType类型，这样设置，会自动判断下载文件类型  
