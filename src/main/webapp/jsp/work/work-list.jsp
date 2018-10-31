@@ -95,6 +95,12 @@
                        style="text-decoration:none">
                         <i class="Hui-iconfont">&#xe6e2;</i>
                     </a>
+                    <a title="查看作业情况"
+                       class="ml-5"
+                       onclick="stu_add('发布作业','addWorkPage.action','800','500')"
+                       style="text-decoration:none">
+                        <i class="Hui-iconfont">&#xe6cd;</i>
+                    </a>
                 </td>
             </tr>
         </c:forEach>
