@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -30,18 +31,18 @@
     <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js"></script>
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
-    <title>班级列表</title>
+    <title>作业列表</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 班级管理 <span
-        class="c-gray en">&gt;</span> 班级列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 作业管理 <span
+        class="c-gray en">&gt;</span> 作业列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
                                               href="javascript:location.replace(location.href);" title="刷新"><i
         class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container container">
     <div class="text-c">
         <form action="findStudentByName.action" method="post">
-            <input type="text" class="input-text" style="width:250px" placeholder="输入课程名称" id="s_name" name="s_name">
-            <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜课程
+            <input type="text" class="input-text" style="width:250px" placeholder="输入作业名称" id="tw_name" name="tw_name">
+            <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜作业
             </button>
         </form>
     </div>
@@ -51,31 +52,37 @@
             <i class="Hui-iconfont">&#xe6e2;</i>
             批量删除
         </a>
-        <a onclick="stu_add('添加课程','addLessonPage.action','800','500')"
+        <a onclick="stu_add('发布作业','addWorkPage.action','800','500')"
            class="btn btn-primary radius">
             <i class="Hui-iconfont">&#xe600;</i>
-            添加课程
+            发布作业
         </a>
     </span>
     </div>
     <table class="table table-border table-bordered table-bg row-fluid">
         <thead>
         <tr>
-            <th scope="col" colspan="11">课程列表</th>
+            <th scope="col" colspan="11">作业列表</th>
         </tr>
         <tr class="text-c">
             <th width="25"><input type="checkbox" name="" value=""></th>
             <th width="100">序号</th>
-            <th width="50">课程名</th>
+            <th width="50">作业名</th>
+            <th width="50">创建时间</th>
+            <th width="50">截止时间</th>
+            <th width="50">文件名</th>
             <th width="100">操作</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${lessons.data}" var="s">
+        <c:forEach items="${works.data}" var="s">
             <tr class="text-c">
                 <td><input type="checkbox" value="1" name=""></td>
-                <td>${s.l_id}</td>
-                <td>${s.l_name}</td>
+                <td>${s.tw_id}</td>
+                <td>${s.tw_name}</td>
+                <td><fmt:formatDate value="${s.tw_addTime}" pattern="yyyy/MM/dd HH:mm:ss"/></td>
+                <td><fmt:formatDate value="${s.tw_deadLine}" pattern="yyyy/MM/dd HH:mm:ss"/></td>
+                <td><a href="${s.tw_file_path}">${s.tw_file_name}</a></td>
                 <td class="td-manage">
                     <a title="编辑" href="javascript:;"
                        onclick="admin_edit('管理员编辑','admin-add.html','1','800','500')"
@@ -83,7 +90,7 @@
                         <i class="Hui-iconfont">&#xe6df;</i>
                     </a>
                     <a title="删除"
-                       href="deleteLesson.action?s_id=${s.l_id}"
+                       href="/deleteWork.action?s_id=${s.tw_id}"
                        class="ml-5"
                        style="text-decoration:none">
                         <i class="Hui-iconfont">&#xe6e2;</i>
@@ -94,11 +101,11 @@
         </tbody>
     </table>
     <input type="hidden" name="contextPath" value=<%= request.getContextPath() %>>
-    <c:if test="${lessons != null}">
-        <input type="hidden" id="pageNumber" value="${lessons.pageNumber}">
-        <input type="hidden" id="pageSize" value="${lessons.pageSize}">
-        <input type="hidden" id="totalPage" value="${lessons.totalPage}">
-        <input type="hidden" id="totalRow" value="${lessons.totalRow}">
+    <c:if test="${works != null}">
+        <input type="hidden" id="pageNumber" value="${works.pageNumber}">
+        <input type="hidden" id="pageSize" value="${works.pageSize}">
+        <input type="hidden" id="totalPage" value="${works.totalPage}">
+        <input type="hidden" id="totalRow" value="${works.totalRow}">
     </c:if>
 
     <div class="row-fluid">
@@ -112,7 +119,7 @@
 <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
 <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
 <script type="text/javascript" src="bPage/b.page.min.js"></script>
-<script type="text/javascript" src="jsp/class/page.js"></script>
+<script type="text/javascript" src="jsp/work/page.js"></script>
 <script type="text/javascript">
     /*
         参数解释：

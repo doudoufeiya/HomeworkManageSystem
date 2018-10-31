@@ -1,7 +1,7 @@
 $(function () {
 
     $('#page1').bPage({
-        url: "findLesson.action",
+        url: "findWork.action",
         totalPage: $('#totalPage').val(),
         totalRow: $('#totalRow').val(),
         pageSize: $('#pageSize').val(),
