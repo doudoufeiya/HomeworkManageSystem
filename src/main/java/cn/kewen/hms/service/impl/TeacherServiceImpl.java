@@ -37,6 +37,22 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    public PageData<Teacher> findTeachersNoLesson(PageParams params) throws Exception {
+        if (params == null) {
+            params = new PageParams();
+        }
+
+        Page page = PageHelper.startPage(params.getPageNumber().intValue(), params.getPageSize().intValue(), true);
+        PageData<Teacher> result = new PageData<>();
+        result.setData(teacherMapper.findTeachersNoLesson());
+        result.setPageNumber(page.getPageNum());
+        result.setPageSize(params.getPageSize());
+        result.setTotalRow(page.getTotal());
+        result.setTotalPage(page.getPages());
+        return result;
+    }
+
+    @Override
     public List<Teacher> findTeacherByName(String t_name) throws Exception {
         return teacherMapper.findTeacherByName(t_name);
     }
@@ -53,6 +69,17 @@ public class TeacherServiceImpl implements TeacherService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean updateTeacher(Integer teacherId, Integer lessonId) throws Exception {
+        if (teacherId == null || lessonId == null) {
+            return false;
+        }
+
+        teacherMapper.updateTeacherLesson(teacherId, lessonId);
+
+        return true;
     }
 
     @Override

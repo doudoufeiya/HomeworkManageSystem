@@ -1,6 +1,7 @@
 package cn.kewen.hms.mapper;
 
 import cn.kewen.hms.pojo.Teacher;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -9,6 +10,8 @@ public interface TeacherMapper {
      * 显示所有信息
      */
     List<Teacher> findTeachers() throws Exception;
+
+    List<Teacher> findTeachersNoLesson() throws Exception;
 
     /*
      * 根据用户名找密码
@@ -24,6 +27,8 @@ public interface TeacherMapper {
      * 修改信息
      */
     int updateTeacher(Teacher teacher) throws Exception;
+
+    int updateTeacherLesson(@Param("teacherId") Integer teacherId, @Param("lessonId") Integer lessonId) throws Exception;
 
     /*
      * 添加信息

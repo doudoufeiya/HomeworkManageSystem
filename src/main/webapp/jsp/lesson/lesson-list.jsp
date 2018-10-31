@@ -40,8 +40,8 @@
 <div class="page-container container">
     <div class="text-c">
         <form action="findStudentByName.action" method="post">
-            <input type="text" class="input-text" style="width:250px" placeholder="输入班级名称" id="s_name" name="s_name">
-            <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜班级
+            <input type="text" class="input-text" style="width:250px" placeholder="输入课程名称" id="s_name" name="s_name">
+            <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜课程
             </button>
         </form>
     </div>
@@ -51,31 +51,31 @@
             <i class="Hui-iconfont">&#xe6e2;</i>
             批量删除
         </a>
-        <a onclick="stu_add('添加班级','addClassPage.action','800','500')"
+        <a onclick="stu_add('添加课程','addLessonPage.action','800','500')"
            class="btn btn-primary radius">
             <i class="Hui-iconfont">&#xe600;</i>
-            添加班级
+            添加课程
         </a>
     </span>
     </div>
     <table class="table table-border table-bordered table-bg row-fluid">
         <thead>
         <tr>
-            <th scope="col" colspan="11">班级列表</th>
+            <th scope="col" colspan="11">课程列表</th>
         </tr>
         <tr class="text-c">
             <th width="25"><input type="checkbox" name="" value=""></th>
             <th width="100">序号</th>
-            <th width="50">班级名</th>
+            <th width="50">课程名</th>
             <th width="100">操作</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${classes.data}" var="s">
+        <c:forEach items="${lessons.data}" var="s">
             <tr class="text-c">
                 <td><input type="checkbox" value="1" name=""></td>
-                <td>${s.c_id}</td>
-                <td>${s.c_name}</td>
+                <td>${s.l_id}</td>
+                <td>${s.l_name}</td>
                 <td class="td-manage">
                     <a title="编辑" href="javascript:;"
                        onclick="admin_edit('管理员编辑','admin-add.html','1','800','500')"
@@ -83,7 +83,7 @@
                         <i class="Hui-iconfont">&#xe6df;</i>
                     </a>
                     <a title="删除"
-                       href="deleteClass.action?s_id=${s.c_id}"
+                       href="deleteLesson.action?s_id=${s.l_id}"
                        class="ml-5"
                        style="text-decoration:none">
                         <i class="Hui-iconfont">&#xe6e2;</i>
@@ -94,11 +94,11 @@
         </tbody>
     </table>
     <input type="hidden" name="contextPath" value=<%= request.getContextPath() %>>
-    <c:if test="${classes != null}">
-        <input type="hidden" id="pageNumber" value="${classes.pageNumber}">
-        <input type="hidden" id="pageSize" value="${classes.pageSize}">
-        <input type="hidden" id="totalPage" value="${classes.totalPage}">
-        <input type="hidden" id="totalRow" value="${classes.totalRow}">
+    <c:if test="${lessons != null}">
+        <input type="hidden" id="pageNumber" value="${lessons.pageNumber}">
+        <input type="hidden" id="pageSize" value="${lessons.pageSize}">
+        <input type="hidden" id="totalPage" value="${lessons.totalPage}">
+        <input type="hidden" id="totalRow" value="${lessons.totalRow}">
     </c:if>
 
     <div class="row-fluid">

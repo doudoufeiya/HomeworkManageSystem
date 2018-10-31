@@ -1,23 +1,17 @@
 package cn.kewen.hms.controller;
 
 
-import cn.kewen.hms.pojo.Lesson;
-import cn.kewen.hms.pojo.PageData;
-import cn.kewen.hms.pojo.PageParams;
+import cn.kewen.hms.pojo.*;
 import cn.kewen.hms.service.LessonService;
+import cn.kewen.hms.service.ScLessonService;
+import cn.kewen.hms.service.StudentService;
+import cn.kewen.hms.service.TeacherService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-import java.net.URLEncoder;
 
 @Controller
 public class LessonController {
@@ -26,13 +20,19 @@ public class LessonController {
 
     @Autowired
     private LessonService lessonService;
+    @Autowired
+    private TeacherService teacherService;
+    @Autowired
+    private StudentService studentService;
+    @Autowired
+    private ScLessonService scLessonService;
 
     @RequestMapping("findLessons")
     public ModelAndView findLessons(ModelAndView mav, PageParams params) throws Exception {
         PageData<Lesson> lessons = lessonService.findLessons(params);
         logger.info("lessons:" + lessons);
         mav.addObject("lessons", lessons);
-        mav.setViewName("lesson-list");
+        mav.setViewName("jsp/lesson/lesson-list");
         return mav;
     }
 
@@ -45,7 +45,12 @@ public class LessonController {
      */
     @RequestMapping("addLessonPage")
     public ModelAndView addLessontPage(ModelAndView mav) throws Exception {
-        mav.setViewName("stu/lesson-add");
+        PageParams params = new PageParams(1, 1000L);
+        PageData<Teacher> teachers = teacherService.findTeachersNoLesson(params);
+        PageData<Student> students = studentService.findStudents(params);
+        mav.addObject("teachers", teachers.getData());
+        mav.addObject("students", students.getData());
+        mav.setViewName("jsp/lesson/lesson-add");
         return mav;
     }
 
@@ -67,10 +72,9 @@ public class LessonController {
         PageData<Lesson> lessons = lessonService.findLessons(null);
         logger.info("findStudents:" + lessons);
         mav.addObject("lessons", lessons);
-        mav.setViewName("lesson-list");
+        mav.setViewName("jsp/lesson/lesson-list");
         return mav;
     }
-
 
 
     /**
@@ -80,10 +84,17 @@ public class LessonController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("addLesson")
+    @RequestMapping(value = "addLesson", method = {RequestMethod.POST, RequestMethod.GET})
     public void addLesson(Lesson lesson) throws Exception {
         ModelAndView mav = new ModelAndView();
         lessonService.addLesson(lesson);
+        teacherService.updateTeacher(lesson.getT_id(), lesson.getL_id());
+        for (Integer student : lesson.getStudents()) {
+            ScLesson scLesson = new ScLesson();
+            scLesson.setL_id(lesson.getL_id());
+            scLesson.setS_id(student);
+            scLessonService.addScLesson(scLesson);
+        }
 //        //添加成功，跳转到其他页面
 //        PageData<Student> students = studentService.findStudents(null);
 //        logger.info("findStudents:" + students);

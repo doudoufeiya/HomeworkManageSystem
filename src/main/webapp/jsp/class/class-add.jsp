@@ -41,20 +41,7 @@
                        datatype="*4-16" nullmsg="班级名称不能为空">
             </div>
         </div>
-        <%--<div class="row cl">--%>
-            <%--<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>选择老师：</label>--%>
-            <%--<div class="formControls col-xs-8 col-sm-9">--%>
-                <%--<input type="text" class="input-text" value="" placeholder="" id="c_name" name="c_name"--%>
-                       <%--datatype="*4-16" nullmsg="班级名称不能为空">--%>
-                <%--<select class="select" id="t_id" name="t_id">--%>
-                    <%--<option value="0">选择老师</option>--%>
-                    <%--<c:forEach items="${students}" var="student">--%>
-                        <%--<option value="${student.}">AccountInfo</option>--%>
-                    <%--</c:forEach>--%>
-                    <%--<option value="AdminInfo">AdminInfo</option>--%>
-                <%--</select>--%>
-            <%--</div>--%>
-        <%--</div>--%>
+
 
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3">勾选学生：</label>

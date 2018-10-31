@@ -1,8 +1,12 @@
 package cn.kewen.hms.pojo;
 
+import java.util.List;
+
 public class Lesson {
     private Integer l_id;
     private String l_name;
+    private List<Integer> students;
+    private Integer t_id;
 
 
     public Lesson() {
@@ -13,6 +17,22 @@ public class Lesson {
         super();
         this.l_id = l_id;
         this.l_name = l_name;
+    }
+
+    public Integer getT_id() {
+        return t_id;
+    }
+
+    public void setT_id(Integer t_id) {
+        this.t_id = t_id;
+    }
+
+    public List<Integer> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Integer> students) {
+        this.students = students;
     }
 
     public Integer getL_id() {

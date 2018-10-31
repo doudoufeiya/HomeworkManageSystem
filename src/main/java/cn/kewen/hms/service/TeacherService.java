@@ -16,6 +16,8 @@ public interface TeacherService {
      */
     PageData<Teacher> findTeachers(PageParams params) throws Exception;
 
+    PageData<Teacher> findTeachersNoLesson(PageParams params) throws Exception;
+
     /**
      * 管理员登录，根据用户id和密码查找
      *
@@ -51,6 +53,15 @@ public interface TeacherService {
      * @throws Exception
      */
     boolean updateTeacher(Teacher teacher) throws Exception;
+
+    /**
+     *
+     * @param teacherId
+     * @param lessonId
+     * @return
+     * @throws Exception
+     */
+    boolean updateTeacher(Integer teacherId,Integer lessonId) throws Exception;
 
     /**
      * 删除教师信息

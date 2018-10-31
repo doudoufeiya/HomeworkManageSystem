@@ -30,6 +30,9 @@
     <insert id="addLesson" parameterType="Lesson">
         insert into lesson (l_name)
         values (#{l_name})
+        <selectKey keyProperty="l_id" order="AFTER" resultType="int">
+            select  last_insert_id()
+        </selectKey>
     </insert>
     <!-- 根据id删除信息 -->
     <delete id="deleteLesson" parameterType="int">
