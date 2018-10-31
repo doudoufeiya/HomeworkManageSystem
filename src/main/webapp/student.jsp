@@ -23,7 +23,7 @@
         <div class="nav-user">
             <!-- 登入后的状态 -->
 
-            <a class="avatar" href="index.html">
+            <a class="avatar" href="login.action">
                 <img src="res/images/8.jpg">
                 <cite style="color: white;">学生</cite>
                 <i style="color: white;">退出</i>
