@@ -1,15 +1,14 @@
 $(function () {
 
     $('#page1').bPage({
-        url: "findWork.action",
+        url: "findStudentHomework.action",
         totalPage: $('#totalPage').val(),
         totalRow: $('#totalRow').val(),
         pageSize: $('#pageSize').val(),
         pageNumber: $('#pageNumber').val(),
         params: function () {
             return {
-                userName: 'zhangsan',
-                age: 42
+                sw_name: 'zhangsan'
             };
         }
     });

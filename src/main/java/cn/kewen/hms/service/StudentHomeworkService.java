@@ -12,11 +12,11 @@ public interface StudentHomeworkService {
 
     /**
      * 显示所有信息
-     *
-     * @param teacherId
+     *  @param teacherId
      * @param params
+     * @param homeworkName
      */
-    PageData<StudentHomework> findStudentHomework(Integer teacherId, PageParams params);
+    PageData<StudentHomework> findStudentHomework(Integer teacherId, PageParams params, String sw_name);
 
     /**
      * 添加批改意见

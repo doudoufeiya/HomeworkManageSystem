@@ -15,8 +15,9 @@ public interface StudentHomeworkMapper {
      * 显示所有作业信息
      *
      * @param teacherId
+     * @param sw_name
      */
-    List<StudentHomework> findStudentHomework(@Param("teacherId") Integer teacherId);
+    List<StudentHomework> findStudentHomework(@Param("teacherId") Integer teacherId, @Param("sw_name") String sw_name);
 
 
     /**

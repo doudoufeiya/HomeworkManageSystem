@@ -52,13 +52,21 @@
         <div class="am-u-sm-12 am-u-md-3">
 
         </div>
-        <div class="am-u-sm-12 am-u-md-3">
-            <div class="am-input-group am-input-group-sm">
-                <input type="text" class="am-form-field" placeholder="请输入学生名">
-                <span class="am-input-group-btn">
-            <button class="am-btn am-btn-default" type="button">搜索</button>
-          </span>
-            </div>
+        <%--<div class="am-u-sm-12 am-u-md-3">--%>
+            <%--<div class="am-input-group am-input-group-sm">--%>
+                <%--<input type="text" class="am-form-field" name="sw_name" placeholder="请输入作业名">--%>
+                <%--<span class="am-input-group-btn search1">--%>
+                    <%--<a class="am-btn am-btn-default search1" href="javascript:void(0);" type="button">搜索</a>--%>
+                <%--</span>--%>
+                <%--<button class="search1">点击</button>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+        <div class="text-c">
+            <form action="findStudentHomework.action" method="post">
+                <input type="text" class="input-text" style="width:250px" placeholder="请输入作业名" id="sw_name" name="sw_name">
+                <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜索
+                </button>
+            </form>
         </div>
     </div>
     <div class="am-g">
@@ -137,6 +145,8 @@
 <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
 <script type="text/javascript" src="bPage/b.page.min.js"></script>
 <script type="text/javascript" src="page.js"></script>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+
 <script type="text/javascript">
     /*
         参数解释：
@@ -148,8 +158,27 @@
     */
     /*学生-增加*/
     function stu_add(title, url, w, h) {
-        debugger
         layer_show(title, url, w, h);
     }
+
+    function search1() {
+        var value = $("#sw_name").val()
+        if (value == undefined || value == null || value == '') {
+            return
+        }
+        location.href = value;
+    }
+
+
+    $(function () {
+        $(".search1").click(function () {
+            var value = $("#sw_name").val()
+            if (value == undefined || value == null || value == '') {
+                return
+            }
+            location.href = value;
+        });
+    })
+
 </script>
 </html>

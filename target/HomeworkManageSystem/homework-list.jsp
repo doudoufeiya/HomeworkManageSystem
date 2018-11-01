@@ -52,13 +52,21 @@
         <div class="am-u-sm-12 am-u-md-3">
 
         </div>
-        <div class="am-u-sm-12 am-u-md-3">
-            <div class="am-input-group am-input-group-sm">
-                <input type="text" class="am-form-field" placeholder="请输入学生名">
-                <span class="am-input-group-btn">
-            <button class="am-btn am-btn-default" type="button">搜索</button>
-          </span>
-            </div>
+        <%--<div class="am-u-sm-12 am-u-md-3">--%>
+            <%--<div class="am-input-group am-input-group-sm">--%>
+                <%--<input type="text" class="am-form-field" name="sw_name" placeholder="请输入作业名">--%>
+                <%--<span class="am-input-group-btn search1">--%>
+                    <%--<a class="am-btn am-btn-default search1" href="javascript:void(0);" type="button">搜索</a>--%>
+                <%--</span>--%>
+                <%--<button class="search1">点击</button>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+        <div class="text-c">
+            <form action="findStudentHomework.action" method="post">
+                <input type="text" class="input-text" style="width:250px" placeholder="请输入作业名" id="sw_name" name="sw_name">
+                <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜索
+                </button>
+            </form>
         </div>
     </div>
     <div class="am-g">
@@ -78,7 +86,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${homeworks}" var="h">
+                    <c:forEach items="${homeworks.data}" var="h">
                         <tr>
                             <td><input type="checkbox" value="1" name=""></td>
                             <td>${h.sw_sid}</td>
@@ -113,33 +121,15 @@
                     </c:forEach>
                     </tbody>
                 </table>
-                <div class="am-cf">
-                    共 15 条记录
-                    <div class="am-fr">
-                        <ul class="am-pagination">
-                            <li class="am-disabled">
-                                <a href="#">«</a>
-                            </li>
-                            <li class="am-active">
-                                <a href="#">1</a>
-                            </li>
-                            <li>
-                                <a href="#">2</a>
-                            </li>
-                            <li>
-                                <a href="#">3</a>
-                            </li>
-                            <li>
-                                <a href="#">4</a>
-                            </li>
-                            <li>
-                                <a href="#">5</a>
-                            </li>
-                            <li>
-                                <a href="#">»</a>
-                            </li>
-                        </ul>
-                    </div>
+                <c:if test="${homeworks != null}">
+                    <input type="hidden" id="pageNumber" value="${homeworks.pageNumber}">
+                    <input type="hidden" id="pageSize" value="${homeworks.pageSize}">
+                    <input type="hidden" id="totalPage" value="${homeworks.totalPage}">
+                    <input type="hidden" id="totalRow" value="${homeworks.totalRow}">
+                </c:if>
+
+                <div class="row-fluid">
+                    <div id="page1"></div>
                 </div>
                 <hr>
             </form>
@@ -153,6 +143,10 @@
 <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
 <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
+<script type="text/javascript" src="bPage/b.page.min.js"></script>
+<script type="text/javascript" src="page.js"></script>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+
 <script type="text/javascript">
     /*
         参数解释：
@@ -164,8 +158,27 @@
     */
     /*学生-增加*/
     function stu_add(title, url, w, h) {
-        debugger
         layer_show(title, url, w, h);
     }
+
+    function search1() {
+        var value = $("#sw_name").val()
+        if (value == undefined || value == null || value == '') {
+            return
+        }
+        location.href = value;
+    }
+
+
+    $(function () {
+        $(".search1").click(function () {
+            var value = $("#sw_name").val()
+            if (value == undefined || value == null || value == '') {
+                return
+            }
+            location.href = value;
+        });
+    })
+
 </script>
 </html>

@@ -25,8 +25,9 @@ public class StudentHomeworkController {
     StudentHomeworkService studentHomeworkService;
 
     @RequestMapping("findStudentHomework")
-    public ModelAndView findStudentHomework(ModelAndView mav, HttpSession session, PageParams params) throws Exception {
-        PageData<StudentHomework> homeworks = studentHomeworkService.findStudentHomework(Integer.parseInt(session.getAttribute("t_id").toString()), params);
+    public ModelAndView findStudentHomework(ModelAndView mav, HttpServletRequest request, HttpSession session, PageParams params) throws Exception {
+        String sw_name = request.getParameter("sw_name");
+        PageData<StudentHomework> homeworks = studentHomeworkService.findStudentHomework(Integer.parseInt(session.getAttribute("t_id").toString()), params, sw_name);
         mav.addObject("homeworks", homeworks);
         mav.setViewName("homework-list");
         return mav;

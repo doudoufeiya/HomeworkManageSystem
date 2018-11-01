@@ -24,13 +24,13 @@ public class StudentHomeworkServiceImpl implements StudentHomeworkService {
     }
 
     @Override
-    public PageData<StudentHomework> findStudentHomework(Integer teacherId, PageParams params) {
+    public PageData<StudentHomework> findStudentHomework(Integer teacherId, PageParams params, String sw_name) {
         if (teacherId == null) {
             params = new PageParams();
         }
         Page page = PageHelper.startPage(params.getPageNumber().intValue(), params.getPageSize().intValue(), true);
         PageData<StudentHomework> result = new PageData<>();
-        result.setData(studentHomeworkMapper.findStudentHomework(teacherId));
+        result.setData(studentHomeworkMapper.findStudentHomework(teacherId, sw_name));
         result.setPageNumber(page.getPageNum());
         result.setPageSize(params.getPageSize());
         result.setTotalRow(page.getTotal());

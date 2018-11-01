@@ -17,20 +17,23 @@
     <!-- 查询所有作业 -->
     <select id="findStudentHomework" resultType="StudentHomework">
         select swork.sw_sid,
-               swork.sw_sid,
-               swork.sw_id,
-               student.s_number,
-               swork.sw_wid,
-               swork.sw_file_name,
-               swork.sw_file_path,
-               swork.sw_grade,
-               swork.sw_remark,
-               swork.sw_correctTime,
-               swork.sw_addTime,
-               twork.tw_name as sw_name
+        swork.sw_sid,
+        swork.sw_id,
+        student.s_number,
+        swork.sw_wid,
+        swork.sw_file_name,
+        swork.sw_file_path,
+        swork.sw_grade,
+        swork.sw_remark,
+        swork.sw_correctTime,
+        swork.sw_addTime,
+        twork.tw_name as sw_name
         from swork
-                 left join twork on twork.tw_id = swork.sw_wid
-                 left join student on student.s_id = swork.sw_sid
+        left join twork on twork.tw_id = swork.sw_wid
+        left join student on student.s_id = swork.sw_sid
         where twork.tw_tid = #{teacherId}
+        <if test="sw_name != null and sw_name !=''">
+            and twork.tw_name like concat("%",#{sw_name},"%")
+        </if>
     </select>
 </mapper>
