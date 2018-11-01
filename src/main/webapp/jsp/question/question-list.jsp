@@ -31,18 +31,18 @@
     <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js"></script>
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
-    <title>作业列表</title>
+    <title>答疑列表</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 作业管理 <span
-        class="c-gray en">&gt;</span> 作业列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 答疑管理 <span
+        class="c-gray en">&gt;</span> 答疑列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
                                               href="javascript:location.replace(location.href);" title="刷新"><i
         class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container container">
     <div class="text-c">
         <form action="findStudentByName.action" method="post">
-            <input type="text" class="input-text" style="width:250px" placeholder="输入作业名称" id="s_name" name="s_name">
-            <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜作业
+            <input type="text" class="input-text" style="width:250px" placeholder="输入问题标题" id="s_name" name="s_name">
+            <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜问题
             </button>
         </form>
     </div>
@@ -52,11 +52,11 @@
             <%--<i class="Hui-iconfont">&#xe6e2;</i>--%>
             <%--批量删除--%>
         <%--</a>--%>
-        <%--<a onclick="stu_add('添加课程','addLessonPage.action','800','500')"--%>
-           <%--class="btn btn-primary radius">--%>
-            <%--<i class="Hui-iconfont">&#xe600;</i>--%>
-            <%--添加课程--%>
-        <%--</a>--%>
+        <a onclick="stu_add('添加问题','addQuestionPage.action','800','500')"
+           class="btn btn-primary radius">
+            <i class="Hui-iconfont">&#xe600;</i>
+            添加问题
+        </a>
     </span>
     </div>
     <table class="table table-border table-bordered table-bg row-fluid">
@@ -67,56 +67,51 @@
         <tr class="text-c">
             <th width="25"><input type="checkbox" name="" value=""></th>
             <th width="25">序号</th>
-            <th width="50">作业</th>
+            <th width="50">学生姓名</th>
+            <th width="50">标题</th>
+            <th width="50">问题内容</th>
+            <th width="50">提问时间</th>
             <th width="50">教师</th>
-            <th width="50">截止日期</th>
-            <th width="50">作业要求文件名</th>
-            <th width="50">课程名称</th>
-            <th width="50">学生提交的作业文件名</th>
-            <th width="50">分数</th>
-            <th width="50">评阅意见</th>
-            <th width="50">批改时间</th>
-            <th width="50">操作</th>
+            <th width="50">回答内容</th>
+            <th width="50">回答时间</th>
+            <%--<th width="50">操作</th>--%>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${studentWorks.data}" var="s">
+        <c:forEach items="${questions.data}" var="s">
             <tr class="text-c">
                 <td><input type="checkbox" value="1" name=""></td>
-                <td>${s.tw_id}</td>
-                <td>${s.tw_name}</td>
+                <td>${s.question_id}</td>
+                <td>${s.s_name}</td>
+                <td>${s.title}</td>
+                <td>${s.content}</td>
+                <td><fmt:formatDate value="${s.send_date}" pattern="yyyy/MM/dd HH:mm:ss"/></td>
                 <td>${s.t_name}</td>
-                <td><fmt:formatDate value="${s.tw_deadLine}" pattern="yyyy/MM/dd"/></td>
-                <td><a href="${s.tw_file_path}">${s.tw_file_name}</a></td>
-                <td>${s.l_name}</td>
-                <td><a href="${s.sw_file_path}">${s.sw_file_name}</a></td>
-                <td>${s.sw_gradle}</td>
-                <td>${s.sw_remark}</td>
-                <td>${s.correctTime}</td>
-
-                <td class="td-manage">
-                    <a title="上传作业" href="javascript:;"
-                       onclick="admin_edit('上传作业','addStudentWorkPage.action?workId='+${s.tw_id},'1','800','500')"
-                       class="ml-5" style="text-decoration:none">
-                        <i class="Hui-iconfont">&#xe692;</i>
-                    </a>
-                        <%--<a title="删除"--%>
-                        <%--href="deleteLesson.action?s_id=${s.l_id}"--%>
-                        <%--class="ml-5"--%>
-                        <%--style="text-decoration:none">--%>
-                        <%--<i class="Hui-iconfont">&#xe6e2;</i>--%>
-                        <%--</a>--%>
-                </td>
+                <td>${s.answer_content}</td>
+                <td><fmt:formatDate value="${s.answer_date}" pattern="yyyy/MM/dd HH:mm:ss"/></td>
+                <%--<td class="td-manage">--%>
+                    <%--<a title="上传作业" href="javascript:;"--%>
+                       <%--onclick="admin_edit('上传作业','addStudentWorkPage.action?workId='+${s.tw_id},'1','800','500')"--%>
+                       <%--class="ml-5" style="text-decoration:none">--%>
+                        <%--<i class="Hui-iconfont">&#xe692;</i>--%>
+                    <%--</a>--%>
+                        <%--&lt;%&ndash;<a title="删除"&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;href="deleteLesson.action?s_id=${s.l_id}"&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;class="ml-5"&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;style="text-decoration:none">&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;<i class="Hui-iconfont">&#xe6e2;</i>&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;</a>&ndash;%&gt;--%>
+                <%--</td>--%>
             </tr>
         </c:forEach>
         </tbody>
     </table>
     <input type="hidden" name="contextPath" value=<%= request.getContextPath() %>>
-    <c:if test="${studentWorks != null}">
-        <input type="hidden" id="pageNumber" value="${studentWorks.pageNumber}">
-        <input type="hidden" id="pageSize" value="${studentWorks.pageSize}">
-        <input type="hidden" id="totalPage" value="${studentWorks.totalPage}">
-        <input type="hidden" id="totalRow" value="${studentWorks.totalRow}">
+    <c:if test="${questions != null}">
+        <input type="hidden" id="pageNumber" value="${questions.pageNumber}">
+        <input type="hidden" id="pageSize" value="${questions.pageSize}">
+        <input type="hidden" id="totalPage" value="${questions.totalPage}">
+        <input type="hidden" id="totalRow" value="${questions.totalRow}">
     </c:if>
 
     <div class="row-fluid">
@@ -130,7 +125,7 @@
 <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
 <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
 <script type="text/javascript" src="bPage/b.page.min.js"></script>
-<script type="text/javascript" src="jsp/class/page.js"></script>
+<script type="text/javascript" src="jsp/question/page.js"></script>
 <script type="text/javascript">
     /*
         参数解释：

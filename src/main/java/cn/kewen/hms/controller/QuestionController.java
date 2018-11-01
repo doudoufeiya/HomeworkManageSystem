@@ -31,8 +31,8 @@ public class QuestionController {
     private Logger logger = Logger.getLogger(QuestionController.class);
 
 
-    @RequestMapping("findStudents")
-    public ModelAndView findStudents(ModelAndView mav, PageParams params) throws Exception {
+    @RequestMapping("findQuestions")
+    public ModelAndView findQuestions(ModelAndView mav, PageParams params) throws Exception {
         PageData<Question> questions = questionService.findQuestions(params);
         logger.info("questions:" + questions);
         mav.addObject("questions", questions);
@@ -80,7 +80,7 @@ public class QuestionController {
     /**
      * 添加学生
      *
-     * @param student
+     * @param question
      * @return
      * @throws Exception
      */
@@ -88,28 +88,7 @@ public class QuestionController {
     public void addQuestion(Question question) throws Exception {
         ModelAndView mav = new ModelAndView();
         questionService.addQuestion(question);
-//        //添加成功，跳转到其他页面
-//        PageData<Student> students = studentService.findStudents(null);
-//        logger.info("findStudents:" + students);
-//        mav.addObject("students", students);
-//        mav.setViewName("student-list");
-//        return mav;
     }
 
-//    /**
-//     * 修改学生
-//     *
-//     * @param student
-//     * @return
-//     * @throws Exception
-//     */
-//    @RequestMapping("updateQuestion")
-//    public String updateQuestion(Question question) throws Exception {
-//        boolean i = questionService.u(student);
-//        if (i) {
-//            return "redirect:/student/findStudents";
-//        }
-//        return "ok";
-//    }
 
 }

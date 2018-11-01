@@ -6,8 +6,10 @@
 
     <!-- 显示所有学生信息 -->
     <select id="findQuestions" resultType="cn.kewen.hms.pojo.Question">
-        select *
+        select question.*, student.s_name, teacher.t_name
         from question
+                 left join teacher on teacher.t_id = question.t_id
+                 left join student on student.s_id = question.s_id
     </select>
 
     <!-- 根据账号查询学生信息 -->
@@ -19,7 +21,7 @@
 
     <!-- 添加信息 -->
     <insert id="addQuestion" parameterType="Question">
-        insert into question(t_id, s_id, type, msg_date)
+        insert into question(t_id, s_id, type, send_date)
         values (#{s_id}, #{type}, now())
         <selectKey keyProperty="question_id" order="AFTER" resultType="int">
             select last_insert_id()

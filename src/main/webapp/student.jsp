@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -39,7 +39,7 @@
 
 <div class="main fly-user-main layui-clear">
     <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
-        <li class="layui-nav-item layui-this"><a href="student.jsp"> <i
+        <li class="layfindQuestions"ui-nav-item layui-this"><a href="student.jsp"> <i
                 class="layui-icon">&#xe609;</i> 首页 </a></li>
         <%--<li class="layui-nav-item "><a href="upload.jsp" target="right"> <i--%>
         <%--class="layui-icon">&#xe612;</i>上传作业 </a></li>--%>
@@ -48,8 +48,9 @@
             <a href="findStudentWorks.action" target="right">
                 <i class="layui-icon">&#xe612;</i> 作业列表</a>
         </li>
-        <!--		<li class="layui-nav-item"><a href="newsType.html" target="right"> <i
-            class="layui-icon">&#xe611;</i> 查看成绩 </a></li>-->
+        <li class="layui-nav-item"><a href="findQuestions.action" target="right"> <i
+                class="layui-icon">&#xe611;</i> 问题答疑 </a>
+        </li>
         <li class="layui-nav-item "><a href="news.html" target="right"> <i
                 class="layui-icon">&#xe611;</i> 修改个人信息</a></li>
         <li class="layui-nav-item  "><a href="javascript:void(0)" onclick="updatePwd('修改密码',2)"> <i

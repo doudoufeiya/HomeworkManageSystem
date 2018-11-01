@@ -12,29 +12,43 @@ public class Question {
      * 问题ID
      */
     private Integer question_id;
-    /**
-     * 教师ID
-     */
-    private Integer t_id;
+
     /**
      * 学生id
      */
     private Integer s_id;
+
     /**
-     * type,0是学生，1是教师
+     * 姓名
      */
-    private Integer type;
+    private String s_name;
+
     /**
      * 发送时间
      */
-    private Date msg_date;
+    private Date send_date;
+    /**
+     * 标题
+     */
+    private String title;
+    /**
+     * 内容
+     */
+    private String content;
 
-    public Integer getQuestion_id() {
-        return question_id;
+    private Integer t_id;
+    private String t_name;
+
+    private Date answer_date;
+
+    private String answer_content;
+
+    public String getT_name() {
+        return t_name;
     }
 
-    public void setQuestion_id(Integer question_id) {
-        this.question_id = question_id;
+    public void setT_name(String t_name) {
+        this.t_name = t_name;
     }
 
     public Integer getT_id() {
@@ -45,6 +59,30 @@ public class Question {
         this.t_id = t_id;
     }
 
+    public Date getAnswer_date() {
+        return answer_date;
+    }
+
+    public void setAnswer_date(Date answer_date) {
+        this.answer_date = answer_date;
+    }
+
+    public String getAnswer_content() {
+        return answer_content;
+    }
+
+    public void setAnswer_content(String answer_content) {
+        this.answer_content = answer_content;
+    }
+
+    public Integer getQuestion_id() {
+        return question_id;
+    }
+
+    public void setQuestion_id(Integer question_id) {
+        this.question_id = question_id;
+    }
+
     public Integer getS_id() {
         return s_id;
     }
@@ -53,19 +91,35 @@ public class Question {
         this.s_id = s_id;
     }
 
-    public Integer getType() {
-        return type;
+    public String getS_name() {
+        return s_name;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setS_name(String s_name) {
+        this.s_name = s_name;
     }
 
-    public Date getMsg_date() {
-        return msg_date;
+    public Date getSend_date() {
+        return send_date;
     }
 
-    public void setMsg_date(Date msg_date) {
-        this.msg_date = msg_date;
+    public void setSend_date(Date send_date) {
+        this.send_date = send_date;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }
