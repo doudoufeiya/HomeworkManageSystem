@@ -12,6 +12,7 @@ public interface StudentHomeworkService {
 
     /**
      * 显示所有信息
+     * @param teacherId
      */
-    List<StudentHomework> findStudentHomework();
+    List<StudentHomework> findStudentHomework(Integer teacherId);
 }

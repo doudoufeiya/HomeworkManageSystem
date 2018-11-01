@@ -69,7 +69,7 @@
     </select>
 
     <insert id="uploadWork">
-        insert into swork (sw_name, sw_sid, sw_wid, sw_file_name, sw_file_path)
-        values (#{fileName}, #{studentId}, #{workId}, #{fileName}, #{filePath});
+        insert into swork (sw_name, sw_sid, sw_wid, sw_file_name, sw_file_path, sw_addTime)
+        values (#{fileName}, #{studentId}, #{workId}, #{fileName}, #{filePath}, now());
     </insert>
 </mapper>

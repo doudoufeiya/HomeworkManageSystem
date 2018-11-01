@@ -3,24 +3,26 @@ package cn.kewen.hms.pojo;
 import java.util.Date;
 
 public class StudentHomework {
-    private int sw_id;
+    private Integer sw_id;
     private String sw_name;
     private int sw_sid;
     private int sw_tid;
     private String sw_file_name;
     private String sw_file_path;
-    private int sw_grade;
+    private Integer sw_grade;
     private String sw_remark;
+    private Date sw_addTime;
     private Date sw_correctTime;
+    private String s_number;
 
     public StudentHomework() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-    public StudentHomework(int sw_id, String sw_name, int sw_sid, int sw_tid,
-                           String sw_file_name, String sw_file_path, int sw_grade,
-                           String sw_remark, Date sw_correctTime) {
+    public StudentHomework(Integer sw_id, String sw_name, int sw_sid, int sw_tid,
+                           String sw_file_name, String sw_file_path, Integer sw_grade,
+                           String sw_remark, Date sw_correctTime, Date sw_addTime, String s_number) {
         super();
         this.sw_id = sw_id;
         this.sw_name = sw_name;
@@ -31,13 +33,15 @@ public class StudentHomework {
         this.sw_grade = sw_grade;
         this.sw_remark = sw_remark;
         this.sw_correctTime = sw_correctTime;
+        this.sw_addTime = sw_addTime;
+        this.s_number = s_number;
     }
 
-    public int getSw_id() {
+    public Integer getSw_id() {
         return sw_id;
     }
 
-    public void setSw_id(int sw_id) {
+    public void setSw_id(Integer sw_id) {
         this.sw_id = sw_id;
     }
 
@@ -81,11 +85,11 @@ public class StudentHomework {
         this.sw_file_path = sw_file_path;
     }
 
-    public int getSw_grade() {
+    public Integer getSw_grade() {
         return sw_grade;
     }
 
-    public void setSw_grade(int sw_grade) {
+    public void setSw_grade(Integer sw_grade) {
         this.sw_grade = sw_grade;
     }
 
@@ -104,4 +108,21 @@ public class StudentHomework {
     public void setSw_correctTime(Date sw_correctTime) {
         this.sw_correctTime = sw_correctTime;
     }
+
+    public Date getSw_addTime() {
+        return sw_addTime;
+    }
+
+    public void setSw_addTime(Date sw_addTime) {
+        this.sw_addTime = sw_addTime;
+    }
+
+    public String getS_number() {
+        return s_number;
+    }
+
+    public void setS_number(String s_number) {
+        this.s_number = s_number;
+    }
 }
+

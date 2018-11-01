@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("studentHomeworkService")
@@ -21,8 +22,11 @@ public class StudentHomeworkServiceImpl implements StudentHomeworkService {
     }
 
     @Override
-    public List<StudentHomework> findStudentHomework() {
-        return studentHomeworkMapper.findStudentHomework();
+    public List<StudentHomework> findStudentHomework(Integer teacherId) {
+        if (teacherId == null){
+            return new ArrayList<>();
+        }
+        return studentHomeworkMapper.findStudentHomework(teacherId);
     }
 
 }

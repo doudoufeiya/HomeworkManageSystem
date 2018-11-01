@@ -13,10 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.*;
-import java.net.URL;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.List;
 
 @Controller
@@ -25,8 +24,8 @@ public class StudentHomeworkController {
     StudentHomeworkService studentHomeworkService;
 
     @RequestMapping("findStudentHomework")
-    public ModelAndView findStudentHomework(ModelAndView mav) throws Exception {
-        List<StudentHomework> homeworks = studentHomeworkService.findStudentHomework();
+    public ModelAndView findStudentHomework(ModelAndView mav, HttpSession session) throws Exception {
+        List<StudentHomework> homeworks = studentHomeworkService.findStudentHomework(Integer.parseInt(session.getAttribute("t_id").toString()));
         mav.addObject("homeworks", homeworks);
         mav.setViewName("homework-list");
         return mav;
