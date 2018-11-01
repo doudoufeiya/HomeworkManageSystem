@@ -41,4 +41,5 @@
         from twork
         where tw_id = #{c_id}
     </delete>
+
 </mapper>

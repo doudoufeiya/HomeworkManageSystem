@@ -112,4 +112,12 @@ public class StudentWorkServiceImpl implements StudentWorkService {
     public String login(int s_id) throws Exception {
         return studentMapper.findPwdById(s_id);
     }
+
+    @Override
+    public void uploadWork(Integer studentId, Integer workId, String fileName, String filePath) throws Exception {
+        if (studentId == null || workId == null || StringUtils.isEmpty(fileName) || StringUtils.isEmpty(filePath)) {
+            return;
+        }
+        studentMapper.uploadWork(workId, fileName, filePath, studentId);
+    }
 }

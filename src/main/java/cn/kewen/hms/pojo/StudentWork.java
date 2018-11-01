@@ -23,6 +23,11 @@ public class StudentWork {
      */
     private Integer tw_tid;
 
+    /**
+     * 教师名
+     */
+    private String t_name;
+
 
     /**
      * 作业新增时间
@@ -103,6 +108,14 @@ public class StudentWork {
      * 批改时间
      */
     private Date correctTime;
+
+    public String getT_name() {
+        return t_name;
+    }
+
+    public void setT_name(String t_name) {
+        this.t_name = t_name;
+    }
 
     public Integer getTw_id() {
         return tw_id;

@@ -7,12 +7,12 @@ import cn.kewen.hms.pojo.Student;
 import cn.kewen.hms.pojo.StudentWork;
 import cn.kewen.hms.service.StudentService;
 import cn.kewen.hms.service.StudentWorkService;
+import cn.kewen.hms.service.WorkService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -32,6 +32,8 @@ public class StudentWorkController {
     private StudentService studentService;
     @Autowired
     private StudentWorkService studentWorkService;
+    @Autowired
+    private WorkService workService;
 
     @RequestMapping("findStudentWorks")
     public ModelAndView findStudentWorks(ModelAndView mav, PageParams params, HttpSession session) throws Exception {
@@ -54,9 +56,10 @@ public class StudentWorkController {
      * @return
      * @throws Exception
      */
-//    @RequestMapping("addStudentPage")
-    public ModelAndView addStudentPage(ModelAndView mav) throws Exception {
-        mav.setViewName("stu/student-add");
+    @RequestMapping("addStudentWorkPage")
+    public ModelAndView addStudentWorkPage(ModelAndView mav, Integer workId) throws Exception {
+        mav.addObject("workId", workId);
+        mav.setViewName("jsp/student/student-work-add");
         return mav;
     }
 
@@ -82,7 +85,7 @@ public class StudentWorkController {
         return mav;
     }
 
-//    @RequestMapping("studentlogin")
+    //    @RequestMapping("studentlogin")
     public ModelAndView studentlogin(HttpServletRequest request, ModelAndView mav, Student student,
                                      HttpSession session) throws Exception {
         String pwd = studentService.login(student.getS_id());
@@ -101,7 +104,7 @@ public class StudentWorkController {
         return mav;
     }
 
-//    @RequestMapping("findStudentByName")
+    //    @RequestMapping("findStudentByName")
     public ModelAndView findStudentByName(String s_name, HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
         List<Student> students = studentService.findStudentByName(s_name);
@@ -119,10 +122,27 @@ public class StudentWorkController {
      * @return
      * @throws Exception
      */
-//    @RequestMapping("addStudent")
-    public void addStudent(Student student) throws Exception {
-        ModelAndView mav = new ModelAndView();
-        studentService.addStudent(student);
+    @RequestMapping("addStudentWork")
+    public void addStudent(Integer workId, @RequestParam("file") MultipartFile file, HttpServletRequest request, HttpSession session) throws Exception {
+
+        //如果文件不为空，写入上传路径
+        if (!file.isEmpty()) {
+            //上传文件路径
+            String path = request.getServletContext().getRealPath("/upload");
+            //上传文件名
+            String filename = file.getOriginalFilename();
+            File filepath = new File(path, filename);
+            //判断路径是否存在，不存在则创建一个
+            if (!filepath.getParentFile().exists()) {
+                filepath.getParentFile().mkdirs();
+            }
+            file.transferTo(new File(path + File.separator + filename));
+
+            studentWorkService.uploadWork(Integer.parseInt(session.getAttribute("s_id").toString()),
+                    workId, filename, "http://localhost:8080/filedown?fileName=" + URLEncoder.encode(filename));
+        }
+//        ModelAndView mav = new ModelAndView();
+//        studentService.addStudent(student);
 //        //添加成功，跳转到其他页面
 //        PageData<Student> students = studentService.findStudents(null);
 //        logger.info("findStudents:" + students);

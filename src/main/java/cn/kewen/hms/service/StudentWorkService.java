@@ -72,4 +72,15 @@ public interface StudentWorkService {
      * 删除学生信息
      */
     int deleteStudent(int s_id) throws Exception;
+
+    /**
+     * 学生上传作业
+     *
+     * @throws Exception
+     * @param studentId
+     * @param workId
+     * @param fileName
+     * @param filePath
+     */
+    void uploadWork(Integer studentId, Integer workId, String fileName, String filePath) throws Exception;
 }

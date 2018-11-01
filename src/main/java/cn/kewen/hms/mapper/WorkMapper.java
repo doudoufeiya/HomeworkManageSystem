@@ -1,6 +1,7 @@
 package cn.kewen.hms.mapper;
 
 import cn.kewen.hms.pojo.Work;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -31,4 +32,6 @@ public interface WorkMapper {
      * 删除班级信息
      */
     int deleteWork(int c_id) throws Exception;
+
+
 }

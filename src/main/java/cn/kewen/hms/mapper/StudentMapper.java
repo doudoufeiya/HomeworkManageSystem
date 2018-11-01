@@ -59,4 +59,13 @@ public interface StudentMapper {
      * @throws Exception
      */
     List<String> toCommitWorkStudentNames(@Param("workId") Integer workId) throws Exception;
+
+    /**
+     * @param workId
+     * @param fileName
+     * @param filePath
+     * @throws Exception
+     */
+    void uploadWork(@Param("workId") Integer workId, @Param("fileName") String fileName,
+                    @Param("filePath") String filePath, @Param("studentId") Integer studentId) throws Exception;
 }
