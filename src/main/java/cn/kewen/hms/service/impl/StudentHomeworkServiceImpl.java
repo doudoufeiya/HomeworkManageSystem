@@ -1,14 +1,16 @@
 package cn.kewen.hms.service.impl;
 
 import cn.kewen.hms.mapper.StudentHomeworkMapper;
+import cn.kewen.hms.pojo.PageData;
+import cn.kewen.hms.pojo.PageParams;
 import cn.kewen.hms.pojo.StudentHomework;
 import cn.kewen.hms.service.StudentHomeworkService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service("studentHomeworkService")
 @Transactional
@@ -22,11 +24,18 @@ public class StudentHomeworkServiceImpl implements StudentHomeworkService {
     }
 
     @Override
-    public List<StudentHomework> findStudentHomework(Integer teacherId) {
+    public PageData<StudentHomework> findStudentHomework(Integer teacherId, PageParams params) {
         if (teacherId == null) {
-            return new ArrayList<>();
+            params = new PageParams();
         }
-        return studentHomeworkMapper.findStudentHomework(teacherId);
+        Page page = PageHelper.startPage(params.getPageNumber().intValue(), params.getPageSize().intValue(), true);
+        PageData<StudentHomework> result = new PageData<>();
+        result.setData(studentHomeworkMapper.findStudentHomework(teacherId));
+        result.setPageNumber(page.getPageNum());
+        result.setPageSize(params.getPageSize());
+        result.setTotalRow(page.getTotal());
+        result.setTotalPage(page.getPages());
+        return result;
     }
 
     @Override

@@ -78,7 +78,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${homeworks}" var="h">
+                    <c:forEach items="${homeworks.data}" var="h">
                         <tr>
                             <td><input type="checkbox" value="1" name=""></td>
                             <td>${h.sw_sid}</td>
@@ -113,33 +113,15 @@
                     </c:forEach>
                     </tbody>
                 </table>
-                <div class="am-cf">
-                    共 15 条记录
-                    <div class="am-fr">
-                        <ul class="am-pagination">
-                            <li class="am-disabled">
-                                <a href="#">«</a>
-                            </li>
-                            <li class="am-active">
-                                <a href="#">1</a>
-                            </li>
-                            <li>
-                                <a href="#">2</a>
-                            </li>
-                            <li>
-                                <a href="#">3</a>
-                            </li>
-                            <li>
-                                <a href="#">4</a>
-                            </li>
-                            <li>
-                                <a href="#">5</a>
-                            </li>
-                            <li>
-                                <a href="#">»</a>
-                            </li>
-                        </ul>
-                    </div>
+                <c:if test="${homeworks != null}">
+                    <input type="hidden" id="pageNumber" value="${homeworks.pageNumber}">
+                    <input type="hidden" id="pageSize" value="${homeworks.pageSize}">
+                    <input type="hidden" id="totalPage" value="${homeworks.totalPage}">
+                    <input type="hidden" id="totalRow" value="${homeworks.totalRow}">
+                </c:if>
+
+                <div class="row-fluid">
+                    <div id="page1"></div>
                 </div>
                 <hr>
             </form>
@@ -153,6 +135,8 @@
 <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
 <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
+<script type="text/javascript" src="bPage/b.page.min.js"></script>
+<script type="text/javascript" src="jsp/work/page.js"></script>
 <script type="text/javascript">
     /*
         参数解释：

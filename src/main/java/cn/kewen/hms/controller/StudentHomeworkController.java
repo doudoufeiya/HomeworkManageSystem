@@ -1,5 +1,7 @@
 package cn.kewen.hms.controller;
 
+import cn.kewen.hms.pojo.PageData;
+import cn.kewen.hms.pojo.PageParams;
 import cn.kewen.hms.pojo.StudentHomework;
 import cn.kewen.hms.service.StudentHomeworkService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.URLDecoder;
-import java.util.List;
 
 @Controller
 public class StudentHomeworkController {
@@ -24,8 +25,8 @@ public class StudentHomeworkController {
     StudentHomeworkService studentHomeworkService;
 
     @RequestMapping("findStudentHomework")
-    public ModelAndView findStudentHomework(ModelAndView mav, HttpSession session) throws Exception {
-        List<StudentHomework> homeworks = studentHomeworkService.findStudentHomework(Integer.parseInt(session.getAttribute("t_id").toString()));
+    public ModelAndView findStudentHomework(ModelAndView mav, HttpSession session, PageParams params) throws Exception {
+        PageData<StudentHomework> homeworks = studentHomeworkService.findStudentHomework(Integer.parseInt(session.getAttribute("t_id").toString()), params);
         mav.addObject("homeworks", homeworks);
         mav.setViewName("homework-list");
         return mav;

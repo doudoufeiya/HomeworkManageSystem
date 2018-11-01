@@ -1,8 +1,8 @@
 package cn.kewen.hms.service;
 
+import cn.kewen.hms.pojo.PageData;
+import cn.kewen.hms.pojo.PageParams;
 import cn.kewen.hms.pojo.StudentHomework;
-
-import java.util.List;
 
 public interface StudentHomeworkService {
     /**
@@ -14,8 +14,9 @@ public interface StudentHomeworkService {
      * 显示所有信息
      *
      * @param teacherId
+     * @param params
      */
-    List<StudentHomework> findStudentHomework(Integer teacherId);
+    PageData<StudentHomework> findStudentHomework(Integer teacherId, PageParams params);
 
     /**
      * 添加批改意见
