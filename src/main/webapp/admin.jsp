@@ -142,6 +142,14 @@
                 </ul>
             </dd>
         </dl>
+        <dl id="menu-out-of-lesson">
+            <dt><i class="Hui-iconfont">&#xe620;</i> 课外知识<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    <li><a _href="findResources.action" data-title="课外知识列表" href="javascript:void(0)">课外知识列表</a></li>
+                </ul>
+            </dd>
+        </dl>
         <dl id="menu-comments">
             <dt><i class="Hui-iconfont">&#xe622;</i> 公告管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
