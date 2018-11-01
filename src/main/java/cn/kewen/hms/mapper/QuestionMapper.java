@@ -27,4 +27,13 @@ public interface QuestionMapper {
      * 删除班级信息
      */
     int deleteQuestion(int c_id) throws Exception;
+
+
+    /**
+     * 回答问题
+     *
+     * @param question
+     * @throws Exception
+     */
+    void answerQuestions(Question question) throws Exception;
 }

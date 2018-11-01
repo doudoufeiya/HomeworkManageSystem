@@ -1,6 +1,5 @@
 package cn.kewen.hms.service;
 
-import cn.kewen.hms.pojo.Class;
 import cn.kewen.hms.pojo.PageData;
 import cn.kewen.hms.pojo.PageParams;
 import cn.kewen.hms.pojo.Question;
@@ -31,4 +30,13 @@ public interface QuestionService {
      * 删除学生信息
      */
     int deleteQuestion(int s_id) throws Exception;
+
+
+    /**
+     * 回答问题
+     *
+     * @param question
+     * @throws Exception
+     */
+    void answerQuestions(Question question) throws Exception;
 }

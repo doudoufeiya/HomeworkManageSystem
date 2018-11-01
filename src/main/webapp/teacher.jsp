@@ -46,8 +46,8 @@
             <a href="findWorks.action" target="right">
                 <i class="layui-icon">&#xe612;</i>发布作业</a>
         </li>
-        <!--		<li class="layui-nav-item"><a href="upload.html" target="right"> <i
-            class="layui-icon">&#xe611;</i> 查看成绩 </a></li>-->
+        <li class="layui-nav-item"><a href="findTeacherQuestions.action" target="right"> <i
+                class="layui-icon">&#xe611;</i> 问题答疑 </a></li>
         <li class="layui-nav-item "><a href="news.html" target="right"> <i
                 class="layui-icon">&#xe611;</i> 修改个人信息</a></li>
         <li class="layui-nav-item  "><a href="javascript:void(0)" onclick="updatePwd('修改密码',2)"> <i

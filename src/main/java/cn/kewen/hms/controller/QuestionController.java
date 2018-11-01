@@ -3,24 +3,14 @@ package cn.kewen.hms.controller;
 import cn.kewen.hms.pojo.PageData;
 import cn.kewen.hms.pojo.PageParams;
 import cn.kewen.hms.pojo.Question;
-import cn.kewen.hms.pojo.Student;
 import cn.kewen.hms.service.QuestionService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.*;
-import java.net.URLEncoder;
-import java.util.List;
 
 @Controller
 public class QuestionController {
@@ -52,6 +42,32 @@ public class QuestionController {
     public ModelAndView addStudentPage(ModelAndView mav) throws Exception {
         mav.setViewName("jsp/question/question-add");
         return mav;
+    }
+
+    @RequestMapping("findTeacherQuestions")
+    public ModelAndView findTeacherQuestions(ModelAndView mav, PageParams params) throws Exception {
+        PageData<Question> questions = questionService.findQuestions(params);
+        logger.info("questions:" + questions);
+        mav.addObject("questions", questions);
+        mav.setViewName("jsp/question/question-teacher");
+        return mav;
+    }
+
+    @RequestMapping("gotoAnswerPage")
+    public ModelAndView gotoAnswerPage(ModelAndView mav, Integer question_id) throws Exception {
+        mav.addObject("question_id", question_id);
+        mav.setViewName("jsp/question/question-edit");
+        return mav;
+    }
+
+    @RequestMapping("answerQuestions")
+    public void answerQuestions(ModelAndView mav, Question question, HttpSession session) throws Exception {
+        question.setT_id(Integer.parseInt(session.getAttribute("t_id").toString()));
+        questionService.answerQuestions(question);
+//        logger.info("questions:" + questions);
+//        mav.addObject("questions", questions);
+//        mav.setViewName("jsp/question/question-teacher");
+//        return mav;
     }
 
 

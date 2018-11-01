@@ -33,4 +33,12 @@
         from question
         where question_id = #{c_id}
     </delete>
+
+    <update id="answerQuestions">
+        update question
+        set t_id           = #{t_id},
+            answer_date    = now(),
+            answer_content = #{answer_content}
+        where question_id = #{question_id}
+    </update>
 </mapper>

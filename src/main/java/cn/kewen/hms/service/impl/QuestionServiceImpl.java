@@ -45,4 +45,9 @@ public class QuestionServiceImpl implements QuestionService {
     public int deleteQuestion(int s_id) throws Exception {
         return questionMapper.deleteQuestion(s_id);
     }
+
+    @Override
+    public void answerQuestions(Question question) throws Exception {
+        questionMapper.answerQuestions(question);
+    }
 }
