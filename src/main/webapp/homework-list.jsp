@@ -136,7 +136,7 @@
 <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
 <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
 <script type="text/javascript" src="bPage/b.page.min.js"></script>
-<script type="text/javascript" src="jsp/work/page.js"></script>
+<script type="text/javascript" src="page.js"></script>
 <script type="text/javascript">
     /*
         参数解释：
