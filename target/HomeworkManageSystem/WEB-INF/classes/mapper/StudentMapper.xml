@@ -67,6 +67,42 @@
         where student.s_id not in (select swork.sw_sid from swork where sw_wid = #{workId})
 
     </select>
+    <select id="getToCommitWorkName" resultType="string">
+        SELECT
+               concat(
+                   teacher.t_name ,
+                   "的" ,
+                   twork.tw_name
+                       )
+        FROM
+             twork
+                 LEFT JOIN sc_lesson ON sc_lesson.t_id = twork.tw_tid
+                 LEFT JOIN teacher ON teacher.t_id = twork.tw_tid
+        WHERE
+                twork.tw_id IN(
+                              SELECT DISTINCT
+                                              twork.tw_id
+                              FROM
+                                   twork
+                                       LEFT JOIN swork ON swork.sw_wid = twork.tw_id
+                                       LEFT JOIN sc_lesson ON sc_lesson.t_id = twork.tw_tid
+                              WHERE
+                                      sc_lesson.s_id = 1
+                                AND twork.tw_id NOT IN(
+                                                      SELECT
+                                                             twork.tw_id
+                                                      FROM
+                                                           twork
+                                                               LEFT JOIN swork ON swork.sw_wid = twork.tw_id
+                                                               LEFT JOIN sc_lesson ON sc_lesson.t_id = twork.tw_tid
+                                                               LEFT JOIN teacher ON teacher.t_id = twork.tw_tid
+                                                      WHERE
+                                                              swork.sw_sid = #{studentId}
+                                                        AND sc_lesson.s_id = #{studentId}
+                                                      )
+                              )
+          AND sc_lesson.s_id = #{studentId}
+    </select>
 
     <insert id="uploadWork">
         insert into swork (sw_name, sw_sid, sw_wid, sw_file_name, sw_file_path, sw_addTime)
