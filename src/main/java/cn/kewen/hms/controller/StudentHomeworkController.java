@@ -31,6 +31,31 @@ public class StudentHomeworkController {
         return mav;
     }
 
+    @RequestMapping("goReadHomeworkPage")
+    public ModelAndView goReadHomeworkPage(ModelAndView mav, Integer sworkId) throws Exception {
+        mav.addObject("sworkId", sworkId);
+        mav.setViewName("jsp/teacher/teacher-work-edit");
+        return mav;
+    }
+
+    /**
+     * 添加批改意见
+     *
+     * @param mav
+     * @param sworkId
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("addReadHomework")
+    public ModelAndView addReadHomework(ModelAndView mav, Integer sworkId,
+                                        Integer sw_grade,
+                                        @RequestParam(value = "sw_remark", required = false) String sw_remark) throws Exception {
+        studentHomeworkService.addReadHomework(sworkId, sw_grade, sw_remark);
+        mav.setViewName("login");
+        return mav;
+    }
+
+
     @RequestMapping(value = "uploadFile", method = RequestMethod.POST)
     public String upload(HttpServletRequest request,
                          @RequestParam("description") String description,

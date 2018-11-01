@@ -23,10 +23,19 @@ public class StudentHomeworkServiceImpl implements StudentHomeworkService {
 
     @Override
     public List<StudentHomework> findStudentHomework(Integer teacherId) {
-        if (teacherId == null){
+        if (teacherId == null) {
             return new ArrayList<>();
         }
         return studentHomeworkMapper.findStudentHomework(teacherId);
+    }
+
+    @Override
+    public void addReadHomework(Integer sworkId, Integer sw_grade, String sw_remark) throws Exception {
+        if (sworkId == null | sw_grade == null) {
+            return;
+        }
+        studentHomeworkMapper.addReadHomework(sworkId, sw_grade, sw_remark);
+
     }
 
 }

@@ -6,10 +6,37 @@
 
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <LINK rel="Bookmark" href="/favicon.ico">
+    <LINK rel="Shortcut Icon" href="/favicon.ico"/>
+    <link rel="stylesheet" href="bPage/b.page.bootstrap3.css" type="text/css">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="lib/html5.js"></script>
+    <script type="text/javascript" src="lib/respond.min.js"></script>
+    <script type="text/javascript" src="lib/PIE_IE678.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.7/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/icheck/icheck.css"/>
+    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin"/>
+    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css"/>
+    <link rel="stylesheet" href="https://terryz.github.io/lib/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+    <!--[if IE 6]>
+    <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js"></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>作业信息</title>
     <link rel="stylesheet" href="res/css/amazeui.min.css"/>
     <link rel="stylesheet" href="res/css/admin.css"/>
+
 </head>
 <body>
 <div class="admin-content-body">
@@ -63,13 +90,22 @@
                             <td>
                                 <div class="am-btn-toolbar">
                                     <div class="am-btn-group am-btn-group-xs">
-                                        <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span
-                                                class="am-icon-pencil-square-o"></span>评分
-                                        </button>
-                                        <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"
-                                                onclick="redirect://filedown.action"><span
-                                                class="am-icon-trash-o"></span> 下载
-                                        </button>
+                                            <%--<button class="am-btn am-btn-default am-btn-xs am-text-secondary"--%>
+                                            <%--onclick="stu_add('批改作业','goReadHomeworkPage.action?sworkId='+${h.sw_sid},'800','500')">--%>
+                                            <%--<span class="am-icon-pencil-square-o">--%>
+
+                                            <%--</span>--%>
+                                            <%--评分--%>
+                                            <%--</button>--%>
+                                        <a onclick="stu_add('批改作业','goReadHomeworkPage.action?sworkId='+${h.sw_id},'800','500')"
+                                           class="btn btn-primary radius">
+                                            <i class="Hui-iconfont">&#xe647;</i>
+                                            评分
+                                        </a>
+                                            <%--<button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"--%>
+                                            <%--onclick="redirect://filedown.action"><span--%>
+                                            <%--class="am-icon-trash-o"></span> 下载--%>
+                                            <%--</button>--%>
                                     </div>
                                 </div>
                             </td>
@@ -111,4 +147,25 @@
     </div>
 </div>
 </body>
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="lib/Validform/5.3.2/Validform.min.js"></script>
+<script type="text/javascript" src="lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
+<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
+<script type="text/javascript">
+    /*
+        参数解释：
+        title	标题
+        url		请求的url
+        id		需要操作的数据id
+        w		弹出层宽度（缺省调默认值）
+        h		弹出层高度（缺省调默认值）
+    */
+    /*学生-增加*/
+    function stu_add(title, url, w, h) {
+        debugger
+        layer_show(title, url, w, h);
+    }
+</script>
 </html>

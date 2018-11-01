@@ -8,10 +8,17 @@
         insert into swork (sw_file_name, sw_file_path, sw_correctTime)
         values (#{sw_file_name}, #{sw_file_path}, now())
     </insert>
+    <update id="addReadHomework">
+        update swork
+        set sw_grade  = #{sw_grade},
+            sw_remark = #{sw_remark}
+        where sw_id = #{sworkId}
+    </update>
     <!-- 查询所有作业 -->
     <select id="findStudentHomework" resultType="StudentHomework">
         select swork.sw_sid,
                swork.sw_sid,
+               swork.sw_id,
                student.s_number,
                swork.sw_wid,
                swork.sw_file_name,

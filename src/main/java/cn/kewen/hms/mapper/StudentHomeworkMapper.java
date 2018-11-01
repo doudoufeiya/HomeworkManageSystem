@@ -17,4 +17,14 @@ public interface StudentHomeworkMapper {
      * @param teacherId
      */
     List<StudentHomework> findStudentHomework(@Param("teacherId") Integer teacherId);
+
+
+    /**
+     * @param sworkId
+     * @param sw_grade
+     * @param sw_remark
+     */
+    void addReadHomework(@Param("sworkId") Integer sworkId,
+                         @Param("sw_grade") Integer sw_grade,
+                         @Param("sw_remark") String sw_remark) throws Exception;
 }

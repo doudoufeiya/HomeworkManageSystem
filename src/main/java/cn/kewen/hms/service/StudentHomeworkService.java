@@ -12,7 +12,18 @@ public interface StudentHomeworkService {
 
     /**
      * 显示所有信息
+     *
      * @param teacherId
      */
     List<StudentHomework> findStudentHomework(Integer teacherId);
+
+    /**
+     * 添加批改意见
+     *  @param sworkId
+     * @param sw_grade
+     * @param sw_remark
+     */
+    void addReadHomework(Integer sworkId,
+                         Integer sw_grade,
+                         String sw_remark) throws Exception;
 }
