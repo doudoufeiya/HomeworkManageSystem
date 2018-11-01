@@ -27,6 +27,8 @@ public interface StudentService {
 
     List<String> toCommitWorkStudentNames(Integer workId) throws Exception;
 
+    List<String> getToCommitWorkName(Integer studentId) throws Exception;
+
     /**
      * 登录，根据用户id和密码查找
      *

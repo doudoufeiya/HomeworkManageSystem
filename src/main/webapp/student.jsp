@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta charset="utf-8">
@@ -11,6 +10,8 @@
     <link rel="stylesheet" href="res/layui/css/layui.css">
     <link rel="stylesheet" href="res/css/global.css">
     <script src="res/layui/layui.js"></script>
+    <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+
 </head>
 <body>
 <div class="header">
@@ -42,6 +43,7 @@
                 class="layui-icon">&#xe609;</i> 首页 </a></li>
         <%--<li class="layui-nav-item "><a href="upload.jsp" target="right"> <i--%>
         <%--class="layui-icon">&#xe612;</i>上传作业 </a></li>--%>
+        <input type="text" style="display: none;" value="${alertMsg}" name="alertMsg" id="alertMsg">
         <li class="layui-nav-item ">
             <a href="findStudentWorks.action" target="right">
                 <i class="layui-icon">&#xe612;</i> 作业列表</a>
@@ -76,7 +78,7 @@
 </div>
 </div>
 </div>
-<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="lib/zTree/v3/js/jquery-1.4.4.min.js"></script>
 <script type="text/javascript" src="myplugs/js/plugs.js"></script>
 [
 <script>
@@ -101,6 +103,16 @@
         fly: 'index'
     }).use('fly');
 
+
+    $(document).ready(function () {
+        var alertMsg = $("#alertMsg").val()
+        if (alertMsg == null || alertMsg == undefined || alertMsg == '') {
+            return
+        }
+        alert(alertMsg)
+    });
+
+
     //添加编辑弹出层
     function updatePwd(title, id) {
         $.jq_Panel({
@@ -110,6 +122,7 @@
             url: "updatePwd.html"
         });
     }
+
 </script>
 </body>
 </html>

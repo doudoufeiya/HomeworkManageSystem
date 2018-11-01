@@ -8,6 +8,8 @@ import cn.kewen.hms.service.StudentService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,6 +39,12 @@ public class StudentController {
         mav.addObject("students", students);
         mav.setViewName("student-list");
         return mav;
+    }
+
+    @GetMapping("notCommitWork")
+    @ResponseBody
+    public List<String> getNotCommitWork(Integer studentId) throws Exception {
+        return studentService.getToCommitWorkName(studentId);
     }
 
     /**
@@ -78,12 +86,19 @@ public class StudentController {
     public ModelAndView studentlogin(HttpServletRequest request, ModelAndView mav, Student student,
                                      HttpSession session) throws Exception {
         String pwd = studentService.login(student.getS_id());
+
         if (null == pwd) {
             request.setAttribute("idErr", "用户名不存在");
             mav.setViewName("login");
         } else {
             if (student.getS_pwd().equals(pwd)) {
                 session.setAttribute("s_id", student.getS_id());
+                List<String> notCommitWorks = studentService.getToCommitWorkName(student.getS_id());
+                String alertMsg = "";
+                if (!CollectionUtils.isEmpty(notCommitWorks)) {
+                    alertMsg = "还未提交" + notCommitWorks.stream().reduce((x, y) -> x + "、" + y).orElse("");
+                }
+                mav.addObject("alertMsg", alertMsg);
                 mav.setViewName("student");
             } else {
                 request.setAttribute("pwdErr", "密码错误,请重新登录");

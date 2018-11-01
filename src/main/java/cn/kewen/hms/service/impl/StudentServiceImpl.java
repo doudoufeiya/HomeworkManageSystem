@@ -67,6 +67,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public List<String> getToCommitWorkName(Integer studentId) throws Exception {
+        if (studentId == null) {
+            return null;
+        }
+        return studentMapper.getToCommitWorkName(studentId);
+    }
+
+    @Override
     public List<Student> findStudentByName(String s_name) throws Exception {
         return studentMapper.findStudentByName(s_name);
     }

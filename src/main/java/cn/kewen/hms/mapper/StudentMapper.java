@@ -68,4 +68,13 @@ public interface StudentMapper {
      */
     void uploadWork(@Param("workId") Integer workId, @Param("fileName") String fileName,
                     @Param("filePath") String filePath, @Param("studentId") Integer studentId) throws Exception;
+
+
+    /**
+     * 获取学生的未提交的作业
+     *
+     * @param studentId
+     * @return
+     */
+    List<String> getToCommitWorkName(@Param("studentId") Integer studentId);
 }
