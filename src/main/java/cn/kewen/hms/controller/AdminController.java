@@ -21,7 +21,6 @@ import java.util.List;
 //import org.junit.runner.Request;
 
 @Controller
-//@RequestMapping("admin")
 public class AdminController {
     @Autowired
     AdminService adminService;
