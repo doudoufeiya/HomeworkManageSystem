@@ -105,4 +105,6 @@ public interface StudentService {
     void deleteClassStudent(Integer c_id);
 
     List<Student> findselectStudents(Integer l_id);
+
+    void incrementPoint(Integer parseInt);
 }

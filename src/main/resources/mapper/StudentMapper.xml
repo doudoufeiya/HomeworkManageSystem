@@ -136,4 +136,9 @@
                                             left join student on student.s_id = sc_lesson.s_id
                                    where sc_lesson.l_id = #{l_id})
     </select>
+
+    <update id="incrementPoint">
+        update student
+        set s_points = s_points + 1
+    </update>
 </mapper>

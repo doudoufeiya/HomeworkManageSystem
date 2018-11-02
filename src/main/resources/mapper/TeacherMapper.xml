@@ -90,4 +90,8 @@
         set t_lesson = null
         where t_lesson = #{l_id}
     </update>
+
+    <!--<update id="incrementPoint">-->
+        <!--update teacher set teacher.-->
+    <!--</update>-->
 </mapper>

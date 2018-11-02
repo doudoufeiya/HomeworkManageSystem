@@ -95,4 +95,5 @@ public interface StudentMapper {
 
     List<Student> findStudentsNoLesson(@Param("l_id") Integer l_id);
 
+    void incrementPoint(@Param("s_id") Integer s_id);
 }

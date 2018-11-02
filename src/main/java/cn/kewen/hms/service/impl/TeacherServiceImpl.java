@@ -105,11 +105,17 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherMapper.findTeacherById(t_id);
     }
 
+    @Override
+    public void incrementPoint(Integer t_id) {
+        if (t_id ==null){
+            return;
+        }
+//        teacherMapper.incrementPoint(t_id);
+    }
 
 
     @Override
     public String login(int t_id) throws Exception {
-        // TODO Auto-generated method stub
         return teacherMapper.findPwdById(t_id);
     }
 }

@@ -4,6 +4,8 @@ import cn.kewen.hms.pojo.PageData;
 import cn.kewen.hms.pojo.PageParams;
 import cn.kewen.hms.pojo.Question;
 import cn.kewen.hms.service.QuestionService;
+import cn.kewen.hms.service.StudentService;
+import cn.kewen.hms.service.TeacherService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,10 @@ public class QuestionController {
 
     @Autowired
     private QuestionService questionService;
+    @Autowired
+    private StudentService studentService;
+    @Autowired
+    private TeacherService teacherService;
 
     private Logger logger = Logger.getLogger(QuestionController.class);
 
@@ -66,6 +72,7 @@ public class QuestionController {
     @RequestMapping("answerQuestions")
     public void answerQuestions(ModelAndView mav, Question question, HttpSession session) throws Exception {
         question.setT_id(Integer.parseInt(session.getAttribute("t_id").toString()));
+        teacherService.incrementPoint(Integer.parseInt(session.getAttribute("t_id").toString()));
         questionService.answerQuestions(question);
 //        logger.info("questions:" + questions);
 //        mav.addObject("questions", questions);
@@ -107,6 +114,7 @@ public class QuestionController {
     public ModelAndView addQuestion(Question question, ModelAndView mav, HttpSession session) throws Exception {
         Object s_id = session.getAttribute("s_id");
         if (s_id != null) {
+            studentService.incrementPoint(Integer.parseInt(s_id.toString()));
             question.setS_id(Integer.parseInt(s_id.toString()));
             questionService.addQuestion(question);
         }

@@ -165,6 +165,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public void incrementPoint(Integer s_id) {
+        if (s_id == null){
+            return;
+        }
+        studentMapper.incrementPoint(s_id);
+    }
+
+    @Override
     public String login(int s_id) throws Exception {
         return studentMapper.findPwdById(s_id);
     }

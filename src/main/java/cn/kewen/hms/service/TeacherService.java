@@ -80,4 +80,5 @@ public interface TeacherService {
 
     Teacher findTeacherInfoPwdById(Integer t_id);
 
+    void incrementPoint(Integer t_id);
 }
