@@ -22,6 +22,14 @@ public interface StudentMapper {
      */
     String findPwdById(int s_id) throws Exception;
 
+    /**
+     *
+     * @param s_id
+     * @return
+     * @throws Exception
+     */
+    Student findStudentInfoPwdById(@Param("s_id") Integer s_id) throws Exception;
+
     /*
      * 根据姓名查找学生信息
      */

@@ -99,4 +99,11 @@
         insert into swork (sw_name, sw_sid, sw_wid, sw_file_name, sw_file_path, sw_addTime)
         values (#{fileName}, #{studentId}, #{workId}, #{fileName}, #{filePath}, now());
     </insert>
+
+    <select id="findStudentInfoPwdById" resultType="Student">
+        select *
+        from student
+        where s_id = #{s_id}
+        limit 1
+    </select>
 </mapper>

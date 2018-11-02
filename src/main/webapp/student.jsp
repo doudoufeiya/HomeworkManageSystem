@@ -39,8 +39,9 @@
 
 <div class="main fly-user-main layui-clear">
     <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
-        <li class="layfindQuestions"ui-nav-item layui-this"><a href="student.jsp"> <i
-                class="layui-icon">&#xe609;</i> 首页 </a></li>
+        <li class="layfindQuestions" ui-nav-item layui-this
+        "><a href="student.jsp"> <i
+            class="layui-icon">&#xe609;</i> 首页 </a></li>
         <%--<li class="layui-nav-item "><a href="upload.jsp" target="right"> <i--%>
         <%--class="layui-icon">&#xe612;</i>上传作业 </a></li>--%>
         <input type="text" style="display: none;" value="${alertMsg}" name="alertMsg" id="alertMsg">
@@ -51,7 +52,7 @@
         <li class="layui-nav-item"><a href="findQuestions.action" target="right"> <i
                 class="layui-icon">&#xe611;</i> 问题答疑 </a>
         </li>
-        <li class="layui-nav-item "><a href="news.html" target="right"> <i
+        <li class="layui-nav-item "><a href="updageStudentMyInfoPage.action" target="right"> <i
                 class="layui-icon">&#xe611;</i> 修改个人信息</a></li>
         <li class="layui-nav-item  "><a href="javascript:void(0)" onclick="updatePwd('修改密码',2)"> <i
                 class="layui-icon">&#xe620;</i> 修改密码 </a></li>

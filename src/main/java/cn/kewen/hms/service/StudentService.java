@@ -74,4 +74,7 @@ public interface StudentService {
      * 删除学生信息
      */
     int deleteStudent(int s_id) throws Exception;
+
+
+    Student findStudentInfoPwdById(Integer s_id) throws Exception;
 }

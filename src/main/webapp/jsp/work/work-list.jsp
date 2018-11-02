@@ -87,7 +87,7 @@
                     <td><a href="${s.tw_file_path}">${s.tw_file_name}</a></td>
                     <td class="td-manage">
                         <a title="编辑" href="javascript:;"
-                           onclick="admin_edit('管理员编辑','admin-add.html','1','800','500')"
+                           onclick="admin_edit('编辑','addWorkPage.action','1','800','500')"
                            class="ml-5" style="text-decoration:none">
                             <i class="Hui-iconfont">&#xe6df;</i>
                         </a>

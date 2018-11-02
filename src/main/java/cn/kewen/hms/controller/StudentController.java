@@ -9,10 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,7 +21,6 @@ import java.net.URLEncoder;
 import java.util.List;
 
 @Controller
-//@RequestMapping("student")
 public class StudentController {
 
     private Logger logger = Logger.getLogger(StudentController.class);
@@ -137,6 +133,31 @@ public class StudentController {
 //        mav.addObject("students", students);
 //        mav.setViewName("student-list");
 //        return mav;
+    }
+
+    @RequestMapping("editStudentInfo")
+    public void editStudentInfo(Student student,@RequestParam("file") MultipartFile file) throws Exception {
+        System.out.println(student);
+    }
+
+    /**
+     * 添加学生
+     *
+     * @param student
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("updageStudentMyInfoPage")
+    public ModelAndView updageStudentMyInfoPage(ModelAndView mav, HttpSession session) throws Exception {
+
+        Object t_id = session.getAttribute("s_id");
+        if (t_id == null) {
+            mav.setViewName("login");
+            return mav;
+        }
+        mav.setViewName("jsp/student/myinfo");
+        mav.addObject("studentInfo", studentService.findStudentInfoPwdById(Integer.parseInt(t_id.toString())));
+        return mav;
     }
 
     /**
