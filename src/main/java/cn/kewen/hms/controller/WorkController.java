@@ -43,8 +43,9 @@ public class WorkController {
     private TeacherService teacherService;
 
     @RequestMapping("findWorks")
-    public ModelAndView findWorks(ModelAndView mav, PageParams params) throws Exception {
-        PageData<Work> works = workService.findWorks(params);
+    public ModelAndView findWorks(ModelAndView mav, PageParams params, HttpServletRequest request) throws Exception {
+        String tw_name = request.getParameter("tw_name");
+        PageData<Work> works = workService.findWorks(params, tw_name);
         logger.info("works:" + works);
         mav.addObject("works", works);
         mav.setViewName("jsp/work/work-list");
@@ -99,7 +100,7 @@ public class WorkController {
         if (s_id != null) {
             workService.deleteWork(s_id);
         }
-        PageData<Work> works = workService.findWorks(null);
+        PageData<Work> works = workService.findWorks(null, null);
         logger.info("works:" + works);
         mav.addObject("works", works);
         mav.setViewName("jsp/work/work-list");

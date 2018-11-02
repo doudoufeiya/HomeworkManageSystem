@@ -6,7 +6,10 @@
     <!-- 显示所有学生信息 -->
     <select id="findWorks" resultType="cn.kewen.hms.pojo.Work">
         select *
-        from twork
+        from twork where 1=1
+        <if test="tw_name != null and tw_name!=''">
+            and tw_name like concat("%",#{tw_name},"%")
+        </if>
     </select>
 
     <!-- 根据名字查询学生信息 -->

@@ -40,7 +40,7 @@
         class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container container">
     <div class="text-c">
-        <form action="findStudentByName.action" method="post">
+        <form action="findWorks.action" method="post">
             <input type="text" class="input-text" style="width:250px" placeholder="输入作业名称" id="tw_name" name="tw_name">
             <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜作业
             </button>

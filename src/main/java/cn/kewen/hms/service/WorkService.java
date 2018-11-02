@@ -14,10 +14,11 @@ public interface WorkService {
      * 查询所有学生信息
      *
      * @param params
+     * @param tw_name
      * @return
      * @throws Exception
      */
-    PageData<Work> findWorks(PageParams params) throws Exception;
+    PageData<Work> findWorks(PageParams params, String tw_name) throws Exception;
 
 
     /**

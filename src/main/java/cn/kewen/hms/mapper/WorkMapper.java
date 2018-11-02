@@ -9,7 +9,7 @@ public interface WorkMapper {
     /*
      * 显示所有班级信息
      */
-    List<Work> findWorks() throws Exception;
+    List<Work> findWorks(@Param("tw_name") String tw_name) throws Exception;
 
     /*
      * 根据姓名查找学生信息

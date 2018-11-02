@@ -1,8 +1,6 @@
 package cn.kewen.hms.service.impl;
 
-import cn.kewen.hms.mapper.ClassMapper;
 import cn.kewen.hms.mapper.WorkMapper;
-import cn.kewen.hms.pojo.Class;
 import cn.kewen.hms.pojo.PageData;
 import cn.kewen.hms.pojo.PageParams;
 import cn.kewen.hms.pojo.Work;
@@ -24,14 +22,14 @@ public class WorkServiceImpl implements WorkService {
     private WorkMapper workMapper;
 
     @Override
-    public PageData<Work> findWorks(PageParams params) throws Exception {
+    public PageData<Work> findWorks(PageParams params, String tw_name) throws Exception {
         if (params == null) {
             params = new PageParams();
         }
 
         Page page = PageHelper.startPage(params.getPageNumber().intValue(), params.getPageSize().intValue(), true);
         PageData<Work> result = new PageData<>();
-        result.setData(workMapper.findWorks());
+        result.setData(workMapper.findWorks(tw_name));
         result.setPageNumber(page.getPageNum());
         result.setPageSize(params.getPageSize());
         result.setTotalRow(page.getTotal());
