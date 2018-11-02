@@ -48,10 +48,6 @@
     </div>
     <div class="cl pd-5 bg-1 bk-gray mt-20">
         <span class="l">
-        <%--<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">--%>
-            <%--<i class="Hui-iconfont">&#xe6e2;</i>--%>
-            <%--批量删除--%>
-        <%--</a>--%>
         <a onclick="stu_add('添加问题','addQuestionPage.action','800','500')"
            class="btn btn-primary radius">
             <i class="Hui-iconfont">&#xe600;</i>

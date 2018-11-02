@@ -36,8 +36,24 @@ public class ResourceServiceImpl implements ResourceService {
     }
 
     @Override
+    public Resource findResourceById(Integer r_id) throws Exception {
+        if (r_id == null){
+            return null;
+        }
+        return resourceMapper.findResourceById(r_id);
+    }
+
+    @Override
     public int addResource(Resource resource) throws Exception {
         return resourceMapper.addResource(resource);
+    }
+
+    @Override
+    public void editResource(Resource resource) throws Exception {
+        if (resource == null || null == resource.getR_id()){
+            return ;
+        }
+        resourceMapper.updateResoure(resource);
     }
 
 

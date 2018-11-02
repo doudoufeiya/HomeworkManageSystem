@@ -18,6 +18,9 @@ public interface ResourceService {
      */
     PageData<Resource> findResources(PageParams params, String r_name) throws Exception;
 
+
+    Resource findResourceById(Integer r_id) throws Exception;
+
     /**
      * 添加学生信息
      *
@@ -25,6 +28,15 @@ public interface ResourceService {
      * @throws Exception
      */
     int addResource(Resource resource) throws Exception;
+
+    /**
+     * 修改资料
+     *
+     * @param resource
+     * @return
+     * @throws Exception
+     */
+    void editResource(Resource resource) throws Exception;
 
 
     /**

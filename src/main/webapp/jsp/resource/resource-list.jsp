@@ -62,42 +62,48 @@
     </div>
     <form name="myForm" id="myForm" action="batchDeleteResource.action" method="post">
         <table class="table table-border table-bordered table-bg row-fluid">
-        <thead>
-        <tr>
-            <th scope="col" colspan="12">资料列表</th>
-        </tr>
-        <tr class="text-c">
-            <th width="25"><input type="checkbox" name="" value=""></th>
-            <th width="25">序号</th>
-            <th width="50">资料名</th>
-            <th width="50">资料文件名</th>
-            <th width="50">时间</th>
-            <th width="50">上传人</th>
-            <th width="50">操作</th>
-
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${resources.data}" var="s">
-            <tr class="text-c">
-                <td><input type="checkbox" value="1" name=""></td>
-                <td>${s.r_id}</td>
-                <td>${s.r_name}</td>
-                <td><a href="${s.r_file_path}">${s.r_file_name}</a></td>
-                <td><fmt:formatDate value="${s.r_time}" pattern="yyyy/MM/dd HH:mm:ss"/></td>
-                <td>${s.r_tname}</td>
-                <td class="td-manage">
-                    <a title="删除"
-                       href="/deleteResource.action?s_id=${s.r_id}"
-                       class="ml-5"
-                       style="text-decoration:none">
-                        <i class="Hui-iconfont">&#xe6e2;</i>
-                    </a>
-                </td>
+            <thead>
+            <tr>
+                <th scope="col" colspan="12">资料列表</th>
             </tr>
-        </c:forEach>
-        </tbody>
-        </table></form>
+            <tr class="text-c">
+                <th width="25"><input type="checkbox" name="" value=""></th>
+                <th width="25">序号</th>
+                <th width="50">资料名</th>
+                <th width="50">资料文件名</th>
+                <th width="50">时间</th>
+                <th width="50">上传人</th>
+                <th width="50">操作</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${resources.data}" var="s">
+                <tr class="text-c">
+                    <td><input type="checkbox" value="1" name=""></td>
+                    <td>${s.r_id}</td>
+                    <td>${s.r_name}</td>
+                    <td><a href="${s.r_file_path}">${s.r_file_name}</a></td>
+                    <td><fmt:formatDate value="${s.r_time}" pattern="yyyy/MM/dd HH:mm:ss"/></td>
+                    <td>${s.r_tname}</td>
+                    <td class="td-manage">
+                        <a title="编辑" href="javascript:;"
+                           onclick="admin_edit('编辑','gotoResourcePage.action?r_id='+${s.r_id},'1','800','500')"
+                           class="ml-5" style="text-decoration:none">
+                            <i class="Hui-iconfont">&#xe6df;</i>
+                        </a>
+                        <a title="删除"
+                           href="/deleteResource.action?s_id=${s.r_id}"
+                           class="ml-5"
+                           style="text-decoration:none">
+                            <i class="Hui-iconfont">&#xe6e2;</i>
+                        </a>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </form>
     <input type="hidden" name="contextPath" value=<%= request.getContextPath() %>>
     <c:if test="${resources != null}">
         <input type="hidden" id="pageNumber" value="${resources.pageNumber}">

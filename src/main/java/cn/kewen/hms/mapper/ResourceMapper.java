@@ -17,7 +17,7 @@ public interface ResourceMapper {
      * @return
      * @throws Exception
      */
-    List<Resource> findResourceById(String c_id) throws Exception;
+    Resource findResourceById(Integer c_id) throws Exception;
 
     /*
      * 添加班级信息
@@ -29,4 +29,5 @@ public interface ResourceMapper {
      */
     int deleteResource(int c_id) throws Exception;
 
+    void updateResoure(Resource resource) throws Exception;
 }

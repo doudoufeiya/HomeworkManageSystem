@@ -3,6 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.kewen.hms.mapper.ResourceMapper">
+    <update id="updateResoure">
+        update resource
+        set r_name      = #{r_name},
+            r_message   = #{r_message},
+            r_file_name = #{r_file_name},
+            r_file_path = #{r_file_path},
+            r_time      = now(),
+            r_tid       = #{r_tid}
+        where r_id = #{r_id}
+    </update>
 
     <!-- 显示所有学生信息 -->
     <select id="findResources" resultType="cn.kewen.hms.pojo.Resource">
@@ -25,6 +35,7 @@
         select *
         from resource
         where r_id = #{c_id}
+        limit 1
     </select>
 
     <!-- 添加信息 -->

@@ -45,8 +45,9 @@ public class ResourceController {
      * @throws Exception
      */
     @RequestMapping("addresourcePage")
-    public ModelAndView addStudentPage(ModelAndView mav) throws Exception {
+    public ModelAndView addStudentPage(ModelAndView mav, @RequestParam(required = false) Integer r_id) throws Exception {
         mav.setViewName("jsp/resource/resource-add");
+        mav.addObject("r_id", r_id);
         return mav;
     }
 
@@ -61,8 +62,9 @@ public class ResourceController {
     }
 
     @RequestMapping("gotoResourcePage")
-    public ModelAndView gotoResourcePage(ModelAndView mav, Integer resource_id) throws Exception {
-        mav.addObject("resource_id", resource_id);
+    public ModelAndView gotoResourcePage(ModelAndView mav, @RequestParam(required = false) Integer r_id) throws Exception {
+        mav.addObject("r_id", r_id);
+        mav.addObject("resurce", resourceService.findResourceById(r_id));
         mav.setViewName("jsp/resource/resource-add");
         return mav;
     }
@@ -107,10 +109,15 @@ public class ResourceController {
      * @throws Exception
      */
     @RequestMapping("addResource")
-    public void addResource(Resource resource) throws Exception {
-        ModelAndView mav = new ModelAndView();
-        resourceService.addResource(resource);
+    public ModelAndView addResource(Resource resource, ModelAndView mav) throws Exception {
+        if (resource.getR_id() == null) {
+            resourceService.addResource(resource);
+        } else {
+            resourceService.editResource(resource);
+        }
+        return mav;
     }
+
 
     /**
      * @param file
@@ -121,6 +128,7 @@ public class ResourceController {
         String r_name = request.getParameter("r_name");
         Object tId = request.getSession().getAttribute("t_id");
         Object aId = request.getSession().getAttribute("a_id");
+        Object r_id = request.getParameter("r_id");
         String fileName = file.getOriginalFilename();
         if (r_name == null || (tId == null && aId == null)) {
             return;
@@ -147,7 +155,14 @@ public class ResourceController {
         }
         resource.setR_name(r_name);
         resource.setR_tid(Integer.parseInt(null == tId ? aId.toString() : tId.toString()));
-        resourceService.addResource(resource);
+
+        if (r_id == null) {
+            resourceService.addResource(resource);
+        } else {
+            resource.setR_id(Integer.parseInt(r_id.toString()));
+            resourceService.editResource(resource);
+        }
+
 //        studentService.updateStudentClass(class1.getStudents(), class1.getC_id());
 //        //添加成功，跳转到其他页面
 //        PageData<Student> students = studentService.findStudents(null);

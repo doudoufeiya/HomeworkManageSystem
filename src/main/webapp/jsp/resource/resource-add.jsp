@@ -35,10 +35,12 @@
 <article class="page-container">
     <form action="addResource.action" method="post" class="form form-horizontal" enctype="multipart/form-data"
           id="form-student-work-add">
+        <input type="text" style="display: none;" class="input-text" value="${r_id}" placeholder="" id="r_id"
+               name="r_id">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>资料名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="r_name" name="r_name"
+                <input type="text" class="input-text" value="${resurce.r_name}" placeholder="" id="r_name" name="r_name"
                        datatype="*4-16" nullmsg="资料名称不能为空">
             </div>
         </div>
