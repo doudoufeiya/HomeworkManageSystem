@@ -154,8 +154,8 @@
             <dt><i class="Hui-iconfont">&#xe622;</i> 公告管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a _href="http://h-ui.duoshuo.com/admin/" data-title="添加公告" href="javascript:;">添加公告</a></li>
-                    <li><a _href="feedback-list.html" data-title="意见反馈" href="javascript:void(0)">意见反馈</a></li>
+                    <li><a _href="findNotices.action" data-title="公告列表" href="javascript:;">公告列表</a></li>
+                    <%--<li><a _href="feedback-list.html" data-title="意见反馈" href="javascript:void(0)">意见反馈</a></li>--%>
                 </ul>
             </dd>
         </dl>
