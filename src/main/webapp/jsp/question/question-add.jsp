@@ -29,24 +29,25 @@
     <![endif]-->
     <!--/meta 作为公共模版分离出去-->
 
-    <title>新建课程 - 课程管理 </title>
+    <title>新建问题 - 问题管理 </title>
 </head>
 <body>
 <article class="page-container">
-    <form action="addStudentWork.action" method="post" class="form form-horizontal" enctype="multipart/form-data"
+    <form action="addQuestion.action" method="post" class="form form-horizontal"
           id="form-student-work-add">
-        <input type="text" style="display: none;" class="input-text" value="${workId}" placeholder="" id="workId"
-               name="workId">
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">作业文件：</label>
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>问题标题：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <span class="btn-upload form-group">
-				<input class="input-text upload-url" type="text" name="uploadfile" id="uploadfile1" readonly
-                       nullmsg="请添加附件！" style="width:200px">
-				<a href="javascript:void();" class="btn btn-primary radius upload-btn"><i
-                        class="Hui-iconfont">&#xe642;</i> 浏览文件</a>
-				<input type="file" multiple name="file" id="uploadfile" class="input-file">
-				</span></div>
+                <input type="text" class="input-text" value="" placeholder="" id="title" name="title"
+                       datatype="*4-16" nullmsg="问题标题不能为空">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>内容：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="" id="content" name="content"
+                       datatype="*4-16" nullmsg="内容不能为空">
+            </div>
         </div>
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
@@ -66,6 +67,7 @@
 <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
 <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
 <script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="js/jquery-form.js"></script>
 <!--/_footer /作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
@@ -91,7 +93,7 @@
             }
         });
 
-        $("#form-class-add").validate({
+        $("#form-student-work-add").validate({
             rules: {
                 roleName: {
                     required: true,
@@ -101,10 +103,11 @@
             focusCleanup: true,
             success: "valid",
             submitHandler: function (form) {
-                debugger
                 $(form).ajaxSubmit();
+                console.log(window.name)
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
+                location.replace(location.href)
                 return false
             }
         });

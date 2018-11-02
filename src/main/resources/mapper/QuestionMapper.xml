@@ -25,8 +25,8 @@
 
     <!-- 添加信息 -->
     <insert id="addQuestion" parameterType="Question">
-        insert into question(t_id, s_id, type, send_date)
-        values (#{s_id}, #{type}, now())
+        insert into question(s_id, send_date, title, content)
+        values (#{s_id}, now(),#{title},#{content})
         <selectKey keyProperty="question_id" order="AFTER" resultType="int">
             select last_insert_id()
         </selectKey>

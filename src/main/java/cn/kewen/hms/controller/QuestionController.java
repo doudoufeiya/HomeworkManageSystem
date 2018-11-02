@@ -1,6 +1,5 @@
 package cn.kewen.hms.controller;
 
-import cn.kewen.hms.pojo.Admin;
 import cn.kewen.hms.pojo.PageData;
 import cn.kewen.hms.pojo.PageParams;
 import cn.kewen.hms.pojo.Question;
@@ -13,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Controller
 public class QuestionController {
@@ -106,9 +104,17 @@ public class QuestionController {
      * @throws Exception
      */
     @RequestMapping("addQuestion")
-    public void addQuestion(Question question) throws Exception {
-        ModelAndView mav = new ModelAndView();
-        questionService.addQuestion(question);
+    public ModelAndView addQuestion(Question question, ModelAndView mav, HttpSession session) throws Exception {
+        Object s_id = session.getAttribute("s_id");
+        if (s_id != null) {
+            question.setS_id(Integer.parseInt(s_id.toString()));
+            questionService.addQuestion(question);
+        }
+        PageData<Question> questions = questionService.findQuestions(null, null);
+        logger.info("questions:" + questions);
+        mav.addObject("questions", questions);
+        mav.setViewName("jsp/question/question-list");
+        return mav;
     }
 
     /**

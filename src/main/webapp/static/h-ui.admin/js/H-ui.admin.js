@@ -160,7 +160,9 @@ function layer_show(title, url, w, h) {
     if (h == null || h == '') {
         h = ($(window).height() - 50);
     }
-    debugger
+    if (sleep(2000)) {
+
+    }
     layer.open({
         type: 2,
         area: [w + 'px', h + 'px'],
@@ -171,6 +173,17 @@ function layer_show(title, url, w, h) {
         content: url
     });
 }
+
+function sleep(numberMillis) {
+    var now = new Date();
+    var exitTime = now.getTime() + numberMillis;
+    while (true) {
+        now = new Date();
+        if (now.getTime() > exitTime)
+            return true;
+    }
+}
+
 
 /*关闭弹出框口*/
 function layer_close() {
@@ -258,4 +271,4 @@ $(function () {
         $(window.frames.document).contents().find("#skin").attr("href", hrefRes);
         //$("#skin").attr("href",hrefResd);
     });
-}); 
+});
