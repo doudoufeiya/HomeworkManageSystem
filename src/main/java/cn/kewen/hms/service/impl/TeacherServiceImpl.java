@@ -21,14 +21,14 @@ public class TeacherServiceImpl implements TeacherService {
     TeacherMapper teacherMapper;
 
     @Override
-    public PageData<Teacher> findTeachers(PageParams params) throws Exception {
+    public PageData<Teacher> findTeachers(PageParams params, String t_name) throws Exception {
         if (params == null) {
             params = new PageParams();
         }
 
         Page page = PageHelper.startPage(params.getPageNumber().intValue(), params.getPageSize().intValue(), true);
         PageData<Teacher> result = new PageData<>();
-        result.setData(teacherMapper.findTeachers());
+        result.setData(teacherMapper.findTeachers(t_name));
         result.setPageNumber(page.getPageNum());
         result.setPageSize(params.getPageSize());
         result.setTotalRow(page.getTotal());
@@ -90,7 +90,7 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public List<String> findNotReadWork(Integer workId) throws Exception {
-        if (workId == null){
+        if (workId == null) {
             return null;
         }
         return teacherMapper.findNotReadWork(workId);

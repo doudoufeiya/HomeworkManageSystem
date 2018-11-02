@@ -11,10 +11,11 @@ public interface TeacherService {
      * 查询所有教师信息
      *
      * @param
+     * @param t_name
      * @return
      * @throws Exception
      */
-    PageData<Teacher> findTeachers(PageParams params) throws Exception;
+    PageData<Teacher> findTeachers(PageParams params, String t_name) throws Exception;
 
     PageData<Teacher> findTeachersNoLesson(PageParams params) throws Exception;
 

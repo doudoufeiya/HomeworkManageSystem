@@ -9,7 +9,7 @@ public interface TeacherMapper {
     /*
      * 显示所有信息
      */
-    List<Teacher> findTeachers() throws Exception;
+    List<Teacher> findTeachers(@Param("t_name") String t_name) throws Exception;
 
     List<Teacher> findTeachersNoLesson() throws Exception;
 

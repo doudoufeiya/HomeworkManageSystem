@@ -19,8 +19,9 @@ public class TeacherController {
     TeacherService teacherService;
 
     @RequestMapping("findTeachers")
-    public ModelAndView findTeachers(ModelAndView mav, PageParams params) throws Exception {
-        PageData<Teacher> teachers = teacherService.findTeachers(params);
+    public ModelAndView findTeachers(ModelAndView mav, PageParams params, HttpServletRequest request) throws Exception {
+        String t_name = request.getParameter("t_name");
+        PageData<Teacher> teachers = teacherService.findTeachers(params, t_name);
         mav.addObject("teachers", teachers);
         mav.setViewName("teacher-list");
         return mav;
@@ -41,7 +42,7 @@ public class TeacherController {
             teacherService.deleteTeacher(t_id);
 
         }
-        PageData<Teacher> teachers = teacherService.findTeachers(null);
+        PageData<Teacher> teachers = teacherService.findTeachers(null, null);
         mav.addObject("teachers", teachers);
         mav.setViewName("teacher-list");
         return mav;
