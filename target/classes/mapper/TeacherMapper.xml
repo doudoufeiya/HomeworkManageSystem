@@ -24,12 +24,12 @@
         from teacher
         where t_name = #{t_name}
     </select>
-    <!-- 根据名字查询教师信息 -->
-    <select id="findTeacherById" parameterType="int" resultType="Teacher">
-        select *
-        from teacher
-        where t_id = #{t_id}
-    </select>
+    <!--&lt;!&ndash; 根据名字查询教师信息 &ndash;&gt;-->
+    <!--<select id="findTeacherById" parameterType="int" resultType="Teacher">-->
+        <!--select *-->
+        <!--from teacher-->
+        <!--where t_id = #{t_id}-->
+    <!--</select>-->
     <select id="findTeachersNoLesson" resultType="Teacher">
         select *
         from teacher
@@ -74,4 +74,11 @@
         from teacher
         where t_id = #{t_id}
     </delete>
+
+    <select id="findTeacherById" resultType="Teacher">
+        select *
+        from teacher
+        where t_id = #{t_id}
+        limit 1
+    </select>
 </mapper>

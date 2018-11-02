@@ -4,6 +4,7 @@ package cn.kewen.hms.controller;
 import cn.kewen.hms.pojo.PageData;
 import cn.kewen.hms.pojo.PageParams;
 import cn.kewen.hms.pojo.Student;
+import cn.kewen.hms.service.ClassService;
 import cn.kewen.hms.service.StudentService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private ClassService classService;
 
     @RequestMapping("findStudents")
     public ModelAndView findStudents(ModelAndView mav, PageParams params, HttpServletRequest request) throws Exception {
@@ -52,7 +55,10 @@ public class StudentController {
      * @throws Exception
      */
     @RequestMapping("addStudentPage")
-    public ModelAndView addStudentPage(ModelAndView mav) throws Exception {
+    public ModelAndView addStudentPage(ModelAndView mav, @RequestParam(required = false) Integer s_id) throws Exception {
+        mav.addObject("student", studentService.findStudentById(s_id));
+        PageParams params = new PageParams(1, 1000L);
+        mav.addObject("classes", classService.findClasss(params, null));
         mav.setViewName("stu/student-add");
         return mav;
     }
@@ -125,18 +131,15 @@ public class StudentController {
      */
     @RequestMapping("addStudent")
     public void addStudent(Student student) throws Exception {
-        ModelAndView mav = new ModelAndView();
-        studentService.addStudent(student);
-//        //添加成功，跳转到其他页面
-//        PageData<Student> students = studentService.findStudents(null);
-//        logger.info("findStudents:" + students);
-//        mav.addObject("students", students);
-//        mav.setViewName("student-list");
-//        return mav;
+        if (student.getS_id() == null) {
+            studentService.addStudent(student);
+        } else {
+            studentService.updateStudent(student);
+        }
     }
 
     @RequestMapping("editStudentInfo")
-    public void editStudentInfo(Student student,@RequestParam("file") MultipartFile file) throws Exception {
+    public void editStudentInfo(Student student, @RequestParam("file") MultipartFile file) throws Exception {
         System.out.println(student);
     }
 

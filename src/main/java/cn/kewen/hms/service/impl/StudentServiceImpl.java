@@ -118,6 +118,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public Student findStudentById(Integer s_id) {
+        if (s_id == null){
+            return null;
+        }
+        return studentMapper.findStudentById(s_id);
+    }
+
+    @Override
     public String login(int s_id) throws Exception {
         return studentMapper.findPwdById(s_id);
     }

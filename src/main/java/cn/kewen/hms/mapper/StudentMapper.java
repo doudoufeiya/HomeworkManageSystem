@@ -23,7 +23,6 @@ public interface StudentMapper {
     String findPwdById(int s_id) throws Exception;
 
     /**
-     *
      * @param s_id
      * @return
      * @throws Exception
@@ -85,4 +84,6 @@ public interface StudentMapper {
      * @return
      */
     List<String> getToCommitWorkName(@Param("studentId") Integer studentId);
+
+    Student findStudentById(@Param("s_id") Integer s_id);
 }

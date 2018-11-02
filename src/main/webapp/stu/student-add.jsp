@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--_meta 作为公共模版分离出去-->
 <!DOCTYPE HTML>
 <html>
@@ -13,16 +14,16 @@
     <LINK rel="Bookmark" href="/favicon.ico">
     <LINK rel="Shortcut Icon" href="/favicon.ico"/>
     <!--[if lt IE 9]>
-    <script type="text/javascript" src="http://lib.h-ui.net/html5.js"></script>
-    <script type="text/javascript" src="http://lib.h-ui.net/respond.min.js"></script>
-    <script type="text/javascript" src="http://lib.h-ui.net/PIE_IE678.js"></script>
+    <script type="text/javascript" src="lib/html5.js"></script>
+    <script type="text/javascript" src="lib/respond.min.js"></script>
+    <script type="text/javascript" src="lib/PIE_IE678.js"></script>
     <![endif]-->
-    <link rel="stylesheet" type="text/css" href="http://static.h-ui.net/h-ui/css/H-ui.min.css"/>
-    <link rel="stylesheet" type="text/css" href="http://static.h-ui.net/h-ui/css/H-ui.admin.css"/>
-    <link rel="stylesheet" type="text/css" href="http://lib.h-ui.net/Hui-iconfont/1.0.7/iconfont.css"/>
-    <link rel="stylesheet" type="text/css" href="http://lib.h-ui.net/icheck/icheck.css"/>
-    <link rel="stylesheet" type="text/css" href="http://static.h-ui.net/h-ui/skin/default/skin.css" id="skin"/>
-    <link rel="stylesheet" type="text/css" href="http://static.h-ui.net/h-ui/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.7/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/icheck/icheck.css"/>
+    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin"/>
+    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css"/>
     <!--[if IE 6]>
     <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js"></script>
     <script>DD_belatedPNG.fix('*');</script>
@@ -34,43 +35,62 @@
 <body>
 <article class="page-container">
     <form action="addStudent.action" method="post" class="form form-horizontal" id="form-student-add">
+        <input type="hidden" name="s_id" id="s_id" value="${student.s_id}">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>学号：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="" class="input-text" value="" placeholder="" id="s_number" name="s_number">
+                <input type="" class="input-text" value="${student.s_number}" placeholder="" id="s_number"
+                       name="s_number">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>密码：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="s_pwd" name="s_pwd">
+                <input type="text" class="input-text" value="${student.s_pwd}" placeholder="" id="s_pwd" name="s_pwd">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>姓名：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" autocomplete="off" value="" placeholder="姓名" id="s_name"
+                <input type="text" class="input-text" autocomplete="off" value="${student.s_name}" placeholder="姓名"
+                       id="s_name"
                        name="s_name">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" autocomplete="off" value="" placeholder="性别" id="s_sex"
-                       name="s_sex">
+
+                <select class="select" id="s_sex" name="s_sex">
+                    <option value="保密" <c:if test="${student.s_sex == '保密'}">
+                        selected="selected"
+                    </c:if> >保密
+                    </option>
+                    <option value="男" <c:if test="${student.s_sex == '男'}">
+                        selected="selected"
+                    </c:if>>男
+                    </option>
+                    <option value="女"
+                            <c:if test="${student.s_sex == '女'}">
+                                selected="selected"
+                            </c:if>>女
+                    </option>
+                </select>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>电话：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" autocomplete="off" value="" placeholder="电话" id="s_phone"
+                <input type="text" class="input-text" autocomplete="off" value="${student.s_phone}" placeholder="电话"
+                       id="s_phone"
                        name="s_phone">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>专业：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" autocomplete="off" value="" placeholder="专业" id="s_major"
+                <input type="text" class="input-text" autocomplete="off" value="${student.s_major}" placeholder="专业"
+                       id="s_major"
                        name="s_major">
             </div>
         </div>
@@ -78,7 +98,8 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>照片：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" autocomplete="off" value="" placeholder="照片" id="s_photo"
+                <input type="text" class="input-text" autocomplete="off" value="${student.s_phone}" placeholder="照片"
+                       id="s_photo"
                        name="s_photo">
             </div>
         </div>
@@ -86,8 +107,20 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>班级编号：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" autocomplete="off" value="" placeholder="班级编号" id="s_cid"
-                       name="s_cid">
+                <%--<input type="text" class="input-text" autocomplete="off" value="" placeholder="班级编号" id="s_cid"--%>
+                <%--name="s_cid">--%>
+                <select class="select" id="s_cid" name="s_cid">
+                    <option value="0">班级</option>
+                    <c:forEach items="${classes.data}" var="class1">
+                        <option value="${class1.c_id}"
+                                <c:if test="${student.s_cid == class1.c_id}">
+                                    selected="selected"
+                                </c:if>>${class1.c_name}
+                        </option>
+                    </c:forEach>
+                </select>
+
+
             </div>
         </div>
 
@@ -152,9 +185,12 @@
             success: "valid",
             submitHandler: function (form) {
                 $(form).ajaxSubmit();
-                var index = parent.layer.getFrameIndex(window.name);
-                parent.$('.btn-refresh').click();
-                parent.layer.close(index);
+                setTimeout(function () {
+                    parent.$('.a-refresh')[0].click();
+                }, 3000)
+                // var index = parent.layer.getFrameIndex(window.name);
+                // parent.$('.btn-refresh').click();
+                // parent.layer.close(index);
             }
         });
     });

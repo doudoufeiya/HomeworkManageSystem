@@ -77,4 +77,6 @@ public interface StudentService {
 
 
     Student findStudentInfoPwdById(Integer s_id) throws Exception;
+
+    Student findStudentById(Integer s_id);
 }

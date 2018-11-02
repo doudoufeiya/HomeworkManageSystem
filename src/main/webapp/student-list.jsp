@@ -34,7 +34,7 @@
 </head>
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 学生管理 <span
-        class="c-gray en">&gt;</span> 学生列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
+        class="c-gray en">&gt;</span> 学生列表 <a class="a-refresh btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
                                               href="javascript:location.replace(location.href);" title="刷新"><i
         class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container container">
@@ -60,52 +60,53 @@
     </div>
     <form name="myForm" id="myForm" action="batchDeleteStudent.action" method="post">
         <table class="table table-border table-bordered table-bg row-fluid">
-        <thead>
-        <tr>
-            <th scope="col" colspan="11">学生列表</th>
-        </tr>
-        <tr class="text-c">
-            <th width="25"><input type="checkbox" name="" value=""></th>
-            <th width="100">账号</th>
-            <th width="50">密码</th>
-            <th width="90">姓名</th>
-            <th width="90">性别</th>
-            <th width="90">电话</th>
-            <th width="90">专业</th>
-            <th width="90">积分</th>
-            <th width="90">班级</th>
-            <th width="100">操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${students.data}" var="s">
-            <tr class="text-c">
-                <td><input type="checkbox" value="1" name=""></td>
-                <td>${s.s_number}</td>
-                <td>${s.s_pwd}</td>
-                <td>${s.s_name}</td>
-                <td>${s.s_sex}</td>
-                <td>${s.s_phone}</td>
-                <td>${s.s_major}</td>
-                <td>${s.s_points}</td>
-                <td>${s.s_cid}</td>
-                <td class="td-manage">
-                    <a title="编辑" href="javascript:;"
-                       onclick="admin_edit('管理员编辑','admin-add.html','1','800','500')"
-                       class="ml-5" style="text-decoration:none">
-                        <i class="Hui-iconfont">&#xe6df;</i>
-                    </a>
-                    <a title="删除"
-                       href="deleteStudent.action?s_id=${s.s_id}"
-                       class="ml-5"
-                       style="text-decoration:none">
-                        <i class="Hui-iconfont">&#xe6e2;</i>
-                    </a>
-                </td>
+            <thead>
+            <tr>
+                <th scope="col" colspan="11">学生列表</th>
             </tr>
-        </c:forEach>
-        </tbody>
-        </table></form>
+            <tr class="text-c">
+                <th width="25"><input type="checkbox" name="" value=""></th>
+                <th width="100">账号</th>
+                <th width="50">密码</th>
+                <th width="90">姓名</th>
+                <th width="90">性别</th>
+                <th width="90">电话</th>
+                <th width="90">专业</th>
+                <th width="90">积分</th>
+                <th width="90">班级</th>
+                <th width="100">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${students.data}" var="s">
+                <tr class="text-c">
+                    <td><input type="checkbox" value="1" name=""></td>
+                    <td>${s.s_number}</td>
+                    <td>${s.s_pwd}</td>
+                    <td>${s.s_name}</td>
+                    <td>${s.s_sex}</td>
+                    <td>${s.s_phone}</td>
+                    <td>${s.s_major}</td>
+                    <td>${s.s_points}</td>
+                    <td>${s.s_cid}</td>
+                    <td class="td-manage">
+                        <a title="编辑" href="javascript:;"
+                           onclick="admin_edit('编辑','addStudentPage.action?s_id='+${s.s_id} ,'1','800','500')"
+                           class="ml-5" style="text-decoration:none">
+                            <i class="Hui-iconfont">&#xe6df;</i>
+                        </a>
+                        <a title="删除"
+                           href="deleteStudent.action?s_id=${s.s_id}"
+                           class="ml-5"
+                           style="text-decoration:none">
+                            <i class="Hui-iconfont">&#xe6e2;</i>
+                        </a>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </form>
     <input type="hidden" name="contextPath" value=<%= request.getContextPath() %>>
     <c:if test="${students != null}">
         <input type="hidden" id="pageNumber" value="${students.pageNumber}">
