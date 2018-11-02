@@ -59,7 +59,7 @@
         </a>
     </span>
     </div>
-    <form name="myForm" id="myForm" action="batchDeleteWork.action" method="post">
+    <form name="myForm" id="myForm" action="batchDeleteQuestion.action" method="post">
         <table class="table table-border table-bordered table-bg row-fluid">
         <thead>
         <tr>
