@@ -116,4 +116,26 @@ public class TeacherController {
         }
         return "ok";
     }
+
+    /**
+     * 删除学生
+     *
+     * @param mav
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("batchDeleteTeacher")
+    public ModelAndView batchDeleteTeacher(ModelAndView mav, HttpServletRequest request) throws Exception {
+        request.getParameterMap().forEach((s, strings) -> {
+            try {
+                teacherService.deleteTeacher(Integer.parseInt(strings[0]));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        PageData<Teacher> teachers = teacherService.findTeachers(null, null);
+        mav.addObject("teachers", teachers);
+        mav.setViewName("teacher-list");
+        return mav;
+    }
 }

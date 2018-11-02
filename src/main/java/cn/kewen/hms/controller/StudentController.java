@@ -206,4 +206,27 @@ public class StudentController {
         out.close();
     }
 
+    /**
+     * 删除学生
+     *
+     * @param mav
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("batchDeleteAdmin")
+    public ModelAndView batchDeleteAdmin(ModelAndView mav, HttpServletRequest request) throws Exception {
+        request.getParameterMap().forEach((s, strings) -> {
+            try {
+                studentService.deleteStudent(Integer.parseInt(strings[0]));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        PageData<Student> students = studentService.findStudents(null, null);
+        logger.info("findStudents:" + students);
+        mav.addObject("students", students);
+        mav.setViewName("student-list");
+        return mav;
+    }
+
 }

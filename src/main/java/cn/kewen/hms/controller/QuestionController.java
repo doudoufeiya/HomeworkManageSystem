@@ -1,5 +1,6 @@
 package cn.kewen.hms.controller;
 
+import cn.kewen.hms.pojo.Admin;
 import cn.kewen.hms.pojo.PageData;
 import cn.kewen.hms.pojo.PageParams;
 import cn.kewen.hms.pojo.Question;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class QuestionController {
@@ -109,5 +111,27 @@ public class QuestionController {
         questionService.addQuestion(question);
     }
 
+    /**
+     * 删除学生
+     *
+     * @param mav
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("batchDeleteQuestion")
+    public ModelAndView batchDeleteQuestion(ModelAndView mav, HttpServletRequest request) throws Exception {
+        request.getParameterMap().forEach((s, strings) -> {
+            try {
+                questionService.deleteQuestion(Integer.parseInt(strings[0]));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        PageData<Question> questions = questionService.findQuestions(null, null);
+        logger.info("questions:" + questions);
+        mav.addObject("questions", questions);
+        mav.setViewName("jsp/question/question-list");
+        return mav;
+    }
 
 }

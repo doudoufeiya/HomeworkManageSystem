@@ -151,4 +151,26 @@ public class AdminController {
 //		}
 //		return "ok";
 //	}
+
+    /**
+     * 删除学生
+     *
+     * @param mav
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("batchDeleteAdmin")
+    public ModelAndView batchDeleteAdmin(ModelAndView mav, HttpServletRequest request) throws Exception {
+        request.getParameterMap().forEach((s, strings) -> {
+            try {
+                adminService.deleteAdmin(Integer.parseInt(strings[0]));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        List<Admin> adminlist = adminService.findAdmins();
+        mav.addObject("adminlist", adminlist);
+        mav.setViewName("admin-list");
+        return mav;
+    }
 }

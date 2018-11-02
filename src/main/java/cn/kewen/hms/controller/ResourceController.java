@@ -157,5 +157,27 @@ public class ResourceController {
 //        return mav;
     }
 
+    /**
+     * 删除学生
+     *
+     * @param mav
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("batchDeleteResource")
+    public ModelAndView batchDeleteResource(ModelAndView mav, HttpServletRequest request) throws Exception {
+        request.getParameterMap().forEach((s, strings) -> {
+            try {
+                resourceService.deleteResource(Integer.parseInt(strings[0]));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        PageData<Resource> resources = resourceService.findResources(null, null);
+        logger.info("resources:" + resources);
+        mav.addObject("resources", resources);
+        mav.setViewName("jsp/resource/resource-list");
+        return mav;
+    }
 
 }
