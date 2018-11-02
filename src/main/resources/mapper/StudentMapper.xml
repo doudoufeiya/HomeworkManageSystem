@@ -40,7 +40,8 @@
             s_cid    = #{s_cid},
             s_major  = #{s_major},
             s_phone  = #{s_phone},
-            s_sex    = #{s_sex}
+            s_sex    = #{s_sex},
+            s_photo  = #{s_photo}
         where s_id = #{s_id}
     </update>
     <update id="updateStudentClass">

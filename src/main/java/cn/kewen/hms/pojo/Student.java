@@ -8,8 +8,17 @@ public class Student {
     private String s_sex;
     private String s_major;
     private String s_phone;
+    private String s_photo;
     private Integer s_points;
     private String s_cid;
+
+    public String getS_photo() {
+        return s_photo;
+    }
+
+    public void setS_photo(String s_photo) {
+        this.s_photo = s_photo;
+    }
 
     public Integer getS_id() {
         return s_id;

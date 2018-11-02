@@ -58,7 +58,8 @@
             t_name   = #{t_name},
             t_lesson = #{t_lesson},
             t_phone  = #{t_phone},
-            t_sex    = #{t_sex}
+            t_sex    = #{t_sex},
+            t_photo  = #{t_photo}
         where t_id = #{t_id}
     </update>
     <update id="updateTeacherLesson">
@@ -92,6 +93,6 @@
     </update>
 
     <!--<update id="incrementPoint">-->
-        <!--update teacher set teacher.-->
+    <!--update teacher set teacher.-->
     <!--</update>-->
 </mapper>

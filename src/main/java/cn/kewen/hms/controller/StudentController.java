@@ -150,14 +150,28 @@ public class StudentController {
     }
 
     @RequestMapping("editStudentInfo")
-    public void editStudentInfo(Student student, @RequestParam("file") MultipartFile file) throws Exception {
-        System.out.println(student);
+    public void editStudentInfo(Student student, HttpSession session, @RequestParam("file") MultipartFile file, HttpServletRequest request) throws Exception {
+        //如果文件不为空，写入上传路径
+        if (!file.isEmpty()) {
+            //上传文件路径
+            String path = request.getServletContext().getRealPath("/upload");
+            //上传文件名
+            String filename = file.getOriginalFilename();
+            File filepath = new File(path, filename);
+            //判断路径是否存在，不存在则创建一个
+            if (!filepath.getParentFile().exists()) {
+                filepath.getParentFile().mkdirs();
+            }
+            file.transferTo(new File(path + File.separator + filename));
+            student.setS_photo("http://localhost:8080/filedown?fileName=" + URLEncoder.encode(filename));
+        }
+        student.setS_id(Integer.parseInt(session.getAttribute("t_id").toString()));
+        studentService.updateStudent(student);
     }
 
     /**
      * 添加学生
      *
-     * @param student
      * @return
      * @throws Exception
      */

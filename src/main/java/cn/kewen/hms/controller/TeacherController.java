@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.net.URLEncoder;
 import java.util.List;
 
 @Controller
@@ -104,9 +106,9 @@ public class TeacherController {
     @RequestMapping("addTeacher")
     public ModelAndView addTeacher(Teacher teacher) throws Exception {
         ModelAndView mav = new ModelAndView();
-        if (teacher.getT_id() == null){
+        if (teacher.getT_id() == null) {
             teacherService.addTeacher(teacher);
-        }else {
+        } else {
             teacherService.updateTeacher(teacher);
         }
         return mav;
@@ -170,7 +172,24 @@ public class TeacherController {
      * @throws Exception
      */
     @RequestMapping("editTeacherInfo")
-    public void editStudentInfo(Teacher teacher, @RequestParam("file") MultipartFile file) throws Exception {
-        System.out.println(teacher);
+    public void editStudentInfo(HttpServletRequest request, Teacher teacher, HttpSession session,
+                                @RequestParam("file") MultipartFile file) throws Exception {
+        //如果文件不为空，写入上传路径
+        if (!file.isEmpty()) {
+            //上传文件路径
+            String path = request.getServletContext().getRealPath("/upload");
+            //上传文件名
+            String filename = file.getOriginalFilename();
+            File filepath = new File(path, filename);
+            //判断路径是否存在，不存在则创建一个
+            if (!filepath.getParentFile().exists()) {
+                filepath.getParentFile().mkdirs();
+            }
+            file.transferTo(new File(path + File.separator + filename));
+            teacher.setT_photo("http://localhost:8080/filedown?fileName=" + URLEncoder.encode(filename));
+        }
+        teacher.setT_id(Integer.parseInt(session.getAttribute("t_id").toString()));
+        teacherService.updateTeacher(teacher);
+
     }
 }
