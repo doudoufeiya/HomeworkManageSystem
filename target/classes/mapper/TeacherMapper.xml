@@ -7,6 +7,10 @@
     <select id="findTeachers" resultType="Teacher">
         select *
         from teacher
+        where 1=1
+        <if test="t_name != null and t_name!=''">
+            and t_name like concat("%",#{t_name},"%")
+        </if>
     </select>
     <!-- 登录查询 -->
     <select id="findPwdById" parameterType="int" resultType="String">

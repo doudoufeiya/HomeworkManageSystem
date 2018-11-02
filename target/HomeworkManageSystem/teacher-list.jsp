@@ -38,8 +38,8 @@
         class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
     <div class="text-c">
-        <form action="findTeacherByName.action" method="post">
-            <input type="text" class="input-text" style="width:250px" placeholder="输入教师姓名" id="s_name" name="s_name">
+        <form action="findTeachers.action" method="post">
+            <input type="text" class="input-text" style="width:250px" placeholder="输入教师姓名" id="t_name" name="t_name">
             <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户
             </button>
         </form>

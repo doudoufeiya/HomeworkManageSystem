@@ -48,7 +48,7 @@
     </div>
     <div class="cl pd-5 bg-1 bk-gray mt-20">
         <span class="l">
-        <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">
+        <a href="javascript:;" onclick="submitForm()" class="btn btn-danger radius">
             <i class="Hui-iconfont">&#xe6e2;</i>
             批量删除
         </a>
@@ -59,53 +59,55 @@
         </a>
     </span>
     </div>
-    <table class="table table-border table-bordered table-bg row-fluid">
-        <thead>
-        <tr>
-            <th scope="col" colspan="11">作业列表</th>
-        </tr>
-        <tr class="text-c">
-            <th width="25"><input type="checkbox" name="" value=""></th>
-            <th width="100">序号</th>
-            <th width="50">作业名</th>
-            <th width="50">创建时间</th>
-            <th width="50">截止时间</th>
-            <th width="50">文件名</th>
-            <th width="100">操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${works.data}" var="s">
-            <tr class="text-c">
-                <td><input type="checkbox" value="1" name=""></td>
-                <td>${s.tw_id}</td>
-                <td>${s.tw_name}</td>
-                <td><fmt:formatDate value="${s.tw_addTime}" pattern="yyyy/MM/dd HH:mm:ss"/></td>
-                <td><fmt:formatDate value="${s.tw_deadLine}" pattern="yyyy/MM/dd HH:mm:ss"/></td>
-                <td><a href="${s.tw_file_path}">${s.tw_file_name}</a></td>
-                <td class="td-manage">
-                    <a title="编辑" href="javascript:;"
-                       onclick="admin_edit('管理员编辑','admin-add.html','1','800','500')"
-                       class="ml-5" style="text-decoration:none">
-                        <i class="Hui-iconfont">&#xe6df;</i>
-                    </a>
-                    <a title="删除"
-                       href="/deleteWork.action?s_id=${s.tw_id}"
-                       class="ml-5"
-                       style="text-decoration:none">
-                        <i class="Hui-iconfont">&#xe6e2;</i>
-                    </a>
-                    <a title="查看作业情况"
-                       class="ml-5"
-                       onclick="stu_add('查看作业情况','viewWorkPage.action','800','500')"
-                       style="text-decoration:none">
-                        <i class="Hui-iconfont">&#xe6cd;</i>
-                    </a>
-                </td>
+    <form name="myForm" id="myForm" action="batchDeleteWork.action" method="post">
+        <table class="table table-border table-bordered table-bg row-fluid">
+            <thead>
+            <tr>
+                <th scope="col" colspan="11">作业列表</th>
             </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+            <tr class="text-c">
+                <th width="25"><input type="checkbox" name="" value="" ></th>
+                <th width="100">序号</th>
+                <th width="50">作业名</th>
+                <th width="50">创建时间</th>
+                <th width="50">截止时间</th>
+                <th width="50">文件名</th>
+                <th width="100">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${works.data}" var="s">
+                <tr class="text-c">
+                    <td><input type="checkbox" value="${s.tw_id}" name="${s.tw_id}" onclick="toChkSon(this);"></td>
+                    <td>${s.tw_id}</td>
+                    <td>${s.tw_name}</td>
+                    <td><fmt:formatDate value="${s.tw_addTime}" pattern="yyyy/MM/dd HH:mm:ss"/></td>
+                    <td><fmt:formatDate value="${s.tw_deadLine}" pattern="yyyy/MM/dd HH:mm:ss"/></td>
+                    <td><a href="${s.tw_file_path}">${s.tw_file_name}</a></td>
+                    <td class="td-manage">
+                        <a title="编辑" href="javascript:;"
+                           onclick="admin_edit('管理员编辑','admin-add.html','1','800','500')"
+                           class="ml-5" style="text-decoration:none">
+                            <i class="Hui-iconfont">&#xe6df;</i>
+                        </a>
+                        <a title="删除"
+                           href="/deleteWork.action?s_id=${s.tw_id}"
+                           class="ml-5"
+                           style="text-decoration:none">
+                            <i class="Hui-iconfont">&#xe6e2;</i>
+                        </a>
+                        <a title="查看作业情况"
+                           class="ml-5"
+                           onclick="stu_add('查看作业情况','viewWorkPage.action','800','500')"
+                           style="text-decoration:none">
+                            <i class="Hui-iconfont">&#xe6cd;</i>
+                        </a>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </form>
     <input type="hidden" name="contextPath" value=<%= request.getContextPath() %>>
     <c:if test="${works != null}">
         <input type="hidden" id="pageNumber" value="${works.pageNumber}">
@@ -165,6 +167,9 @@
             layer.msg('已启用!', {icon: 6, time: 1000});
         });
     }
+</script>
+<script type="text/javascript" src="js/batcheDelete.js">
+
 </script>
 </body>
 </html>
