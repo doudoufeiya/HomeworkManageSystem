@@ -1,12 +1,17 @@
 package cn.kewen.hms.service.impl;
 
 import cn.kewen.hms.mapper.LessonMapper;
+import cn.kewen.hms.mapper.ScLessonMapper;
+import cn.kewen.hms.mapper.TeacherMapper;
 import cn.kewen.hms.pojo.Lesson;
 import cn.kewen.hms.pojo.PageData;
 import cn.kewen.hms.pojo.PageParams;
+import cn.kewen.hms.pojo.ScLesson;
 import cn.kewen.hms.service.LessonService;
+import cn.kewen.hms.service.TeacherService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +25,10 @@ public class LessonServiceImpl implements LessonService {
     //加载mapper文件
     @Resource
     private LessonMapper lessonMapper;
+    @Autowired
+    private TeacherMapper teacherMapper;
+    @Autowired
+    private ScLessonMapper scLessonMapper;
 
     @Override
     public PageData<Lesson> findLessons(PageParams params, String l_name) throws Exception {
@@ -87,5 +96,30 @@ public class LessonServiceImpl implements LessonService {
     @Override
     public int deleteLesson(int s_id) throws Exception {
         return lessonMapper.deleteLesson(s_id);
+    }
+
+    @Override
+    public Lesson findLessonById(Integer l_id) throws Exception {
+        if (l_id == null){
+            return null;
+        }
+        return lessonMapper.findLessonInfoById(l_id);
+    }
+
+    @Override
+    public void deleteTeacher(Integer l_id) {
+        if (l_id == null){
+            return;
+        }
+
+        teacherMapper.deleteTeacherLesson(l_id);
+    }
+
+    @Override
+    public void deleteScLesson(Integer l_id) {
+        if (l_id == null) {
+            return;
+        }
+        scLessonMapper.updateLesson(l_id);
     }
 }

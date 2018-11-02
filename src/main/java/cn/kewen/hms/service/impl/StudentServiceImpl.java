@@ -42,6 +42,27 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public PageData<Student> findStudentsNoLesson(PageParams params, Integer l_id) throws Exception {
+        if (params == null) {
+            params = new PageParams();
+        }
+        Page page = PageHelper.startPage(params.getPageNumber().intValue(), params.getPageSize().intValue(), true);
+        PageData<Student> result = new PageData<>();
+        if (l_id == null){
+            result.setData(studentMapper.findStudents(null));
+
+        }else {
+            result.setData(studentMapper.findStudentsNoLesson(l_id));
+
+        }
+        result.setPageNumber(page.getPageNum());
+        result.setPageSize(params.getPageSize());
+        result.setTotalRow(page.getTotal());
+        result.setTotalPage(page.getPages());
+        return result;
+    }
+
+    @Override
     public List<Student> findStudentsNoClass(PageParams params) throws Exception {
         if (params == null) {
             params = new PageParams();
@@ -104,7 +125,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student findStudentInfoPwdById(Integer s_id) throws Exception {
-        if (s_id == null){
+        if (s_id == null) {
             return null;
         }
         return studentMapper.findStudentInfoPwdById(s_id);
@@ -112,7 +133,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student findStudentById(Integer s_id) {
-        if (s_id == null){
+        if (s_id == null) {
             return null;
         }
         return studentMapper.findStudentById(s_id);
@@ -129,10 +150,18 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void deleteClassStudent(Integer c_id) {
-        if(c_id == null){
+        if (c_id == null) {
             return;
         }
         studentMapper.updateClassStudent(c_id);
+    }
+
+    @Override
+    public List<Student> findselectStudents(Integer l_id) {
+        if (l_id == null) {
+            return null;
+        }
+        return studentMapper.findselectStudents(l_id);
     }
 
     @Override

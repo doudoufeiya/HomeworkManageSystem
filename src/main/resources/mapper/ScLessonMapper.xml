@@ -21,6 +21,11 @@
             l_id = #{l_id}
         where sc_id = #{sc_id}
     </update>
+    <delete id="updateLesson">
+        delete
+        from sc_lesson
+        where l_id = #{l_id}
+    </delete>
 
     <!-- 添加信息 -->
     <insert id="addScLesson" parameterType="ScLesson">

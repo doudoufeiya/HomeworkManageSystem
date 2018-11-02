@@ -2,6 +2,7 @@ package cn.kewen.hms.mapper;
 
 import cn.kewen.hms.pojo.Class;
 import cn.kewen.hms.pojo.ScLesson;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -34,4 +35,6 @@ public interface ScLessonMapper {
      * 删除班级信息
      */
     int deleteScLesson(int c_id) throws Exception;
+
+    void updateLesson(@Param("l_id") Integer l_id);
 }

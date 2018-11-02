@@ -18,6 +18,8 @@ public interface LessonMapper {
 
     List<Lesson> findLessonById(String c_id) throws Exception;
 
+    Lesson findLessonInfoById(@Param("c_id") Integer c_id) throws Exception;
+
     /*
      * 修改信息
      */

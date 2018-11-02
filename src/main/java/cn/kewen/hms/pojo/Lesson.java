@@ -5,6 +5,7 @@ import java.util.List;
 public class Lesson {
     private Integer l_id;
     private String l_name;
+    private String t_name;
     private List<Integer> students;
     private Integer t_id;
 
@@ -17,6 +18,14 @@ public class Lesson {
         super();
         this.l_id = l_id;
         this.l_name = l_name;
+    }
+
+    public String getT_name() {
+        return t_name;
+    }
+
+    public void setT_name(String t_name) {
+        this.t_name = t_name;
     }
 
     public Integer getT_id() {

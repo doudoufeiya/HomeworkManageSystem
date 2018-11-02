@@ -72,6 +72,16 @@ public interface LessonService {
      */
     int deleteLesson(int s_id) throws Exception;
 
+    Lesson findLessonById(Integer l_id) throws Exception;
+
+    void deleteTeacher(Integer l_id);
+
+    /**
+     * 删除学生和课程的联系
+     * @param l_id
+     */
+    void deleteScLesson(Integer l_id);
+
     /**
      * 根据教师ID查询教师的
      * @param t_id

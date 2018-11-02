@@ -34,10 +34,11 @@
 <body>
 <article class="page-container">
     <form action="addLesson.action" method="post" class="form form-horizontal" id="form-lesson-add">
+        <input type="hidden" value="${lesson.l_id}" name="l_id" id="l_id">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>课程名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="l_name" name="l_name"
+                <input type="text" class="input-text" value="${lesson.l_name}" placeholder="" id="l_name" name="l_name"
                        datatype="*4-16" nullmsg="课程名称不能为空">
             </div>
         </div>
@@ -49,6 +50,9 @@
                     <c:forEach items="${teachers}" var="teacher">
                         <option value="${teacher.t_id}">${teacher.t_name}</option>
                     </c:forEach>
+
+                    <option value="${lesson.t_id}" selected>${lesson.t_name}</option>
+
                 </select>
             </div>
         </div>
@@ -69,6 +73,14 @@
                                     <label class="">
                                         <input type="checkbox" value="${student.s_id}" name="students"
                                                id="student-${student.s_id}">
+                                            ${student.s_name}
+                                    </label>
+                                </c:forEach>
+
+                                <c:forEach items="${selectStudents}" var="student">
+                                    <label class="">
+                                        <input type="checkbox" value="${student.s_id}" name="students"
+                                               id="student-${student.s_id}" checked="checked">
                                             ${student.s_name}
                                     </label>
                                 </c:forEach>
@@ -122,7 +134,7 @@
             }
         });
 
-        $("#form-class-add").validate({
+        $("#form-lesson-add").validate({
             rules: {
                 roleName: {
                     required: true,
@@ -132,10 +144,10 @@
             focusCleanup: true,
             success: "valid",
             submitHandler: function (form) {
-                debugger
                 $(form).ajaxSubmit();
-                var index = parent.layer.getFrameIndex(window.name);
-                parent.layer.close(index);
+                setTimeout(function () {
+                    parent.$('.a-refresh')[0].click();
+                }, 3000)
                 return false
             }
         });

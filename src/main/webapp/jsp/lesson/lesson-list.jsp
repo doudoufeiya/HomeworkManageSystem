@@ -34,7 +34,7 @@
 </head>
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 班级管理 <span
-        class="c-gray en">&gt;</span> 班级列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
+        class="c-gray en">&gt;</span> 班级列表 <a class="a-refresh btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
                                               href="javascript:location.replace(location.href);" title="刷新"><i
         class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container container">
@@ -47,7 +47,7 @@
     </div>
     <div class="cl pd-5 bg-1 bk-gray mt-20">
         <span class="l">
-        <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">
+        <a href="javascript:;" onclick="submitForm()" class="btn btn-danger radius">
             <i class="Hui-iconfont">&#xe6e2;</i>
             批量删除
         </a>
@@ -60,40 +60,41 @@
     </div>
     <form name="myForm" id="myForm" action="batchDeleteLesson.action" method="post">
         <table class="table table-border table-bordered table-bg row-fluid">
-        <thead>
-        <tr>
-            <th scope="col" colspan="11">课程列表</th>
-        </tr>
-        <tr class="text-c">
-            <th width="25"><input type="checkbox" name="" value=""></th>
-            <th width="100">序号</th>
-            <th width="50">课程名</th>
-            <th width="100">操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${lessons.data}" var="s">
-            <tr class="text-c">
-                <td><input type="checkbox" value="1" name=""></td>
-                <td>${s.l_id}</td>
-                <td>${s.l_name}</td>
-                <td class="td-manage">
-                    <a title="编辑" href="javascript:;"
-                       onclick="admin_edit('管理员编辑','admin-add.html','1','800','500')"
-                       class="ml-5" style="text-decoration:none">
-                        <i class="Hui-iconfont">&#xe6df;</i>
-                    </a>
-                    <a title="删除"
-                       href="deleteLesson.action?s_id=${s.l_id}"
-                       class="ml-5"
-                       style="text-decoration:none">
-                        <i class="Hui-iconfont">&#xe6e2;</i>
-                    </a>
-                </td>
+            <thead>
+            <tr>
+                <th scope="col" colspan="11">课程列表</th>
             </tr>
-        </c:forEach>
-        </tbody>
-        </table></form>
+            <tr class="text-c">
+                <th width="25"><input type="checkbox" name="" value=""></th>
+                <th width="100">序号</th>
+                <th width="50">课程名</th>
+                <th width="100">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${lessons.data}" var="s">
+                <tr class="text-c">
+                    <td><input type="checkbox" value="1" name=""></td>
+                    <td>${s.l_id}</td>
+                    <td>${s.l_name}</td>
+                    <td class="td-manage">
+                        <a title="编辑" href="javascript:;"
+                           onclick="admin_edit('编辑','addLessonPage.action?l_id='+${s.l_id},'1','800','500')"
+                           class="ml-5" style="text-decoration:none">
+                            <i class="Hui-iconfont">&#xe6df;</i>
+                        </a>
+                        <a title="删除"
+                           href="deleteLesson.action?s_id=${s.l_id}"
+                           class="ml-5"
+                           style="text-decoration:none">
+                            <i class="Hui-iconfont">&#xe6e2;</i>
+                        </a>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </form>
     <input type="hidden" name="contextPath" value=<%= request.getContextPath() %>>
     <c:if test="${lessons != null}">
         <input type="hidden" id="pageNumber" value="${lessons.pageNumber}">

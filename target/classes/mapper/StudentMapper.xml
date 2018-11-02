@@ -40,13 +40,18 @@
             s_cid    = #{s_cid},
             s_major  = #{s_major},
             s_phone  = #{s_phone},
-            s_sex = #{s_sex}
+            s_sex    = #{s_sex}
         where s_id = #{s_id}
     </update>
     <update id="updateStudentClass">
         update student
         set s_cid = #{classId}
         where s_id = #{studentId}
+    </update>
+    <update id="updateClassStudent">
+        update student
+        set s_cid = null
+        where s_cid = #{c_id}
     </update>
     <!-- 添加信息 -->
     <insert id="addStudent" parameterType="Student">
@@ -110,5 +115,25 @@
         from student
         where s_id = #{s_id}
         limit 1
+    </select>
+    <select id="findClassStudents" resultType="cn.kewen.hms.pojo.Student">
+        select *
+        from student
+        where s_cid = #{c_id}
+    </select>
+    <select id="findselectStudents" resultType="cn.kewen.hms.pojo.Student">
+        select student.*
+        from student
+                 left join sc_lesson on student.s_id = sc_lesson.s_id
+        where sc_lesson.l_id = #{l_id}
+        group by student.s_id
+    </select>
+    <select id="findStudentsNoLesson" resultType="Student">
+        select *
+        from student
+        where student.s_id not in (select student.s_id
+                                   from sc_lesson
+                                            left join student on student.s_id = sc_lesson.s_id
+                                   where sc_lesson.l_id = #{l_id})
     </select>
 </mapper>

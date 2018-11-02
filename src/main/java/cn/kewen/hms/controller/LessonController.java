@@ -10,10 +10,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class LessonController {
@@ -48,12 +48,20 @@ public class LessonController {
      * @throws Exception
      */
     @RequestMapping("addLessonPage")
-    public ModelAndView addLessontPage(ModelAndView mav) throws Exception {
+    public ModelAndView addLessontPage(ModelAndView mav, Integer l_id) throws Exception {
         PageParams params = new PageParams(1, 1000L);
         PageData<Teacher> teachers = teacherService.findTeachersNoLesson(params);
-        PageData<Student> students = studentService.findStudents(params, null);
+
+        /**
+         * 如果l_id 为空，那么查出来的是所有的学生，如果不为空，查出来的是没有选择的学生
+         */
+        PageData<Student> students = studentService.findStudentsNoLesson(params, l_id);
+        //查找本课程的学生
+        List<Student> selectStudents = studentService.findselectStudents(l_id);
         mav.addObject("teachers", teachers.getData());
         mav.addObject("students", students.getData());
+        mav.addObject("selectStudents", selectStudents);
+        mav.addObject("lesson", lessonService.findLessonById(l_id));
         mav.setViewName("jsp/lesson/lesson-add");
         return mav;
     }
@@ -88,10 +96,15 @@ public class LessonController {
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "addLesson", method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "addLesson")
     public void addLesson(Lesson lesson) throws Exception {
-        ModelAndView mav = new ModelAndView();
-        lessonService.addLesson(lesson);
+        if (lesson.getL_id() != null) {
+            lessonService.updateLesson(lesson);
+            lessonService.deleteTeacher(lesson.getL_id());
+            lessonService.deleteScLesson(lesson.getL_id());
+        } else {
+            lessonService.addLesson(lesson);
+        }
         teacherService.updateTeacher(lesson.getT_id(), lesson.getL_id());
         for (Integer student : lesson.getStudents()) {
             ScLesson scLesson = new ScLesson();
@@ -99,12 +112,6 @@ public class LessonController {
             scLesson.setS_id(student);
             scLessonService.addScLesson(scLesson);
         }
-//        //添加成功，跳转到其他页面
-//        PageData<Student> students = studentService.findStudents(null);
-//        logger.info("findStudents:" + students);
-//        mav.addObject("students", students);
-//        mav.setViewName("student-list");
-//        return mav;
     }
 
     /**

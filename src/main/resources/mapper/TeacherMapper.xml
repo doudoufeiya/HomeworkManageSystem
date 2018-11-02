@@ -84,4 +84,10 @@
         where t_id = #{t_id}
         limit 1
     </select>
+
+    <update id="deleteTeacherLesson">
+        update teacher
+        set t_lesson = null
+        where t_lesson = #{l_id}
+    </update>
 </mapper>

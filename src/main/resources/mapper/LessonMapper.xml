@@ -23,6 +23,15 @@
         from lesson
         where l_name like concat("%", #{s_name}, "%")
     </select>
+    <select id="findLessonInfoById" resultType="Lesson">
+        select lesson.*,
+               (select t_name from teacher where t_lesson = #{c_id}) as t_name,
+               (select t_id from teacher where t_lesson = #{c_id})   as t_id
+
+        from lesson
+        where l_id = #{c_id}
+        limit 1
+    </select>
     <!-- 修改学生信息 -->
     <update id="updateLesson" parameterType="Lesson">
         update lesson

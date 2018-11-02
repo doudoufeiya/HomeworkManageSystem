@@ -90,4 +90,9 @@ public interface StudentMapper {
     List<Student> findClassStudents(@Param("c_id") Integer c_id) throws Exception;
 
     void updateClassStudent(@Param("c_id") Integer c_id);
+
+    List<Student> findselectStudents(@Param("l_id") Integer l_id);
+
+    List<Student> findStudentsNoLesson(@Param("l_id") Integer l_id);
+
 }

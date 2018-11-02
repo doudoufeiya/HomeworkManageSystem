@@ -121,4 +121,19 @@
         from student
         where s_cid = #{c_id}
     </select>
+    <select id="findselectStudents" resultType="cn.kewen.hms.pojo.Student">
+        select student.*
+        from student
+                 left join sc_lesson on student.s_id = sc_lesson.s_id
+        where sc_lesson.l_id = #{l_id}
+        group by student.s_id
+    </select>
+    <select id="findStudentsNoLesson" resultType="Student">
+        select *
+        from student
+        where student.s_id not in (select student.s_id
+                                   from sc_lesson
+                                            left join student on student.s_id = sc_lesson.s_id
+                                   where sc_lesson.l_id = #{l_id})
+    </select>
 </mapper>

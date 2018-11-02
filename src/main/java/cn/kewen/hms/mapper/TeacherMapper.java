@@ -51,4 +51,5 @@ public interface TeacherMapper {
 
     Teacher findTeacherById(@Param("t_id") Integer t_id);
 
+    void deleteTeacherLesson(@Param("l_id") Integer l_id);
 }

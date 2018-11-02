@@ -18,6 +18,15 @@ public interface StudentService {
     PageData<Student> findStudents(PageParams params, String s_name) throws Exception;
 
     /**
+     *
+     * @param params
+     * @param s_name
+     * @return
+     * @throws Exception
+     */
+    PageData<Student> findStudentsNoLesson(PageParams params,Integer l_id) throws Exception;
+
+    /**
      * 查询没有班级的和已经在这个班级的学生
      *
      * @param params
@@ -94,4 +103,6 @@ public interface StudentService {
      * @param c_id
      */
     void deleteClassStudent(Integer c_id);
+
+    List<Student> findselectStudents(Integer l_id);
 }
