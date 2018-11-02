@@ -50,7 +50,7 @@
                 class="layui-icon">&#xe611;</i> 问题答疑 </a></li>
         <li class="layui-nav-item"><a href="findResources.action" target="right"> <i
                 class="layui-icon">&#xe611;</i> 课外知识 </a></li>
-        <li class="layui-nav-item "><a href="news.html" target="right"> <i
+        <li class="layui-nav-item "><a href="updageTeacherMyInfoPage.action" target="right"> <i
                 class="layui-icon">&#xe611;</i> 修改个人信息</a></li>
         <li class="layui-nav-item  "><a href="javascript:void(0)" onclick="updatePwd('修改密码',2)"> <i
                 class="layui-icon">&#xe620;</i> 修改密码 </a></li>

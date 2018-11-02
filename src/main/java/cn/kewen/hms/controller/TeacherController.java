@@ -7,6 +7,8 @@ import cn.kewen.hms.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -137,5 +139,36 @@ public class TeacherController {
         mav.addObject("teachers", teachers);
         mav.setViewName("teacher-list");
         return mav;
+    }
+
+    /**
+     * 添加学生
+     *
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("updageTeacherMyInfoPage")
+    public ModelAndView updageTeacherMyInfoPage(ModelAndView mav, HttpSession session) throws Exception {
+
+        Object t_id = session.getAttribute("t_id");
+        if (t_id == null) {
+            mav.setViewName("login");
+            return mav;
+        }
+        mav.setViewName("jsp/teacher/myinfo");
+        mav.addObject("teacherInfo", teacherService.findTeacherInfoPwdById(Integer.parseInt(t_id.toString())));
+        return mav;
+    }
+
+    /**
+     * lesson 不能修改
+     *
+     * @param teacher
+     * @param file
+     * @throws Exception
+     */
+    @RequestMapping("editTeacherInfo")
+    public void editStudentInfo(Teacher teacher, @RequestParam("file") MultipartFile file) throws Exception {
+        System.out.println(teacher);
     }
 }

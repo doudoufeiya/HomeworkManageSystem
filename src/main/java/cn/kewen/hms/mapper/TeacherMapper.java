@@ -48,4 +48,7 @@ public interface TeacherMapper {
      * @throws Exception
      */
     List<String> findNotReadWork(Integer workId) throws Exception;
+
+    Teacher findTeacherById(@Param("t_id") Integer t_id);
+
 }

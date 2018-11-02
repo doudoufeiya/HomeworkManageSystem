@@ -97,6 +97,15 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    public Teacher findTeacherInfoPwdById(Integer t_id) {
+        if (t_id == null){
+            return null;
+        }
+
+        return teacherMapper.findTeacherById(t_id);
+    }
+
+    @Override
     public String login(int t_id) throws Exception {
         // TODO Auto-generated method stub
         return teacherMapper.findPwdById(t_id);

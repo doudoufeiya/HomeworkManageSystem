@@ -77,4 +77,6 @@ public interface TeacherService {
      * @throws Exception
      */
     List<String> findNotReadWork(Integer workId) throws Exception;
+
+    Teacher findTeacherInfoPwdById(Integer t_id);
 }
