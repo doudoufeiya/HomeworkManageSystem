@@ -66,7 +66,7 @@
                 <th scope="col" colspan="11">作业列表</th>
             </tr>
             <tr class="text-c">
-                <th width="25"><input type="checkbox" name="" value="" ></th>
+                <th width="25"><input type="checkbox" name="" value=""></th>
                 <th width="100">序号</th>
                 <th width="50">作业名</th>
                 <th width="50">创建时间</th>
@@ -78,7 +78,8 @@
             <tbody>
             <c:forEach items="${works.data}" var="s">
                 <tr class="text-c">
-                    <td><input type="checkbox" value="${s.tw_id}" name="${s.tw_id}" onclick="toChkSon(this);"></td>
+                    <td><input type="checkbox" value="${s.tw_id}" name="muticheck-${s.tw_id}" onclick="toChkSon(this);">
+                    </td>
                     <td>${s.tw_id}</td>
                     <td>${s.tw_name}</td>
                     <td><fmt:formatDate value="${s.tw_addTime}" pattern="yyyy/MM/dd HH:mm:ss"/></td>

@@ -60,7 +60,8 @@
         </a>
     </span>
     </div>
-    <table class="table table-border table-bordered table-bg row-fluid">
+    <form name="myForm" id="myForm" action="batchDeleteWork.action" method="post">
+        <table class="table table-border table-bordered table-bg row-fluid">
         <thead>
         <tr>
             <th scope="col" colspan="12">资料列表</th>
@@ -96,7 +97,7 @@
             </tr>
         </c:forEach>
         </tbody>
-    </table>
+        </table></form>
     <input type="hidden" name="contextPath" value=<%= request.getContextPath() %>>
     <c:if test="${resources != null}">
         <input type="hidden" id="pageNumber" value="${resources.pageNumber}">
@@ -156,6 +157,9 @@
             layer.msg('已启用!', {icon: 6, time: 1000});
         });
     }
+</script>
+<script type="text/javascript" src="js/batcheDelete.js">
+
 </script>
 </body>
 </html>

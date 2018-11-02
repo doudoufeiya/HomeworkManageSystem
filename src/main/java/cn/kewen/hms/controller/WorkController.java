@@ -111,19 +111,22 @@ public class WorkController {
      * 删除学生
      *
      * @param mav
-     * @param s_id
      * @return
      * @throws Exception
      */
     @RequestMapping("batchDeleteWork")
-    public ModelAndView batchDeleteWork(ModelAndView mav,HttpServletRequest request) throws Exception {
-//        if (s_id != null) {
-//            workService.deleteWork(s_id);
-//        }
-//        PageData<Work> works = workService.findWorks(null, null);
-//        logger.info("works:" + works);
-//        mav.addObject("works", works);
-//        mav.setViewName("jsp/work/work-list");
+    public ModelAndView batchDeleteWork(ModelAndView mav, HttpServletRequest request) throws Exception {
+        request.getParameterMap().forEach((s, strings) -> {
+            try {
+                workService.deleteWork(Integer.parseInt(strings[0]));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        PageData<Work> works = workService.findWorks(null, null);
+        logger.info("works:" + works);
+        mav.addObject("works", works);
+        mav.setViewName("jsp/work/work-list");
         return mav;
     }
 
