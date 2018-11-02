@@ -42,11 +42,12 @@
             </button>
         </form>
     </div>
-    <div class="cl pd-5 bg-1 bk-gray mt-20"><span class="l"><a href="javascript:;" onclick="datadel()"
-                                                               class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a
+    <div class="cl pd-5 bg-1 bk-gray mt-20"><span class="l">
+        <a href="javascript:;" onclick="submitForm()"
+           class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a
             href="javascript:;" onclick="admin_add('添加管理员','admin-add.jsp','800','500')" class="btn btn-primary radius"><i
             class="Hui-iconfont">&#xe600;</i> 添加管理员</a></span> <span class="r">共有数据：<strong>54</strong> 条</span></div>
-    <form name="myForm" id="myForm" action="batchDeleteWork.action" method="post">
+    <form name="myForm" id="myForm" action="batchDeleteAdmin.action" method="post">
         <table class="table table-border table-bordered table-bg">
             <thead>
             <tr>

@@ -162,5 +162,8 @@
         });
     }
 </script>
+<script type="text/javascript" src="js/batcheDelete.js">
+
+</script>
 </body>
 </html>

@@ -49,10 +49,10 @@
     </div>
     <div class="cl pd-5 bg-1 bk-gray mt-20">
         <span class="l">
-        <%--<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">--%>
-            <%--<i class="Hui-iconfont">&#xe6e2;</i>--%>
-            <%--批量删除--%>
-        <%--</a>--%>
+        <a href="javascript:;" onclick="submitForm()" class="btn btn-danger radius">
+            <i class="Hui-iconfont">&#xe6e2;</i>
+            批量删除
+        </a>
         <a onclick="stu_add('添加资料','gotoResourcePage.action','800','500')"
            class="btn btn-primary radius">
             <i class="Hui-iconfont">&#xe600;</i>
@@ -60,7 +60,7 @@
         </a>
     </span>
     </div>
-    <form name="myForm" id="myForm" action="batchDeleteWork.action" method="post">
+    <form name="myForm" id="myForm" action="batchDeleteResource.action" method="post">
         <table class="table table-border table-bordered table-bg row-fluid">
         <thead>
         <tr>

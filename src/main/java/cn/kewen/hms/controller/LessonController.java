@@ -123,5 +123,27 @@ public class LessonController {
         return "ok";
     }
 
+    /**
+     * 删除学生
+     *
+     * @param mav
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("batchDeleteLesson")
+    public ModelAndView batchDeleteLesson(ModelAndView mav, HttpServletRequest request) throws Exception {
+        request.getParameterMap().forEach((s, strings) -> {
+            try {
+                lessonService.deleteLesson(Integer.parseInt(strings[0]));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        PageData<Lesson> lessons = lessonService.findLessons(null, null);
+        logger.info("lessons:" + lessons);
+        mav.addObject("lessons", lessons);
+        mav.setViewName("jsp/lesson/lesson-list");
+        return mav;
+    }
 
 }

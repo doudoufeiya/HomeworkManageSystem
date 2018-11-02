@@ -44,51 +44,56 @@
             </button>
         </form>
     </div>
-    <div class="cl pd-5 bg-1 bk-gray mt-20"><span class="l"><a href="javascript:;" onclick="datadel()"
-                                                               class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a
+    <div class="cl pd-5 bg-1 bk-gray mt-20"><span class="l">
+        <a href="javascript:;" onclick="submitForm()"
+           class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a
             onclick="teacher_add('添加教师','addTeacherPage.action','800','500')"
             class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加教师</a></span> <span
             class="r">共有数据：<strong>54</strong> 条</span></div>
-    <table class="table table-border table-bordered table-bg">
-        <thead>
-        <tr>
-            <th scope="col" colspan="10">教师列表</th>
-        </tr>
-        <tr class="text-c">
-            <th width="25"><input type="checkbox" name="" value=""></th>
-            <th width="100">账号</th>
-            <th width="50">密码</th>
-            <th width="90">姓名</th>
-            <th width="90">性别</th>
-            <th width="90">电话</th>
-            <th width="90">课程</th>
-            <th width="100">操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${teachers.data}" var="t">
-            <tr class="text-c">
-                <td><input type="checkbox" value="1" name=""></td>
-                <td>${t.t_number}</td>
-                <td>${t.t_pwd}</td>
-                <td>${t.t_name}</td>
-                <td>${t.t_sex}</td>
-                <td>${t.t_phone}</td>
-                <td>${t.t_lesson}</td>
-                <td class="td-manage">
-                    <a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','admin-add.html','1','800','500')"
-                       class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
-                    <a title="删除"
-                       class="ml-5"
-                       href="deleteTeacher.action?t_id=${t.t_id}"
-                       style="text-decoration:none">
-                        <i class="Hui-iconfont">&#xe6e2;</i>
-                    </a>
-                </td>
+
+    <form name="myForm" id="myForm" action="batchDeleteTeacher.action" method="post">
+
+        <table class="table table-border table-bordered table-bg">
+            <thead>
+            <tr>
+                <th scope="col" colspan="10">教师列表</th>
             </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+            <tr class="text-c">
+                <th width="25"><input type="checkbox" name="" value=""></th>
+                <th width="100">账号</th>
+                <th width="50">密码</th>
+                <th width="90">姓名</th>
+                <th width="90">性别</th>
+                <th width="90">电话</th>
+                <th width="90">课程</th>
+                <th width="100">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${teachers.data}" var="t">
+                <tr class="text-c">
+                    <td><input type="checkbox" value="1" name=""></td>
+                    <td>${t.t_number}</td>
+                    <td>${t.t_pwd}</td>
+                    <td>${t.t_name}</td>
+                    <td>${t.t_sex}</td>
+                    <td>${t.t_phone}</td>
+                    <td>${t.t_lesson}</td>
+                    <td class="td-manage">
+                        <a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','admin-add.html','1','800','500')"
+                           class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+                        <a title="删除"
+                           class="ml-5"
+                           href="deleteTeacher.action?t_id=${t.t_id}"
+                           style="text-decoration:none">
+                            <i class="Hui-iconfont">&#xe6e2;</i>
+                        </a>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </form>
     <c:if test="${teachers != null}">
         <input type="hidden" id="pageNumber" value="${teachers.pageNumber}">
         <input type="hidden" id="pageSize" value="${teachers.pageSize}">

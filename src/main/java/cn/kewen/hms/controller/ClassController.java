@@ -1,10 +1,8 @@
 package cn.kewen.hms.controller;
 
 
+import cn.kewen.hms.pojo.*;
 import cn.kewen.hms.pojo.Class;
-import cn.kewen.hms.pojo.PageData;
-import cn.kewen.hms.pojo.PageParams;
-import cn.kewen.hms.pojo.Student;
 import cn.kewen.hms.service.ClassService;
 import cn.kewen.hms.service.StudentService;
 import cn.kewen.hms.service.TeacherService;
@@ -122,6 +120,29 @@ public class ClassController {
             return "redirect:/student/findStudents";
         }
         return "ok";
+    }
+
+    /**
+     * 删除学生
+     *
+     * @param mav
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("batchDeleteClass")
+    public ModelAndView batchDeleteClass(ModelAndView mav, HttpServletRequest request) throws Exception {
+        request.getParameterMap().forEach((s, strings) -> {
+            try {
+                classService.deleteClass(Integer.parseInt(strings[0]));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        PageData<Class> classes = classService.findClasss(null, null);
+        logger.info("findclasss:" + classes);
+        mav.addObject("classes", classes);
+        mav.setViewName("jsp/class/class-list");
+        return mav;
     }
 
 
