@@ -101,6 +101,17 @@ public class StudentController {
                 if (!CollectionUtils.isEmpty(notCommitWorks)) {
                     alertMsg = "还未提交" + notCommitWorks.stream().reduce((x, y) -> x + "、" + y).orElse("");
                 }
+                Student studentInfo = studentService.findStudentById(student.getS_id());
+                if (studentInfo.getS_points() < 5 && studentInfo.getS_points() > 0) {
+                    mav.addObject("level", "初来乍到");
+                } else if (studentInfo.getS_points() < 10 && studentInfo.getS_points() >= 5) {
+                    mav.addObject("level", "勤思好问");
+                } else if (studentInfo.getS_points() < 15 && studentInfo.getS_points() >= 10) {
+                    mav.addObject("level", "融会贯通");
+                } else {
+                    mav.addObject("level", "学富五车");
+                }
+
                 mav.addObject("alertMsg", alertMsg);
                 mav.setViewName("student");
             } else {

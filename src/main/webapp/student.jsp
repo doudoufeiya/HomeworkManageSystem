@@ -27,6 +27,7 @@
             <a class="avatar" href="login.action">
                 <img src="res/images/8.jpg">
                 <cite style="color: white;">学生</cite>
+                <cite style="color: white;">${level}</cite>
                 <i style="color: white;">退出</i>
             </a>
             <div class="nav">
