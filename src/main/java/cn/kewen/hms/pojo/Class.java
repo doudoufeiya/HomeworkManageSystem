@@ -6,7 +6,7 @@ import java.util.List;
  * 班级实体
  */
 public class Class {
-    private int c_id;
+    private Integer c_id;
     private String c_name;
     private List<Integer> students;
 
@@ -22,11 +22,11 @@ public class Class {
         super();
     }
 
-    public int getC_id() {
+    public Integer getC_id() {
         return c_id;
     }
 
-    public void setC_id(int c_id) {
+    public void setC_id(Integer c_id) {
         this.c_id = c_id;
     }
 

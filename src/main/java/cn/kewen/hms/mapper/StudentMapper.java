@@ -86,4 +86,8 @@ public interface StudentMapper {
     List<String> getToCommitWorkName(@Param("studentId") Integer studentId);
 
     Student findStudentById(@Param("s_id") Integer s_id);
+
+    List<Student> findClassStudents(@Param("c_id") Integer c_id) throws Exception;
+
+    void updateClassStudent(@Param("c_id") Integer c_id);
 }

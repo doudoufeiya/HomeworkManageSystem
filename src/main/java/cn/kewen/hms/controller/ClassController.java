@@ -53,9 +53,14 @@ public class ClassController {
     public ModelAndView addClassPage(ModelAndView mav,
                                      @RequestParam(value = "c_id", required = false) Integer c_id) throws Exception {
         PageParams params = new PageParams(1, 1000L);
-        PageData<Student> students = studentService.findStudentsNoClass(params);
-//        PageData<Student> teachers = teacherService.findTeachers(params);
-        mav.addObject("students", students.getData());
+        List<Student> students = studentService.findStudentsNoClass(params);
+        /**
+         *  这个班级的学生
+         */
+        List<Student> classStudents = studentService.findClassStudents(c_id);
+
+        mav.addObject("students", students);
+        mav.addObject("classStudents", classStudents);
         /**
          * 此处注意不能写成class，只能写成class1
          */
@@ -106,14 +111,18 @@ public class ClassController {
      */
     @RequestMapping("addClass")
     public void addClass(Class class1) throws Exception {
-        classService.addClass(class1);
+        if (class1.getC_id() == null) {
+            classService.addClass(class1);
+
+        } else {
+            classService.updateClass(class1);
+
+        }
+        /**
+         * 删除没有再次配置成改版的学生
+         */
+        studentService.deleteClassStudent(class1.getC_id());
         studentService.updateStudentClass(class1.getStudents(), class1.getC_id());
-//        //添加成功，跳转到其他页面
-//        PageData<Student> students = studentService.findStudents(null);
-//        logger.info("findStudents:" + students);
-//        mav.addObject("students", students);
-//        mav.setViewName("student-list");
-//        return mav;
     }
 
     /**

@@ -63,6 +63,13 @@
                                             ${student.s_name}
                                     </label>
                                 </c:forEach>
+                                <c:forEach items="${classStudents}" var="student">
+                                    <label class="">
+                                        <input type="checkbox" value="${student.s_id}" name="students"
+                                               id="student-${student.s_id}" checked="checked">
+                                            ${student.s_name}
+                                    </label>
+                                </c:forEach>
                             </dd>
                         </dl>
                     </dd>
@@ -123,10 +130,10 @@
             focusCleanup: true,
             success: "valid",
             submitHandler: function (form) {
-                debugger
                 $(form).ajaxSubmit();
-                var index = parent.layer.getFrameIndex(window.name);
-                parent.layer.close(index);
+                setTimeout(function () {
+                    parent.$('.a-refresh')[0].click();
+                }, 3000)
                 return false
             }
         });

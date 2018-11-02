@@ -42,19 +42,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public PageData<Student> findStudentsNoClass(PageParams params) throws Exception {
+    public List<Student> findStudentsNoClass(PageParams params) throws Exception {
         if (params == null) {
             params = new PageParams();
         }
 
-        Page page = PageHelper.startPage(params.getPageNumber().intValue(), params.getPageSize().intValue(), true);
-        PageData<Student> result = new PageData<>();
-        result.setData(studentMapper.findStudentsNoClass());
-        result.setPageNumber(page.getPageNum());
-        result.setPageSize(params.getPageSize());
-        result.setTotalRow(page.getTotal());
-        result.setTotalPage(page.getPages());
-        return result;
+        return studentMapper.findStudentsNoClass();
     }
 
     @Override
@@ -123,6 +116,23 @@ public class StudentServiceImpl implements StudentService {
             return null;
         }
         return studentMapper.findStudentById(s_id);
+    }
+
+    @Override
+    public List<Student> findClassStudents(Integer c_id) throws Exception {
+        if (c_id == null) {
+            return null;
+        }
+
+        return studentMapper.findClassStudents(c_id);
+    }
+
+    @Override
+    public void deleteClassStudent(Integer c_id) {
+        if(c_id == null){
+            return;
+        }
+        studentMapper.updateClassStudent(c_id);
     }
 
     @Override

@@ -18,13 +18,13 @@ public interface StudentService {
     PageData<Student> findStudents(PageParams params, String s_name) throws Exception;
 
     /**
-     * 查询没有班级的学生
+     * 查询没有班级的和已经在这个班级的学生
      *
      * @param params
      * @return
      * @throws Exception
      */
-    PageData<Student> findStudentsNoClass(PageParams params) throws Exception;
+    List<Student> findStudentsNoClass(PageParams params) throws Exception;
 
     List<String> toCommitWorkStudentNames(Integer workId) throws Exception;
 
@@ -79,4 +79,19 @@ public interface StudentService {
     Student findStudentInfoPwdById(Integer s_id) throws Exception;
 
     Student findStudentById(Integer s_id);
+
+    /**
+     * 查找班级的学生
+     *
+     * @return
+     * @throws Exception
+     */
+    List<Student> findClassStudents(Integer c_id) throws Exception;
+
+    /**
+     * 删除班级和学生的关联
+     *
+     * @param c_id
+     */
+    void deleteClassStudent(Integer c_id);
 }
