@@ -6,7 +6,10 @@
     <!-- 显示所有学生信息 -->
     <select id="findLessons" resultType="Lesson">
         select *
-        from lesson
+        from lesson where 1= 1
+        <if test="l_name != null and l_name != ''">
+            and l_name like concat("%",#{l_name},"%")
+        </if>
     </select>
     <!-- 登录查询 -->
     <select id="findLessonById" parameterType="int" resultType="String">
@@ -31,7 +34,7 @@
         insert into lesson (l_name)
         values (#{l_name})
         <selectKey keyProperty="l_id" order="AFTER" resultType="int">
-            select  last_insert_id()
+            select last_insert_id()
         </selectKey>
     </insert>
     <!-- 根据id删除信息 -->

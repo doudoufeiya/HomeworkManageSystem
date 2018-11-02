@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class LessonController {
 
@@ -28,8 +30,10 @@ public class LessonController {
     private ScLessonService scLessonService;
 
     @RequestMapping("findLessons")
-    public ModelAndView findLessons(ModelAndView mav, PageParams params) throws Exception {
-        PageData<Lesson> lessons = lessonService.findLessons(params);
+    public ModelAndView findLessons(ModelAndView mav, PageParams params, HttpServletRequest request) throws Exception {
+
+        String l_name = request.getParameter("l_name");
+        PageData<Lesson> lessons = lessonService.findLessons(params, l_name);
         logger.info("lessons:" + lessons);
         mav.addObject("lessons", lessons);
         mav.setViewName("jsp/lesson/lesson-list");
@@ -69,7 +73,7 @@ public class LessonController {
             lessonService.deleteLesson(s_id);
 
         }
-        PageData<Lesson> lessons = lessonService.findLessons(null);
+        PageData<Lesson> lessons = lessonService.findLessons(null, null);
         logger.info("findStudents:" + lessons);
         mav.addObject("lessons", lessons);
         mav.setViewName("jsp/lesson/lesson-list");

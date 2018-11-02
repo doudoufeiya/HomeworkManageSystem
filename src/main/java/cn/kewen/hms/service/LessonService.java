@@ -3,7 +3,7 @@ package cn.kewen.hms.service;
 import cn.kewen.hms.pojo.Lesson;
 import cn.kewen.hms.pojo.PageData;
 import cn.kewen.hms.pojo.PageParams;
-import cn.kewen.hms.pojo.Student;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,10 +12,11 @@ public interface LessonService {
      * 查询所有学生信息
      *
      * @param params
+     * @param l_name
      * @return
      * @throws Exception
      */
-    PageData<Lesson> findLessons(PageParams params) throws Exception;
+    PageData<Lesson> findLessons(PageParams params, @Param("l_name") String l_name) throws Exception;
 
     /**
      * 查询没有班级的学生

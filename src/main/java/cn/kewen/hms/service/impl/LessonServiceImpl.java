@@ -22,7 +22,7 @@ public class LessonServiceImpl implements LessonService {
     private LessonMapper lessonMapper;
 
     @Override
-    public PageData<Lesson> findLessons(PageParams params) throws Exception {
+    public PageData<Lesson> findLessons(PageParams params, String l_name) throws Exception {
 
         if (params == null) {
             params = new PageParams();
@@ -30,7 +30,7 @@ public class LessonServiceImpl implements LessonService {
 
         Page page = PageHelper.startPage(params.getPageNumber().intValue(), params.getPageSize().intValue(), true);
         PageData<Lesson> result = new PageData<>();
-        result.setData(lessonMapper.findLessons());
+        result.setData(lessonMapper.findLessons(l_name));
         result.setPageNumber(page.getPageNum());
         result.setPageSize(params.getPageSize());
         result.setTotalRow(page.getTotal());

@@ -1,7 +1,7 @@
 package cn.kewen.hms.mapper;
 
-import cn.kewen.hms.pojo.Class;
 import cn.kewen.hms.pojo.Lesson;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ public interface LessonMapper {
     /*
      * 显示所有班级信息
      */
-    List<Lesson> findLessons() throws Exception;
+    List<Lesson> findLessons(@Param("l_name") String l_name) throws Exception;
 
     /*
      * 根据姓名查找学生信息
