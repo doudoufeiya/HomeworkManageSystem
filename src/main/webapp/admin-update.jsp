@@ -67,6 +67,7 @@
 <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script> 
 <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script> 
 <!--/_footer /作为公共模版分离出去-->
+<script type="text/javascript" src="js/jquery-form.js"></script>
 
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript" src="lib/My97DatePicker/WdatePicker.js"></script>  
