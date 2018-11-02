@@ -32,4 +32,11 @@ public interface ClassMapper {
      * 删除班级信息
      */
     int deleteClass(int c_id) throws Exception;
+
+    /**
+     *
+     * @param c_id
+     * @return
+     */
+    Class findClasssById(@Param("c_id") Integer c_id);
 }

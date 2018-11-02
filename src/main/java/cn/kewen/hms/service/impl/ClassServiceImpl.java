@@ -60,4 +60,12 @@ public class ClassServiceImpl implements ClassService {
     public int deleteClass(int s_id) throws Exception {
         return classMapper.deleteClass(s_id);
     }
+
+    @Override
+    public Class findClasssById(Integer c_id) throws Exception {
+        if (c_id == null){
+            return null;
+        }
+        return classMapper.findClasssById(c_id);
+    }
 }

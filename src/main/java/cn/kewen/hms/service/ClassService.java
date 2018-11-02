@@ -49,4 +49,6 @@ public interface ClassService {
      * 删除学生信息
      */
     int deleteClass(int s_id) throws Exception;
+
+    Class findClasssById(Integer c_id) throws Exception;
 }

@@ -1,8 +1,10 @@
 package cn.kewen.hms.controller;
 
 
-import cn.kewen.hms.pojo.*;
 import cn.kewen.hms.pojo.Class;
+import cn.kewen.hms.pojo.PageData;
+import cn.kewen.hms.pojo.PageParams;
+import cn.kewen.hms.pojo.Student;
 import cn.kewen.hms.service.ClassService;
 import cn.kewen.hms.service.StudentService;
 import cn.kewen.hms.service.TeacherService;
@@ -10,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +31,9 @@ public class ClassController {
     private TeacherService teacherService;
 
     @RequestMapping("findClasss")
-    public ModelAndView findClasss(ModelAndView mav, PageParams params, HttpServletRequest request) throws Exception {
+    public ModelAndView findClasss(ModelAndView mav, PageParams params,
+                                   HttpServletRequest request
+    ) throws Exception {
         String c_name = request.getParameter("c_name");
         PageData<Class> classes = classService.findClasss(params, c_name);
         logger.info("classes:" + classes);
@@ -45,11 +50,16 @@ public class ClassController {
      * @throws Exception
      */
     @RequestMapping("addClassPage")
-    public ModelAndView addClassPage(ModelAndView mav) throws Exception {
+    public ModelAndView addClassPage(ModelAndView mav,
+                                     @RequestParam(value = "c_id", required = false) Integer c_id) throws Exception {
         PageParams params = new PageParams(1, 1000L);
         PageData<Student> students = studentService.findStudentsNoClass(params);
 //        PageData<Student> teachers = teacherService.findTeachers(params);
         mav.addObject("students", students.getData());
+        /**
+         * 此处注意不能写成class，只能写成class1
+         */
+        mav.addObject("class1", classService.findClasssById(c_id));
         mav.setViewName("jsp/class/class-add");
         return mav;
     }

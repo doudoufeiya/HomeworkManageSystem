@@ -34,10 +34,11 @@
 <body>
 <article class="page-container">
     <form action="addClass.action" method="post" class="form form-horizontal" id="form-class-add">
+        <input type="hidden" value="${class1.c_id}" name="c_id" id="c_id">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>班级名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="c_name" name="c_name"
+                <input type="text" class="input-text" value="${class1.c_name}" placeholder="" id="c_name" name="c_name"
                        datatype="*4-16" nullmsg="班级名称不能为空">
             </div>
         </div>

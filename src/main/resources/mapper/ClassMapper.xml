@@ -24,6 +24,12 @@
         from class
         where c_id = #{c_id}
     </select>
+    <select id="findClasssById" resultType="cn.kewen.hms.pojo.Class">
+        select *
+        from class
+        where c_id = #{c_id}
+        limit 1
+    </select>
     <!-- 修改学生信息 -->
     <update id="updateClass" parameterType="Class">
         update class

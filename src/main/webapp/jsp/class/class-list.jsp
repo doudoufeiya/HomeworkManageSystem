@@ -60,40 +60,41 @@
     </div>
     <form name="myForm" id="myForm" action="batchDeleteClass.action" method="post">
         <table class="table table-border table-bordered table-bg row-fluid">
-        <thead>
-        <tr>
-            <th scope="col" colspan="11">班级列表</th>
-        </tr>
-        <tr class="text-c">
-            <th width="25"><input type="checkbox" name="" value=""></th>
-            <th width="100">序号</th>
-            <th width="50">班级名</th>
-            <th width="100">操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${classes.data}" var="s">
-            <tr class="text-c">
-                <td><input type="checkbox" value="1" name=""></td>
-                <td>${s.c_id}</td>
-                <td>${s.c_name}</td>
-                <td class="td-manage">
-                    <a title="编辑" href="javascript:;"
-                       onclick="admin_edit('管理员编辑','admin-add.html','1','800','500')"
-                       class="ml-5" style="text-decoration:none">
-                        <i class="Hui-iconfont">&#xe6df;</i>
-                    </a>
-                    <a title="删除"
-                       href="deleteClass.action?s_id=${s.c_id}"
-                       class="ml-5"
-                       style="text-decoration:none">
-                        <i class="Hui-iconfont">&#xe6e2;</i>
-                    </a>
-                </td>
+            <thead>
+            <tr>
+                <th scope="col" colspan="11">班级列表</th>
             </tr>
-        </c:forEach>
-        </tbody>
-        </table></form>
+            <tr class="text-c">
+                <th width="25"><input type="checkbox" name="" value=""></th>
+                <th width="100">序号</th>
+                <th width="50">班级名</th>
+                <th width="100">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${classes.data}" var="s">
+                <tr class="text-c">
+                    <td><input type="checkbox" value="1" name=""></td>
+                    <td>${s.c_id}</td>
+                    <td>${s.c_name}</td>
+                    <td class="td-manage">
+                        <a title="编辑" href="javascript:;"
+                           onclick="admin_edit('编辑','addClassPage.action?c_id='+${s.c_id},'1','800','500')"
+                           class="ml-5" style="text-decoration:none">
+                            <i class="Hui-iconfont">&#xe6df;</i>
+                        </a>
+                        <a title="删除"
+                           href="deleteClass.action?s_id=${s.c_id}"
+                           class="ml-5"
+                           style="text-decoration:none">
+                            <i class="Hui-iconfont">&#xe6e2;</i>
+                        </a>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </form>
     <input type="hidden" name="contextPath" value=<%= request.getContextPath() %>>
     <c:if test="${classes != null}">
         <input type="hidden" id="pageNumber" value="${classes.pageNumber}">
