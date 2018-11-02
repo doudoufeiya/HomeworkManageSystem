@@ -213,8 +213,8 @@ public class StudentController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("batchDeleteAdmin")
-    public ModelAndView batchDeleteAdmin(ModelAndView mav, HttpServletRequest request) throws Exception {
+    @RequestMapping("batchDeleteStudent")
+    public ModelAndView batchDeleteStudent(ModelAndView mav, HttpServletRequest request) throws Exception {
         request.getParameterMap().forEach((s, strings) -> {
             try {
                 studentService.deleteStudent(Integer.parseInt(strings[0]));
