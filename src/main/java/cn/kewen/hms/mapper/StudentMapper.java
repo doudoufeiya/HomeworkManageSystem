@@ -9,7 +9,7 @@ public interface StudentMapper {
     /*
      * 显示所有学生信息
      */
-    List<Student> findStudents() throws Exception;
+    List<Student> findStudents(@Param("s_name") String s_name) throws Exception;
 
     /**
      * @return

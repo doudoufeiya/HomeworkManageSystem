@@ -79,7 +79,7 @@ public class StudentWorkController {
             studentService.deleteStudent(s_id);
 
         }
-        PageData<Student> students = studentService.findStudents(null);
+        PageData<Student> students = studentService.findStudents(null, null);
         logger.info("findStudents:" + students);
         mav.addObject("students", students);
         mav.setViewName("student-list");

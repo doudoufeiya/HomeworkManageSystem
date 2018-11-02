@@ -49,8 +49,7 @@ public class AdminController {
     }
 
     @RequestMapping("findAdminById")
-    public ModelAndView findAdminById(Integer a_id, HttpServletRequest request,
-                                      HttpSession session) throws Exception {
+    public ModelAndView findAdminById(Integer a_id) throws Exception {
         ModelAndView mav = new ModelAndView();
         List<Admin> admin = adminService.findAdminById(a_id);
         if (admin != null) {

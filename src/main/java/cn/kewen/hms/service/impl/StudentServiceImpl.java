@@ -25,7 +25,7 @@ public class StudentServiceImpl implements StudentService {
     private StudentMapper studentMapper;
 
     @Override
-    public PageData<Student> findStudents(PageParams params) throws Exception {
+    public PageData<Student> findStudents(PageParams params, String s_name) throws Exception {
 
         if (params == null) {
             params = new PageParams();
@@ -33,7 +33,7 @@ public class StudentServiceImpl implements StudentService {
 
         Page page = PageHelper.startPage(params.getPageNumber().intValue(), params.getPageSize().intValue(), true);
         PageData<Student> result = new PageData<>();
-        result.setData(studentMapper.findStudents());
+        result.setData(studentMapper.findStudents(s_name));
         result.setPageNumber(page.getPageNum());
         result.setPageSize(params.getPageSize());
         result.setTotalRow(page.getTotal());

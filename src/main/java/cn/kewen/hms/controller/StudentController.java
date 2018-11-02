@@ -33,8 +33,9 @@ public class StudentController {
     private StudentService studentService;
 
     @RequestMapping("findStudents")
-    public ModelAndView findStudents(ModelAndView mav, PageParams params) throws Exception {
-        PageData<Student> students = studentService.findStudents(params);
+    public ModelAndView findStudents(ModelAndView mav, PageParams params, HttpServletRequest request) throws Exception {
+        String s_name = request.getParameter("s_name");
+        PageData<Student> students = studentService.findStudents(params, s_name);
         logger.info("findStudents:" + students);
         mav.addObject("students", students);
         mav.setViewName("student-list");
@@ -75,7 +76,7 @@ public class StudentController {
             studentService.deleteStudent(s_id);
 
         }
-        PageData<Student> students = studentService.findStudents(null);
+        PageData<Student> students = studentService.findStudents(null, null);
         logger.info("findStudents:" + students);
         mav.addObject("students", students);
         mav.setViewName("student-list");

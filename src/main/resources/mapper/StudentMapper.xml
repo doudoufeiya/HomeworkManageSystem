@@ -7,6 +7,10 @@
     <select id="findStudents" resultType="Student">
         select *
         from student
+        where 1=1
+        <if test="s_name != null and s_name!=''">
+            and s_name like concat("%",#{s_name},"%")
+        </if>
     </select>
     <!-- 登录查询 -->
     <select id="findPwdById" parameterType="int" resultType="String">
@@ -68,39 +72,26 @@
 
     </select>
     <select id="getToCommitWorkName" resultType="string">
-        SELECT
-               concat(
-                   teacher.t_name ,
-                   "的" ,
+        SELECT concat(
+                   teacher.t_name,
+                   "的",
                    twork.tw_name
                        )
-        FROM
-             twork
+        FROM twork
                  LEFT JOIN sc_lesson ON sc_lesson.t_id = twork.tw_tid
                  LEFT JOIN teacher ON teacher.t_id = twork.tw_tid
-        WHERE
-                twork.tw_id IN(
-                              SELECT DISTINCT
-                                              twork.tw_id
-                              FROM
-                                   twork
-                                       LEFT JOIN swork ON swork.sw_wid = twork.tw_id
-                                       LEFT JOIN sc_lesson ON sc_lesson.t_id = twork.tw_tid
-                              WHERE
-                                      sc_lesson.s_id = 1
-                                AND twork.tw_id NOT IN(
-                                                      SELECT
-                                                             twork.tw_id
-                                                      FROM
-                                                           twork
+        WHERE twork.tw_id IN(SELECT DISTINCT twork.tw_id
+                             FROM twork
+                                      LEFT JOIN swork ON swork.sw_wid = twork.tw_id
+                                      LEFT JOIN sc_lesson ON sc_lesson.t_id = twork.tw_tid
+                             WHERE sc_lesson.s_id = 1
+                               AND twork.tw_id NOT IN(SELECT twork.tw_id
+                                                      FROM twork
                                                                LEFT JOIN swork ON swork.sw_wid = twork.tw_id
                                                                LEFT JOIN sc_lesson ON sc_lesson.t_id = twork.tw_tid
                                                                LEFT JOIN teacher ON teacher.t_id = twork.tw_tid
-                                                      WHERE
-                                                              swork.sw_sid = #{studentId}
-                                                        AND sc_lesson.s_id = #{studentId}
-                                                      )
-                              )
+                                                      WHERE swork.sw_sid = #{studentId}
+                                                        AND sc_lesson.s_id = #{studentId}))
           AND sc_lesson.s_id = #{studentId}
     </select>
 

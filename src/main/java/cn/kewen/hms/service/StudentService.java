@@ -11,10 +11,11 @@ public interface StudentService {
      * 查询所有学生信息
      *
      * @param params
+     * @param s_name
      * @return
      * @throws Exception
      */
-    PageData<Student> findStudents(PageParams params) throws Exception;
+    PageData<Student> findStudents(PageParams params, String s_name) throws Exception;
 
     /**
      * 查询没有班级的学生

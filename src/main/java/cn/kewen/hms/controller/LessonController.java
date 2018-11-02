@@ -51,7 +51,7 @@ public class LessonController {
     public ModelAndView addLessontPage(ModelAndView mav) throws Exception {
         PageParams params = new PageParams(1, 1000L);
         PageData<Teacher> teachers = teacherService.findTeachersNoLesson(params);
-        PageData<Student> students = studentService.findStudents(params);
+        PageData<Student> students = studentService.findStudents(params, null);
         mav.addObject("teachers", teachers.getData());
         mav.addObject("students", students.getData());
         mav.setViewName("jsp/lesson/lesson-add");
