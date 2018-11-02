@@ -30,18 +30,17 @@
         where s_cid is null
            or s_cid = ''
     </select>
-    <!-- 根据账号查询学生信息 -->
-    <!--<select id="findStudentById" parameterType="int" resultType="Student">-->
-    <!--select *-->
-    <!--from student-->
-    <!--where s_id = #{s_id}-->
-    <!--</select>-->
+
     <!-- 修改学生信息 -->
     <update id="updateStudent" parameterType="Student">
         update student
         set s_number = #{s_number},
             s_pwd    = #{s_pwd},
-            s_name   = #{s_name}
+            s_name   = #{s_name},
+            s_cid    = #{s_cid},
+            s_major  = #{s_major},
+            s_phone  = #{s_phone},
+            s_sex = #{s_sex}
         where s_id = #{s_id}
     </update>
     <update id="updateStudentClass">
@@ -101,6 +100,12 @@
     </insert>
 
     <select id="findStudentInfoPwdById" resultType="Student">
+        select *
+        from student
+        where s_id = #{s_id}
+        limit 1
+    </select>
+    <select id="findStudentById" resultType="Student">
         select *
         from student
         where s_id = #{s_id}

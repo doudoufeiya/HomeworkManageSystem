@@ -33,7 +33,7 @@
 </head>
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span
-        class="c-gray en">&gt;</span> 管理员列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
+        class="c-gray en">&gt;</span> 管理员列表 <a class="a-refresh btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
                                                href="javascript:location.replace(location.href);" title="刷新"><i
         class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
@@ -80,7 +80,8 @@
                     <td>${t.t_phone}</td>
                     <td>${t.t_lesson}</td>
                     <td class="td-manage">
-                        <a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','admin-add.html','1','800','500')"
+                        <a title="编辑" href="javascript:;"
+                           onclick="admin_edit('管理员编辑','addTeacherPage.action?t_id='+${t.t_id},'1','800','500')"
                            class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
                         <a title="删除"
                            class="ml-5"

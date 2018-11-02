@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!--_meta 作为公共模版分离出去-->
 <!DOCTYPE HTML>
 <html>
 <head>
+
     <meta charset="utf-8">
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -13,16 +16,16 @@
     <LINK rel="Bookmark" href="/favicon.ico">
     <LINK rel="Shortcut Icon" href="/favicon.ico"/>
     <!--[if lt IE 9]>
-    <script type="text/javascript" src="http://lib.h-ui.net/html5.js"></script>
-    <script type="text/javascript" src="http://lib.h-ui.net/respond.min.js"></script>
-    <script type="text/javascript" src="http://lib.h-ui.net/PIE_IE678.js"></script>
+    <script type="text/javascript" src="lib/html5.js"></script>
+    <script type="text/javascript" src="lib/respond.min.js"></script>
+    <script type="text/javascript" src="lib/PIE_IE678.js"></script>
     <![endif]-->
-    <link rel="stylesheet" type="text/css" href="http://static.h-ui.net/h-ui/css/H-ui.min.css"/>
-    <link rel="stylesheet" type="text/css" href="http://static.h-ui.net/h-ui/css/H-ui.admin.css"/>
-    <link rel="stylesheet" type="text/css" href="http://lib.h-ui.net/Hui-iconfont/1.0.7/iconfont.css"/>
-    <link rel="stylesheet" type="text/css" href="http://lib.h-ui.net/icheck/icheck.css"/>
-    <link rel="stylesheet" type="text/css" href="http://static.h-ui.net/h-ui/skin/default/skin.css" id="skin"/>
-    <link rel="stylesheet" type="text/css" href="http://static.h-ui.net/h-ui/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.7/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/icheck/icheck.css"/>
+    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin"/>
+    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css"/>
     <!--[if IE 6]>
     <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js"></script>
     <script>DD_belatedPNG.fix('*');</script>
@@ -34,44 +37,71 @@
 <body>
 <article class="page-container">
     <form action="addTeacher.action" method="post" class="form form-horizontal" id="form-teacher-add">
+        <input type="hidden" value="${teacher.t_id}" name="t_id" id="t_id">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>职工号：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="" class="input-text" value="" placeholder="" id="t_number" name="t_number">
+                <input type="" class="input-text" value="${teacher.t_number}" placeholder="" id="t_number"
+                       name="t_number">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>密码：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="t_pwd" name="t_pwd">
+                <input type="text" class="input-text" value="${teacher.t_pwd}" placeholder="" id="t_pwd" name="t_pwd">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>姓名：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" autocomplete="off" value="" placeholder="姓名" id="t_name"
+                <input type="text" class="input-text" autocomplete="off" value="${teacher.t_name}" placeholder="姓名"
+                       id="t_name"
                        name="t_name">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" autocomplete="off" value="" placeholder="性别" id="t_sex"
-                       name="t_sex">
+
+                <select class="select" id="t_sex" name="t_sex">
+                    <option value="保密" <c:if test="${teacher.t_sex == '保密'}">
+                        selected="selected"
+                    </c:if> >保密
+                    </option>
+                    <option value="男" <c:if test="${teacher.t_sex == '男'}">
+                        selected="selected"
+                    </c:if>>男
+                    </option>
+                    <option value="女"
+                            <c:if test="${teacher.t_sex == '女'}">
+                                selected="selected"
+                            </c:if>>女
+                    </option>
+                </select>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>电话：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" autocomplete="off" value="" placeholder="电话" id="t_phone"
+                <input type="text" class="input-text" autocomplete="off" value="${teacher.t_phone}" placeholder="电话"
+                       id="t_phone"
                        name="t_phone">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>课程编号：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" autocomplete="off" value="" placeholder="专业" id="t_lesson"
-                       name="t_lesson">
+
+                <select class="select" id="t_lesson" name="t_lesson">
+                    <option value="0">课程</option>
+                    <c:forEach items="${lessons.data}" var="lesson">
+                        <option value="${lesson.l_id}"
+                                <c:if test="${teacher.t_lesson == lesson.l_id}">
+                                    selected="selected"
+                                </c:if>>${lesson.l_name}
+                        </option>
+                    </c:forEach>
+                </select>
             </div>
         </div>
 
@@ -130,9 +160,9 @@
             success: "valid",
             submitHandler: function (form) {
                 $(form).ajaxSubmit();
-                var index = parent.layer.getFrameIndex(window.name);
-                parent.$('.btn-refresh').click();
-                parent.layer.close(index);
+                setTimeout(function () {
+                    parent.$('.a-refresh')[0].click();
+                }, 3000)
             }
         });
     });

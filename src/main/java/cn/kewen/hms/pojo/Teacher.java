@@ -1,7 +1,7 @@
 package cn.kewen.hms.pojo;
 
 public class Teacher {
-    private int t_id;
+    private Integer t_id;
     private String t_number;
     private String t_pwd;
     private String t_name;
@@ -10,29 +10,11 @@ public class Teacher {
     private String t_photo;
     private int t_lesson;
 
-    public Teacher() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-    public Teacher(int t_id, String t_number, String t_pwd, String t_name,
-                   String t_sex, String t_phone, String t_photo, int t_lesson) {
-        super();
-        this.t_id = t_id;
-        this.t_number = t_number;
-        this.t_pwd = t_pwd;
-        this.t_name = t_name;
-        this.t_sex = t_sex;
-        this.t_phone = t_phone;
-        this.t_photo = t_photo;
-        this.t_lesson = t_lesson;
-    }
-
-    public int getT_id() {
+    public Integer getT_id() {
         return t_id;
     }
 
-    public void setT_id(int t_id) {
+    public void setT_id(Integer t_id) {
         this.t_id = t_id;
     }
 

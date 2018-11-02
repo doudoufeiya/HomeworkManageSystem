@@ -3,6 +3,7 @@ package cn.kewen.hms.controller;
 import cn.kewen.hms.pojo.PageData;
 import cn.kewen.hms.pojo.PageParams;
 import cn.kewen.hms.pojo.Teacher;
+import cn.kewen.hms.service.LessonService;
 import cn.kewen.hms.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,8 @@ import java.util.List;
 public class TeacherController {
     @Autowired
     TeacherService teacherService;
+    @Autowired
+    private LessonService lessonService;
 
     @RequestMapping("findTeachers")
     public ModelAndView findTeachers(ModelAndView mav, PageParams params, HttpServletRequest request) throws Exception {
@@ -77,8 +80,11 @@ public class TeacherController {
      * @throws Exception
      */
     @RequestMapping("addTeacherPage")
-    public ModelAndView addTeacherPage(ModelAndView mav) {
+    public ModelAndView addTeacherPage(ModelAndView mav, @RequestParam(required = false) Integer t_id) throws Exception {
         mav.clear();
+        mav.addObject("teacher", teacherService.findTeacherInfoPwdById(t_id));
+        PageParams params = new PageParams(1, 1000L);
+        mav.addObject("lessons", lessonService.findLessons(params, null));
         mav.setViewName("teach/teacher-add");
         return mav;
     }
@@ -98,15 +104,11 @@ public class TeacherController {
     @RequestMapping("addTeacher")
     public ModelAndView addTeacher(Teacher teacher) throws Exception {
         ModelAndView mav = new ModelAndView();
-        teacherService.addTeacher(teacher);
-        //添加成功，跳转到其他页面
-//        if (i > 0) {
-//            mav.addObject("teacher", teacher);
-//            mav.setViewName("index");
-//        } else {
-//            mav.addObject("teacher", teacher);
-//            mav.setViewName("index");
-//        }
+        if (teacher.getT_id() == null){
+            teacherService.addTeacher(teacher);
+        }else {
+            teacherService.updateTeacher(teacher);
+        }
         return mav;
     }
 

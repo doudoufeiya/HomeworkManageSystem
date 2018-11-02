@@ -26,9 +26,9 @@
     </select>
     <!--&lt;!&ndash; 根据名字查询教师信息 &ndash;&gt;-->
     <!--<select id="findTeacherById" parameterType="int" resultType="Teacher">-->
-        <!--select *-->
-        <!--from teacher-->
-        <!--where t_id = #{t_id}-->
+    <!--select *-->
+    <!--from teacher-->
+    <!--where t_id = #{t_id}-->
     <!--</select>-->
     <select id="findTeachersNoLesson" resultType="Teacher">
         select *
@@ -55,7 +55,10 @@
         update teacher
         set t_number = #{t_number},
             t_pwd    = #{t_pwd},
-            t_name   = #{t_name}
+            t_name   = #{t_name},
+            t_lesson = #{t_lesson},
+            t_phone  = #{t_phone},
+            t_sex    = #{t_sex}
         where t_id = #{t_id}
     </update>
     <update id="updateTeacherLesson">
