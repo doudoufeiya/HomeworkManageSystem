@@ -21,7 +21,7 @@ public class QuestionServiceImpl implements QuestionService {
     private QuestionMapper questionMapper;
 
     @Override
-    public PageData<Question> findQuestions(PageParams params) throws Exception {
+    public PageData<Question> findQuestions(PageParams params, String title) throws Exception {
         if (params == null) {
             params = new PageParams();
         }

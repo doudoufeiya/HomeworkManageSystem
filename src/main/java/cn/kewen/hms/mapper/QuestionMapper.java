@@ -1,6 +1,7 @@
 package cn.kewen.hms.mapper;
 
 import cn.kewen.hms.pojo.Question;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface QuestionMapper {
     /*
      * 显示所有班级信息
      */
-    List<Question> findQuestions() throws Exception;
+    List<Question> findQuestions(@Param("title") String title) throws Exception;
 
     /**
      * @param c_id

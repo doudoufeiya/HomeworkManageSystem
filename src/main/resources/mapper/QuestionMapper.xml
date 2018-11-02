@@ -8,8 +8,12 @@
     <select id="findQuestions" resultType="cn.kewen.hms.pojo.Question">
         select question.*, student.s_name, teacher.t_name
         from question
-                 left join teacher on teacher.t_id = question.t_id
-                 left join student on student.s_id = question.s_id
+        left join teacher on teacher.t_id = question.t_id
+        left join student on student.s_id = question.s_id
+        where 1= 1
+        <if test="title != null and title!=''">
+            and question.title like concat("%",#{title},"%")
+        </if>
     </select>
 
     <!-- 根据账号查询学生信息 -->

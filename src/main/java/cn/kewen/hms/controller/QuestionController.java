@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -22,8 +23,9 @@ public class QuestionController {
 
 
     @RequestMapping("findQuestions")
-    public ModelAndView findQuestions(ModelAndView mav, PageParams params) throws Exception {
-        PageData<Question> questions = questionService.findQuestions(params);
+    public ModelAndView findQuestions(ModelAndView mav, PageParams params, HttpServletRequest request) throws Exception {
+        String title = request.getParameter("title");
+        PageData<Question> questions = questionService.findQuestions(params, title);
         logger.info("questions:" + questions);
         mav.addObject("questions", questions);
         mav.setViewName("jsp/question/question-list");
@@ -46,7 +48,7 @@ public class QuestionController {
 
     @RequestMapping("findTeacherQuestions")
     public ModelAndView findTeacherQuestions(ModelAndView mav, PageParams params) throws Exception {
-        PageData<Question> questions = questionService.findQuestions(params);
+        PageData<Question> questions = questionService.findQuestions(params, );
         logger.info("questions:" + questions);
         mav.addObject("questions", questions);
         mav.setViewName("jsp/question/question-teacher");
@@ -85,7 +87,7 @@ public class QuestionController {
             questionService.deleteQuestion(s_id);
 
         }
-        PageData<Question> questions = questionService.findQuestions(null);
+        PageData<Question> questions = questionService.findQuestions(null, );
         logger.info("questions:" + questions);
         mav.addObject("questions", questions);
         mav.setViewName("jsp/question/question-list");

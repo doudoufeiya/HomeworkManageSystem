@@ -12,10 +12,11 @@ public interface QuestionService {
      * 查询所有学生信息
      *
      * @param params
+     * @param title
      * @return
      * @throws Exception
      */
-    PageData<Question> findQuestions(PageParams params) throws Exception;
+    PageData<Question> findQuestions(PageParams params, String title) throws Exception;
 
     /**
      * 添加学生信息

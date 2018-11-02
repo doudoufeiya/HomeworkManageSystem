@@ -39,8 +39,8 @@
         class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container container">
     <div class="text-c">
-        <form action="findStudentByName.action" method="post">
-            <input type="text" class="input-text" style="width:250px" placeholder="输入课程名称" id="s_name" name="s_name">
+        <form action="findLessons.action" method="post">
+            <input type="text" class="input-text" style="width:250px" placeholder="输入课程名称" id="l_name" name="l_name">
             <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜课程
             </button>
         </form>
