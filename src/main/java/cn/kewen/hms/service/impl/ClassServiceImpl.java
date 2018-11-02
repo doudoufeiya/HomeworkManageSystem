@@ -4,7 +4,6 @@ import cn.kewen.hms.mapper.ClassMapper;
 import cn.kewen.hms.pojo.Class;
 import cn.kewen.hms.pojo.PageData;
 import cn.kewen.hms.pojo.PageParams;
-import cn.kewen.hms.pojo.Student;
 import cn.kewen.hms.service.ClassService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -23,14 +22,14 @@ public class ClassServiceImpl implements ClassService {
     private ClassMapper classMapper;
 
     @Override
-    public PageData<Class> findClasss(PageParams params) throws Exception {
+    public PageData<Class> findClasss(PageParams params, String c_name) throws Exception {
         if (params == null) {
             params = new PageParams();
         }
 
         Page page = PageHelper.startPage(params.getPageNumber().intValue(), params.getPageSize().intValue(), true);
         PageData<Class> result = new PageData<>();
-        result.setData(classMapper.findClasss());
+        result.setData(classMapper.findClasss(c_name));
         result.setPageNumber(page.getPageNum());
         result.setPageSize(params.getPageSize());
         result.setTotalRow(page.getTotal());

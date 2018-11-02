@@ -30,8 +30,9 @@ public class ClassController {
     private TeacherService teacherService;
 
     @RequestMapping("findClasss")
-    public ModelAndView findClasss(ModelAndView mav, PageParams params) throws Exception {
-        PageData<Class> classes = classService.findClasss(params);
+    public ModelAndView findClasss(ModelAndView mav, PageParams params, HttpServletRequest request) throws Exception {
+        String c_name = request.getParameter("c_name");
+        PageData<Class> classes = classService.findClasss(params, c_name);
         logger.info("classes:" + classes);
         mav.addObject("classes", classes);
         mav.setViewName("jsp/class/class-list");
@@ -69,7 +70,7 @@ public class ClassController {
         if (s_id != null) {
             classService.deleteClass(s_id);
         }
-        PageData<Class> classes = classService.findClasss(null);
+        PageData<Class> classes = classService.findClasss(null, null);
         logger.info("findclasss:" + classes);
         mav.addObject("classes", classes);
         mav.setViewName("jsp/class/class-list");

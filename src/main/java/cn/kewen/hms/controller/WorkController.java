@@ -62,7 +62,7 @@ public class WorkController {
     public ModelAndView addWorkPage(ModelAndView mav, HttpSession session) throws Exception {
         PageParams params = new PageParams(1, 1000L);
         PageData<Student> students = studentService.findStudentsNoClass(params);
-        PageData<Class> classs = classService.findClasss(params);
+        PageData<Class> classs = classService.findClasss(params, null);
         mav.addObject("classs", classs.getData());
         mav.setViewName("jsp/work/work-add");
         return mav;
@@ -79,8 +79,8 @@ public class WorkController {
     public ModelAndView viewWorkPage(ModelAndView mav, Integer workId) throws Exception {
         List<String> notCommitStudentNames = studentService.toCommitWorkStudentNames(workId);
         List<String> notReadStudentNames = teacherService.findNotReadWork(workId);
-        mav.addObject("notCommitStudentNames", Arrays.asList("222","222","222","222","222","222","222","222","222","222","222","222","222","222","222"));
-        mav.addObject("notReadStudentNames", Arrays.asList("222","222","222","222","222","222","222","222","222","222","222","222","222","222","222","222","222","222","222","222","222"));
+        mav.addObject("notCommitStudentNames", Arrays.asList("222", "222", "222", "222", "222", "222", "222", "222", "222", "222", "222", "222", "222", "222", "222"));
+        mav.addObject("notReadStudentNames", Arrays.asList("222", "222", "222", "222", "222", "222", "222", "222", "222", "222", "222", "222", "222", "222", "222", "222", "222", "222", "222", "222", "222"));
         mav.setViewName("jsp/work/work-detail");
         return mav;
     }

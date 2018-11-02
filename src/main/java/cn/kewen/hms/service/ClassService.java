@@ -14,10 +14,11 @@ public interface ClassService {
      * 查询所有学生信息
      *
      * @param params
+     * @param c_name
      * @return
      * @throws Exception
      */
-    PageData<Class> findClasss(PageParams params) throws Exception;
+    PageData<Class> findClasss(PageParams params, String c_name) throws Exception;
 
 
     /**

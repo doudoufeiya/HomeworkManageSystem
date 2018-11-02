@@ -6,7 +6,10 @@
     <!-- 显示所有学生信息 -->
     <select id="findClasss" resultType="cn.kewen.hms.pojo.Class">
         select *
-        from class
+        from class where 1= 1
+        <if test="c_name != null and c_name != ''">
+            and c_name like concat("%",#{c_name},"%")
+        </if>
     </select>
 
     <!-- 根据名字查询学生信息 -->
@@ -32,7 +35,7 @@
         insert into class (c_name)
         values (#{c_name})
         <selectKey keyProperty="c_id" order="AFTER" resultType="int">
-            select  last_insert_id()
+            select last_insert_id()
         </selectKey>
     </insert>
     <!-- 根据id删除信息 -->
