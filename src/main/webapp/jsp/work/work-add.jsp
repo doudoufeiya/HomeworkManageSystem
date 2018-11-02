@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -35,30 +36,36 @@
 <article class="page-container">
     <form action="addWork.action" method="post" class="form form-horizontal" enctype="multipart/form-data"
           id="form-work-add">
+        <input type="text" style="display: none;" class="input-text" value="${tw_id}" placeholder="" id="tw_id"
+               name="tw_id">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>作业名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="tw_name" name="tw_name"
+                <input type="text" class="input-text" value="${work.tw_name}" placeholder="" id="tw_name" name="tw_name"
                        datatype="*4-16" nullmsg="作业名称不能为空">
             </div>
         </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>课程：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <select class="select" id="c_id" name="c_id">
-                    <option value="0">选择课程</option>
-                    <c:forEach items="${classs}" var="class1">
-                        <option value="${class1.c_id}">${class1.c_name}</option>
-                    </c:forEach>
-                </select>
-            </div>
-        </div>
+        <%--<div class="row cl">--%>
+        <%--<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>课程：</label>--%>
+        <%--<div class="formControls col-xs-8 col-sm-9">--%>
+        <%--<select class="select" id="c_id" name="c_id">--%>
+        <%--<option value="0">选择课程</option>--%>
+        <%--<c:forEach items="${classs}" var="class1">--%>
+        <%--<option value="${class1.c_id}"--%>
+        <%--<c:if test="${work.tw_cid == class1.c_id}">--%>
+        <%--selected="selected"--%>
+        <%--</c:if>>${class1.c_name}</option>--%>
+        <%--</c:forEach>--%>
+        <%--</select>--%>
+        <%--</div>--%>
+        <%--</div>--%>
 
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>截止日期：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <input name="tw_deadLine" type="text"
                        onfocus="WdatePicker({minDate: '%y-%M-%d 00:00:00'})" id="tw_deadLine"
+                       value="<fmt:formatDate value="${work.tw_deadLine}" pattern="yyyy-MM-dd"/>"
                        class="input-text Wdate" style="width:120px;">
             </div>
         </div>
@@ -130,10 +137,10 @@
             focusCleanup: true,
             success: "valid",
             submitHandler: function (form) {
-                debugger
                 $(form).ajaxSubmit();
-                var index = parent.layer.getFrameIndex(window.name);
-                parent.layer.close(index);
+                setTimeout(function () {
+                    parent.$('.a-refresh')[0].click();
+                }, 3000)
                 return false
             }
         });

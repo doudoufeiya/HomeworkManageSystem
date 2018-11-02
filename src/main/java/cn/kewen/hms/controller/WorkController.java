@@ -2,11 +2,10 @@ package cn.kewen.hms.controller;
 
 
 import cn.kewen.hms.pojo.Class;
-import cn.kewen.hms.pojo.*;
-import cn.kewen.hms.service.ClassService;
-import cn.kewen.hms.service.StudentService;
-import cn.kewen.hms.service.TeacherService;
-import cn.kewen.hms.service.WorkService;
+import cn.kewen.hms.pojo.PageData;
+import cn.kewen.hms.pojo.PageParams;
+import cn.kewen.hms.pojo.Work;
+import cn.kewen.hms.service.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,6 +41,9 @@ public class WorkController {
     @Autowired
     private TeacherService teacherService;
 
+    @Autowired
+    private LessonService lessonService;
+
     @RequestMapping("findWorks")
     public ModelAndView findWorks(ModelAndView mav, PageParams params, HttpServletRequest request) throws Exception {
         String tw_name = request.getParameter("tw_name");
@@ -60,11 +62,16 @@ public class WorkController {
      * @throws Exception
      */
     @RequestMapping("addWorkPage")
-    public ModelAndView addWorkPage(ModelAndView mav, HttpSession session) throws Exception {
+    public ModelAndView addWorkPage(ModelAndView mav, HttpSession session,
+                                    @RequestParam(value = "tw_id", required = false) Integer tw_id) throws Exception {
         PageParams params = new PageParams(1, 1000L);
-        PageData<Student> students = studentService.findStudentsNoClass(params);
+        Work work = workService.findWorkById(tw_id);
+//        Object t_id = session.getAttribute("t_id");
+//        lessonService.findLessons()
         PageData<Class> classs = classService.findClasss(params, null);
         mav.addObject("classs", classs.getData());
+        mav.addObject("work", work);
+        mav.addObject("tw_id", tw_id);
         mav.setViewName("jsp/work/work-add");
         return mav;
     }
@@ -151,11 +158,12 @@ public class WorkController {
     @RequestMapping(value = "addWork", method = RequestMethod.POST)
     public void addWork(HttpServletRequest request, @RequestParam("uploadfile") MultipartFile file) throws Exception {
         String tw_name = request.getParameter("tw_name");
-        String c_id = request.getParameter("c_id");
+//        String c_id = request.getParameter("c_id");
         String tw_deadLine = request.getParameter("tw_deadLine");
         String fileName = file.getOriginalFilename();
         Object tw_tid = request.getSession().getAttribute("t_id");
-        if (tw_name == null || c_id == null || tw_deadLine == null || fileName == null
+        Object tw_id = request.getParameter("tw_id");
+        if (tw_name == null || tw_deadLine == null || fileName == null
                 || tw_tid == null) {
             return;
         }
@@ -179,12 +187,19 @@ public class WorkController {
             return;
         }
         work.setTw_name(tw_name);
-        work.setTw_cid(Integer.parseInt(c_id));
+//        work.setTw_cid(Integer.parseInt(c_id));
         work.setTw_tid(Integer.parseInt(tw_tid.toString()));
         work.setTw_addTime(new Date());
         work.setTw_deadLine(new SimpleDateFormat("yyyy-MM-dd").parse(tw_deadLine));
         work.setTw_file_name(fileName);
-        workService.addWork(work);
+        if (tw_id != null) {
+            work.setTw_id(Integer.parseInt(tw_id.toString()));
+            workService.updateWork(work);
+        } else {
+            workService.addWork(work);
+
+        }
+
 //        studentService.updateStudentClass(class1.getStudents(), class1.getC_id());
 //        //添加成功，跳转到其他页面
 //        PageData<Student> students = studentService.findStudents(null);

@@ -16,7 +16,12 @@ public interface WorkMapper {
      */
     List<Work> findWorkByName(String c_name) throws Exception;
 
-    List<Work> findWorkById(String c_id) throws Exception;
+    /**
+     * @param c_id
+     * @return
+     * @throws Exception
+     */
+    Work findWorkById(Integer c_id) throws Exception;
 
     /*
      * 修改信息

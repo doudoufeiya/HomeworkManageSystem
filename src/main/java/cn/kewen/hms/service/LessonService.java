@@ -71,4 +71,11 @@ public interface LessonService {
      * 删除学生信息
      */
     int deleteLesson(int s_id) throws Exception;
+
+    /**
+     * 根据教师ID查询教师的
+     * @param t_id
+     * @return
+     */
+//    List<Lesson> findLessonsOfTeacher(Integer t_id);
 }

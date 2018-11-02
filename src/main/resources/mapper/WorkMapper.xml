@@ -23,11 +23,17 @@
         select *
         from twork
         where tw_id = #{c_id}
+        limit 1
     </select>
     <!-- 修改学生信息 -->
     <update id="updateWork" parameterType="Work">
         update twork
-        set tw_name = #{tw_name}
+        set tw_name      = #{tw_name},
+            tw_tid       = #{tw_tid},
+            tw_name      = #{tw_name},
+            tw_deadLine  = #{tw_deadLine},
+            tw_file_name = #{tw_file_name},
+            tw_file_path = #{tw_file_path}
         where tw_id = #{tw_id}
     </update>
     <!-- 添加信息 -->

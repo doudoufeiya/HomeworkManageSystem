@@ -49,4 +49,13 @@ public interface WorkService {
      * 删除学生信息
      */
     int deleteWork(int s_id) throws Exception;
+
+    /**
+     *
+     * @param w_id
+     * @return
+     * @throws Exception
+     */
+    Work findWorkById(Integer w_id) throws Exception;
+
 }

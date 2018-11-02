@@ -35,7 +35,7 @@
 </head>
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 作业管理 <span
-        class="c-gray en">&gt;</span> 作业列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
+        class="c-gray en">&gt;</span> 作业列表 <a class="a-refresh btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
                                               href="javascript:location.replace(location.href);" title="刷新"><i
         class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container container">
@@ -87,7 +87,7 @@
                     <td><a href="${s.tw_file_path}">${s.tw_file_name}</a></td>
                     <td class="td-manage">
                         <a title="编辑" href="javascript:;"
-                           onclick="admin_edit('编辑','addWorkPage.action','1','800','500')"
+                           onclick="admin_edit('编辑','addWorkPage.action?tw_id='+ ${s.tw_id},'1','800','500')"
                            class="ml-5" style="text-decoration:none">
                             <i class="Hui-iconfont">&#xe6df;</i>
                         </a>

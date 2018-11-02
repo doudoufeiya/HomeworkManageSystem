@@ -60,4 +60,9 @@ public class WorkServiceImpl implements WorkService {
     public int deleteWork(int s_id) throws Exception {
         return workMapper.deleteWork(s_id);
     }
+
+    @Override
+    public Work findWorkById(Integer w_id) throws Exception {
+        return workMapper.findWorkById(w_id);
+    }
 }
