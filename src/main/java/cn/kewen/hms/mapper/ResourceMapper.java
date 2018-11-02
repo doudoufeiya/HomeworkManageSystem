@@ -1,6 +1,7 @@
 package cn.kewen.hms.mapper;
 
 import cn.kewen.hms.pojo.Resource;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface ResourceMapper {
     /*
      * 显示所有班级信息
      */
-    List<Resource> findResources() throws Exception;
+    List<Resource> findResources(@Param("r_name") String r_name) throws Exception;
 
     /**
      * @param c_id

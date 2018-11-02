@@ -29,7 +29,7 @@ public class StudentWorkServiceImpl implements StudentWorkService {
     private StudentWorkMapper studentWorkMapper;
 
     @Override
-    public PageData<StudentWork> findStudentWorks(PageParams params, Integer studentId) throws Exception {
+    public PageData<StudentWork> findStudentWorks(PageParams params, Integer studentId, String tw_name) throws Exception {
         if (studentId == null) {
             return new PageData<>();
         }
@@ -39,7 +39,7 @@ public class StudentWorkServiceImpl implements StudentWorkService {
 
         Page page = PageHelper.startPage(params.getPageNumber().intValue(), params.getPageSize().intValue(), true);
         PageData<StudentWork> result = new PageData<>();
-        result.setData(studentWorkMapper.findStudentWorks(params, studentId));
+        result.setData(studentWorkMapper.findStudentWorks(params, studentId, tw_name));
         result.setPageNumber(page.getPageNum());
         result.setPageSize(params.getPageSize());
         result.setTotalRow(page.getTotal());

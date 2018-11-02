@@ -47,8 +47,9 @@ public class QuestionController {
     }
 
     @RequestMapping("findTeacherQuestions")
-    public ModelAndView findTeacherQuestions(ModelAndView mav, PageParams params) throws Exception {
-        PageData<Question> questions = questionService.findQuestions(params, );
+    public ModelAndView findTeacherQuestions(ModelAndView mav, PageParams params, HttpServletRequest request) throws Exception {
+        String title = request.getParameter("title");
+        PageData<Question> questions = questionService.findQuestions(params, title);
         logger.info("questions:" + questions);
         mav.addObject("questions", questions);
         mav.setViewName("jsp/question/question-teacher");
@@ -87,7 +88,7 @@ public class QuestionController {
             questionService.deleteQuestion(s_id);
 
         }
-        PageData<Question> questions = questionService.findQuestions(null, );
+        PageData<Question> questions = questionService.findQuestions(null, null);
         logger.info("questions:" + questions);
         mav.addObject("questions", questions);
         mav.setViewName("jsp/question/question-list");

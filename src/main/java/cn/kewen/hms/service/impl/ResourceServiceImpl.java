@@ -21,13 +21,13 @@ public class ResourceServiceImpl implements ResourceService {
     private ResourceMapper resourceMapper;
 
     @Override
-    public PageData<Resource> findResources(PageParams params) throws Exception {
+    public PageData<Resource> findResources(PageParams params, String r_name) throws Exception {
         if (params == null) {
             params = new PageParams();
         }
         Page page = PageHelper.startPage(params.getPageNumber().intValue(), params.getPageSize().intValue(), true);
         PageData<Resource> result = new PageData<>();
-        result.setData(resourceMapper.findResources());
+        result.setData(resourceMapper.findResources(r_name));
         result.setPageNumber(page.getPageNum());
         result.setPageSize(params.getPageSize());
         result.setTotalRow(page.getTotal());

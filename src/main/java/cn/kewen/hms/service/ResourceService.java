@@ -2,7 +2,6 @@ package cn.kewen.hms.service;
 
 import cn.kewen.hms.pojo.PageData;
 import cn.kewen.hms.pojo.PageParams;
-import cn.kewen.hms.pojo.Question;
 import cn.kewen.hms.pojo.Resource;
 
 /**
@@ -13,10 +12,11 @@ public interface ResourceService {
      * 查询所有学生信息
      *
      * @param params
+     * @param r_name
      * @return
      * @throws Exception
      */
-    PageData<Resource> findResources(PageParams params) throws Exception;
+    PageData<Resource> findResources(PageParams params, String r_name) throws Exception;
 
     /**
      * 添加学生信息

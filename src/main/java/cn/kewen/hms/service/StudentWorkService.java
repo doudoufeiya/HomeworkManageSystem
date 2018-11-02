@@ -12,10 +12,11 @@ public interface StudentWorkService {
      * 查询所有学生信息
      *
      * @param params
+     * @param tw_name
      * @return
      * @throws Exception
      */
-    PageData<StudentWork> findStudentWorks(PageParams params, Integer studentId) throws Exception;
+    PageData<StudentWork> findStudentWorks(PageParams params, Integer studentId, String tw_name) throws Exception;
 
     /**
      * 查询没有班级的学生

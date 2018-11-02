@@ -25,9 +25,10 @@ public class QuestionServiceImpl implements QuestionService {
         if (params == null) {
             params = new PageParams();
         }
+
         Page page = PageHelper.startPage(params.getPageNumber().intValue(), params.getPageSize().intValue(), true);
         PageData<Question> result = new PageData<>();
-        result.setData(questionMapper.findQuestions());
+        result.setData(questionMapper.findQuestions(title));
         result.setPageNumber(page.getPageNum());
         result.setPageSize(params.getPageSize());
         result.setTotalRow(page.getTotal());

@@ -7,12 +7,17 @@
     <!-- 显示所有学生信息 -->
     <select id="findResources" resultType="cn.kewen.hms.pojo.Resource">
         select resource.*,
-               (case
-                    when teacher.t_name is null then admin.a_name
-                    else teacher.t_name end) as r_tname
+        (case
+        when teacher.t_name is null then admin.a_name
+        else teacher.t_name end) as r_tname
         from resource
-                 left join teacher on teacher.t_id = resource.r_tid
-                 left join admin on admin.a_id = resource.r_tid
+        left join teacher on teacher.t_id = resource.r_tid
+        left join admin on admin.a_id = resource.r_tid
+
+        where 1=1
+        <if test="r_name != null and r_name!=''">
+            and resource.r_name like concat("%",#{r_name},"%")
+        </if>
     </select>
 
     <!-- 根据账号查询学生信息 -->

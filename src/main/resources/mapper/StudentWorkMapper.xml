@@ -8,15 +8,17 @@
 
         SELECT *
         FROM (SELECT twork.*, lesson.l_name, swork.*, teacher.t_name
-              FROM twork
-                       LEFT JOIN teacher ON teacher.t_id = twork.tw_tid
-                       LEFT JOIN lesson ON lesson.l_id = teacher.t_lesson
-                       LEFT JOIN sc_lesson ON sc_lesson.l_id = lesson.l_id
-                       LEFT JOIN swork ON swork.sw_wid = twork.tw_id
-              WHERE sc_lesson.s_id = #{studentId}) AS temp
+        FROM twork
+        LEFT JOIN teacher ON teacher.t_id = twork.tw_tid
+        LEFT JOIN lesson ON lesson.l_id = teacher.t_lesson
+        LEFT JOIN sc_lesson ON sc_lesson.l_id = lesson.l_id
+        LEFT JOIN swork ON swork.sw_wid = twork.tw_id
+        WHERE sc_lesson.s_id = #{studentId}) AS temp
         WHERE temp.sw_sid IS NULL
-           OR temp.sw_sid = #{studentId}
-
+        OR temp.sw_sid = #{studentId}
+        <if test="tw_name != null and tw_name!=''">
+            and temp.tw_name like concat("%",#{tw_name},"%")
+        </if>
 
     </select>
 </mapper>

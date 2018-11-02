@@ -36,13 +36,14 @@ public class StudentWorkController {
     private WorkService workService;
 
     @RequestMapping("findStudentWorks")
-    public ModelAndView findStudentWorks(ModelAndView mav, PageParams params, HttpSession session) throws Exception {
+    public ModelAndView findStudentWorks(ModelAndView mav, PageParams params, HttpSession session, HttpServletRequest request) throws Exception {
 
+        String tw_name = request.getParameter("tw_name");
         if (null == session.getAttribute("s_id")) {
             mav.setViewName("login");
             return mav;
         }
-        PageData<StudentWork> studentWorks = studentWorkService.findStudentWorks(params, Integer.parseInt(session.getAttribute("s_id").toString()));
+        PageData<StudentWork> studentWorks = studentWorkService.findStudentWorks(params, Integer.parseInt(session.getAttribute("s_id").toString()), tw_name);
         logger.info("findStudentWorks:" + studentWorks);
         mav.addObject("studentWorks", studentWorks);
         mav.setViewName("/jsp/student/student-work-list");

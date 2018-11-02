@@ -27,8 +27,9 @@ public class ResourceController {
 
 
     @RequestMapping("findResources")
-    public ModelAndView findResources(ModelAndView mav, PageParams params) throws Exception {
-        PageData<Resource> resources = resourceService.findResources(params);
+    public ModelAndView findResources(ModelAndView mav, PageParams params, HttpServletRequest request) throws Exception {
+        String r_name = request.getParameter("r_name");
+        PageData<Resource> resources = resourceService.findResources(params, r_name);
         logger.info("resources:" + resources);
         mav.addObject("resources", resources);
         mav.setViewName("jsp/resource/resource-list");
@@ -50,8 +51,9 @@ public class ResourceController {
     }
 
     @RequestMapping("findTeacherResources")
-    public ModelAndView findTeacherQuestions(ModelAndView mav, PageParams params) throws Exception {
-        PageData<Resource> resources = resourceService.findResources(params);
+    public ModelAndView findTeacherQuestions(ModelAndView mav, PageParams params, HttpServletRequest request) throws Exception {
+        String r_name = request.getParameter("r_name");
+        PageData<Resource> resources = resourceService.findResources(params, r_name);
         logger.info("resources:" + resources);
         mav.addObject("resources", resources);
         mav.setViewName("jsp/resource/resource-teacher");
@@ -90,7 +92,7 @@ public class ResourceController {
             resourceService.deleteResource(s_id);
 
         }
-        PageData<Resource> resources = resourceService.findResources(null);
+        PageData<Resource> resources = resourceService.findResources(null, null);
         logger.info("resources:" + resources);
         mav.addObject("resources", resources);
         mav.setViewName("jsp/resource/resource-list");
