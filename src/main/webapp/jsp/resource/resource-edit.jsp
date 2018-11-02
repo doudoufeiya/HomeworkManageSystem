@@ -89,7 +89,7 @@
             }
         });
 
-        $("#form-class-add").validate({
+        $("#form-student-work-add").validate({
             rules: {
                 roleName: {
                     required: true,
@@ -99,7 +99,6 @@
             focusCleanup: true,
             success: "valid",
             submitHandler: function (form) {
-                debugger
                 $(form).ajaxSubmit();
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);

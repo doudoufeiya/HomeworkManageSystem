@@ -96,7 +96,7 @@
             }
         });
 
-        $("#form-class-add").validate({
+        $("#form-student-work-add").validate({
             rules: {
                 roleName: {
                     required: true,

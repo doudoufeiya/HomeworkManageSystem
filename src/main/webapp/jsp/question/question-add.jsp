@@ -107,8 +107,11 @@
                 $(form).ajaxSubmit();
                 console.log(window.name)
                 var index = parent.layer.getFrameIndex(window.name);
-                parent.layer.close(index);
-                location.replace(location.href)
+                window.setTimeout(function (args) {
+                    parent.$('.a-refresh')[0].click();
+                },2000);
+
+                // parent.layer.close(index);
                 return false
             }
         });

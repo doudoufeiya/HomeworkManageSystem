@@ -120,23 +120,23 @@
             }
         });
 
-        // $("#form-work-add").validate({
-        //     rules: {
-        //         roleName: {
-        //             required: true,
-        //         },
-        //     },
-        //     onkeyup: false,
-        //     focusCleanup: true,
-        //     success: "valid",
-        //     submitHandler: function (form) {
-        //         debugger
-        //         $(form).ajaxSubmit();
-        //         var index = parent.layer.getFrameIndex(window.name);
-        //         parent.layer.close(index);
-        //         return false
-        //     }
-        // });
+        $("#form-work-add").validate({
+            rules: {
+                roleName: {
+                    required: true,
+                },
+            },
+            onkeyup: false,
+            focusCleanup: true,
+            success: "valid",
+            submitHandler: function (form) {
+                debugger
+                $(form).ajaxSubmit();
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(index);
+                return false
+            }
+        });
     });
 </script>
 <!--/请在上方写此页面业务相关的脚本-->
