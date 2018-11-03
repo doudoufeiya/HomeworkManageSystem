@@ -34,7 +34,7 @@
 <body>
 <article class="page-container">
     <form action="addResource.action" method="post" class="form form-horizontal" enctype="multipart/form-data"
-          id="form-student-work-add">
+          id="form-resource-add">
         <input type="text" style="display: none;" class="input-text" value="${r_id}" placeholder="" id="r_id"
                name="r_id">
         <div class="row cl">
@@ -100,7 +100,7 @@
             }
         });
 
-        $("#form-class-add").validate({
+        $("#form-resource-add").validate({
             rules: {
                 roleName: {
                     required: true,
@@ -110,10 +110,10 @@
             focusCleanup: true,
             success: "valid",
             submitHandler: function (form) {
-                debugger
                 $(form).ajaxSubmit();
-                var index = parent.layer.getFrameIndex(window.name);
-                parent.layer.close(index);
+                setTimeout(function () {
+                    parent.$('.a-refresh')[0].click();
+                }, 3000)
                 return false
             }
         });

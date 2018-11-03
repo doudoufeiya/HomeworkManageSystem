@@ -2,7 +2,6 @@
     * 复选框变化  全选按钮变化   
         **/
 function toChkSon(obj) {
-    debugger
     var isCheck = obj.checked;
     obj.name = "check";
     //alert(obj.name);

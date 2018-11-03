@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -32,6 +31,7 @@ public class ResourceController {
         PageData<Resource> resources = resourceService.findResources(params, r_name);
         logger.info("resources:" + resources);
         mav.addObject("resources", resources);
+        mav.addObject("r_name", r_name);
         mav.setViewName("jsp/resource/resource-list");
         return mav;
     }
@@ -102,28 +102,28 @@ public class ResourceController {
     }
 
 
-    /**
-     * 添加学生
-     *
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping("addResource")
-    public ModelAndView addResource(Resource resource, ModelAndView mav) throws Exception {
-        if (resource.getR_id() == null) {
-            resourceService.addResource(resource);
-        } else {
-            resourceService.editResource(resource);
-        }
-        return mav;
-    }
+//    /**
+//     * 添加学生
+//     *
+//     * @return
+//     * @throws Exception
+//     */
+//    @RequestMapping("addResource")
+//    public ModelAndView addResource(Resource resource, ModelAndView mav) throws Exception {
+//        if (resource.getR_id() == null) {
+//            resourceService.addResource(resource);
+//        } else {
+//            resourceService.editResource(resource);
+//        }
+//        return mav;
+//    }
 
 
     /**
      * @param file
      * @throws Exception
      */
-    @RequestMapping(value = "addResource", method = RequestMethod.POST)
+    @RequestMapping(value = "addResource")
     public void addResource(HttpServletRequest request, @RequestParam("uploadfile") MultipartFile file) throws Exception {
         String r_name = request.getParameter("r_name");
         Object tId = request.getSession().getAttribute("t_id");

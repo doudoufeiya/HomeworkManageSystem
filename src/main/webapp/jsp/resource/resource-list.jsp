@@ -35,14 +35,15 @@
 </head>
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 课外知识管理 <span
-        class="c-gray en">&gt;</span> 课外知识列表 <a class="btn btn-success radius r"
+        class="c-gray en">&gt;</span> 课外知识列表 <a class="a-refresh btn btn-success radius r"
                                                 style="line-height:1.6em;margin-top:3px"
                                                 href="javascript:location.replace(location.href);" title="刷新"><i
         class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container container">
     <div class="text-c">
         <form action="findResources.action" method="post">
-            <input type="text" class="input-text" style="width:250px" placeholder="输入资料名称" id="r_name" name="r_name">
+            <input type="text" class="input-text" style="width:250px" value="${r_name}" placeholder="输入资料名称" id="r_name"
+                   name="r_name">
             <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜资料
             </button>
         </form>
@@ -80,7 +81,8 @@
             <tbody>
             <c:forEach items="${resources.data}" var="s">
                 <tr class="text-c">
-                    <td><input type="checkbox" value="1" name=""></td>
+                    <td><input type="checkbox" value="${s.r_id}" name="muticheck-${s.r_id}" onclick="toChkSon(this);">
+                    </td>
                     <td>${s.r_id}</td>
                     <td>${s.r_name}</td>
                     <td><a href="${s.r_file_path}">${s.r_file_name}</a></td>
