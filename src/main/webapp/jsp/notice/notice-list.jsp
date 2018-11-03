@@ -79,7 +79,8 @@
             <tbody>
             <c:forEach items="${notices.data}" var="s">
                 <tr class="text-c">
-                    <td><input type="checkbox" value="1" name=""></td>
+                    <td><input type="checkbox" value="${s.n_id}" name="muticheck-${s.n_id}" onclick="toChkSon(this);">
+                    </td>
                     <td>${s.n_id}</td>
                     <td>${s.n_title}</td>
                     <td>${s.n_message}</td>
