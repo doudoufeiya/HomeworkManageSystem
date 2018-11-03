@@ -30,6 +30,7 @@ public class TeacherController {
         String t_name = request.getParameter("t_name");
         PageData<Teacher> teachers = teacherService.findTeachers(params, t_name);
         mav.addObject("teachers", teachers);
+        mav.addObject("t_name", t_name);
         mav.setViewName("teacher-list");
         return mav;
     }
