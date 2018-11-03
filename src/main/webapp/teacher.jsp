@@ -70,7 +70,7 @@
 
         <div class="layui-tab-content" style="padding: 20px;padding-top: 0px;">
 
-            <iframe src="welcome.html" width="88%" style="border: none;" height="800" border="none"
+            <iframe src="welcomeIndex.action" width="88%" style="border: none;" height="800" border="none"
                     name="right"></iframe>
         </div>
     </div>

@@ -3,20 +3,15 @@ package cn.kewen.hms.controller;
 import cn.kewen.hms.pojo.Notice;
 import cn.kewen.hms.pojo.PageData;
 import cn.kewen.hms.pojo.PageParams;
-import cn.kewen.hms.pojo.Resource;
 import cn.kewen.hms.service.NoticeService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.net.URLDecoder;
 
 @Controller
 public class NoticeController {
@@ -34,6 +29,15 @@ public class NoticeController {
         logger.info("notices:" + notices);
         mav.addObject("notices", notices);
         mav.setViewName("jsp/notice/notice-list");
+        return mav;
+    }
+
+    @RequestMapping("welcomeIndex")
+    public ModelAndView welcomeIndex(ModelAndView mav, PageParams params, HttpServletRequest request) throws Exception {
+        PageData<Notice> notices = noticeService.findNotices(params, null);
+        logger.info("notices:" + notices);
+        mav.addObject("notices", notices);
+        mav.setViewName("welcome_index");
         return mav;
     }
 
@@ -118,7 +122,6 @@ public class NoticeController {
         }
         return mav;
     }
-
 
 
     /**
