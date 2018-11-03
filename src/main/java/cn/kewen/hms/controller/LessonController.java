@@ -36,6 +36,7 @@ public class LessonController {
         PageData<Lesson> lessons = lessonService.findLessons(params, l_name);
         logger.info("lessons:" + lessons);
         mav.addObject("lessons", lessons);
+        mav.addObject("l_name", l_name);
         mav.setViewName("jsp/lesson/lesson-list");
         return mav;
     }

@@ -50,8 +50,9 @@
                     <c:forEach items="${teachers}" var="teacher">
                         <option value="${teacher.t_id}">${teacher.t_name}</option>
                     </c:forEach>
-
-                    <option value="${lesson.t_id}" selected>${lesson.t_name}</option>
+                    <c:if test="${lesson.t_id != null}">
+                        <option value="${lesson.t_id}" selected>${lesson.t_name}</option>
+                    </c:if>
 
                 </select>
             </div>

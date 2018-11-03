@@ -40,7 +40,7 @@
 <div class="page-container container">
     <div class="text-c">
         <form action="findLessons.action" method="post">
-            <input type="text" class="input-text" style="width:250px" placeholder="输入课程名称" id="l_name" name="l_name">
+            <input type="text" class="input-text" style="width:250px" value="${l_name}" placeholder="输入课程名称" id="l_name" name="l_name">
             <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜课程
             </button>
         </form>
@@ -74,7 +74,7 @@
             <tbody>
             <c:forEach items="${lessons.data}" var="s">
                 <tr class="text-c">
-                    <td><input type="checkbox" value="1" name=""></td>
+                    <td><input type="checkbox" value="${s.l_id}" name="muticheck-${s.l_id}" onclick="toChkSon(this);"></td>
                     <td>${s.l_id}</td>
                     <td>${s.l_name}</td>
                     <td class="td-manage">
