@@ -33,13 +33,15 @@
 </head>
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span
-        class="c-gray en">&gt;</span> 管理员列表 <a class="a-refresh btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
+        class="c-gray en">&gt;</span> 管理员列表 <a class="a-refresh btn btn-success radius r"
+                                               style="line-height:1.6em;margin-top:3px"
                                                href="javascript:location.replace(location.href);" title="刷新"><i
         class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
     <div class="text-c">
         <form action="findTeachers.action" method="post">
-            <input type="text" class="input-text" style="width:250px" placeholder="输入教师姓名" id="t_name" name="t_name">
+            <input type="text" class="input-text" style="width:250px" value="${t_name}" placeholder="输入教师姓名" id="t_name"
+                   name="t_name">
             <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户
             </button>
         </form>
@@ -48,8 +50,10 @@
         <a href="javascript:;" onclick="submitForm()"
            class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a
             onclick="teacher_add('添加教师','addTeacherPage.action','800','500')"
-            class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加教师</a></span> <span
-            class="r">共有数据：<strong>54</strong> 条</span></div>
+            class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加教师</a></span>
+        <%--<span--%>
+        <%--class="r">共有数据：<strong>54</strong> 条</span>--%>
+    </div>
 
     <form name="myForm" id="myForm" action="batchDeleteTeacher.action" method="post">
 
@@ -72,7 +76,8 @@
             <tbody>
             <c:forEach items="${teachers.data}" var="t">
                 <tr class="text-c">
-                    <td><input type="checkbox" value="1" name=""></td>
+                    <td><input type="checkbox" value="${t.t_id}" name="muticheck-${t.t_id}" onclick="toChkSon(this);">
+                    </td>
                     <td>${t.t_number}</td>
                     <td>${t.t_pwd}</td>
                     <td>${t.t_name}</td>
@@ -81,7 +86,7 @@
                     <td>${t.t_lesson}</td>
                     <td class="td-manage">
                         <a title="编辑" href="javascript:;"
-                           onclick="admin_edit('管理员编辑','addTeacherPage.action?t_id='+${t.t_id},'1','800','500')"
+                           onclick="admin_edit('编辑','addTeacherPage.action?t_id='+${t.t_id},'1','800','500')"
                            class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
                         <a title="删除"
                            class="ml-5"

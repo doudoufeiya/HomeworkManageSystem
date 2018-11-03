@@ -38,6 +38,7 @@ public class ClassController {
         PageData<Class> classes = classService.findClasss(params, c_name);
         logger.info("classes:" + classes);
         mav.addObject("classes", classes);
+        mav.addObject("c_name", c_name);
         mav.setViewName("jsp/class/class-list");
         return mav;
     }
