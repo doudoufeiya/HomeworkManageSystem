@@ -1,6 +1,8 @@
 package cn.kewen.hms.controller;
 
 import cn.kewen.hms.pojo.Admin;
+import cn.kewen.hms.pojo.PageData;
+import cn.kewen.hms.pojo.PageParams;
 import cn.kewen.hms.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.swing.*;
 import java.io.File;
 import java.util.List;
 
@@ -20,10 +21,18 @@ import java.util.List;
 public class AdminController {
     @Autowired
     AdminService adminService;
+//
+//    @RequestMapping("findAdmins")
+//    public ModelAndView findAdmins(ModelAndView mav) throws Exception {
+//        List<Admin> adminlist = adminService.findAdmins();
+//        mav.addObject("adminlist", adminlist);
+//        mav.setViewName("admin-list");
+//        return mav;
+//    }
 
-    @RequestMapping("findAdmins")
-    public ModelAndView findAdmins(ModelAndView mav) throws Exception {
-        List<Admin> adminlist = adminService.findAdmins();
+    @RequestMapping("findAdminPages")
+    public ModelAndView findAdminPages(ModelAndView mav, PageParams params) throws Exception {
+        PageData<Admin> adminlist = adminService.findAdminsByPage(params);
         mav.addObject("adminlist", adminlist);
         mav.setViewName("admin-list");
         return mav;
@@ -49,49 +58,47 @@ public class AdminController {
     }
 
     @RequestMapping("findAdminById")
-    public ModelAndView findAdminById(Integer a_id) throws Exception {
+    public ModelAndView findAdminById(String a_id) throws Exception {
         ModelAndView mav = new ModelAndView();
-        List<Admin> admin = adminService.findAdminById(a_id);
-        if (admin != null) {
-            mav.addObject("adminlist", admin);
+        try {
+            Integer.parseInt(a_id);
+        }catch (Exception e){
             mav.setViewName("admin-list");
-        } else {
-            mav.setViewName("admin-list");
+            return mav;
         }
+
+        PageData<Admin> params = adminService.findAdminPageById(Integer.parseInt(a_id));
+        mav.addObject("adminlist", params);
+        mav.setViewName("admin-list");
         return mav;
     }
 
-    @RequestMapping(value = "addAdmin", method = {RequestMethod.POST, RequestMethod.GET})
-    public ModelAndView addAdmin(Admin admin, HttpServletRequest request) throws Exception {
+    @RequestMapping(value = "addAdmin")
+    public ModelAndView addAdmin(HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
         String a_id = request.getParameter("a_id");
         String a_pwd = request.getParameter("a_pwd");
         String a_name = request.getParameter("a_name");
+        Admin admin = new Admin();
         admin.setA_id(Integer.parseInt(a_id));
         admin.setA_pwd(a_pwd);
         admin.setA_name(a_name);
-        int i = adminService.addAdmin(admin);
+        adminService.addAdmin(admin);
         //添加成功，跳转到其他页面
-        if (i > 0) {
-            mav.addObject("admin", admin);
-            mav.setViewName("admin-list");
-        } else {
-            mav.addObject("admin", admin);
-            mav.setViewName("index");
-        }
+        PageData<Admin> adminlist = adminService.findAdminsByPage(new PageParams());
+        mav.addObject("adminlist", adminlist);
+        mav.setViewName("admin-list");
         return mav;
     }
 
     @RequestMapping("deleteAdmin")
-    public ModelAndView deleteAdmin(int a_id) throws Exception {
+    public ModelAndView deleteAdmin(Integer a_id) throws Exception {
         System.out.println("a_id" + a_id);
         ModelAndView mav = new ModelAndView();
-        int i = adminService.deleteAdmin(a_id);
-        if (i > 0) {
-            mav.setViewName("index");
-        } else {
-            mav.setViewName("index");
-        }
+        adminService.deleteAdmin(a_id);
+        PageData<Admin> adminlist = adminService.findAdminsByPage(new PageParams());
+        mav.addObject("adminlist", adminlist);
+        mav.setViewName("admin-list");
         return mav;
     }
 
@@ -111,13 +118,14 @@ public class AdminController {
     }
 
     @RequestMapping("updateAdmin")
-    public String updateAdmin(Admin admin) throws Exception {
+    public void updateAdmin(ModelAndView mav, Admin admin) throws Exception {
         boolean i = adminService.updateAdmin(admin);
         if (i) {
-            JOptionPane.showMessageDialog(null, "修改成功！");
-            return "redirect:/findAdmins.action";
+//            JOptionPane.showMessageDialog(null, "修改成功！");
+//            return "redirect:/findAdminPages.action";
         }
-        return "student";
+
+
     }
 
     @RequestMapping(value = "upload", method = RequestMethod.POST)

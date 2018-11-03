@@ -28,7 +28,6 @@
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
     <!--/meta 作为公共模版分离出去-->
-
     <title>添加管理员 - 管理员管理 - </title>
     <meta name="keywords" content="H-ui.admin v2.3,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
     <meta name="description" content="H-ui.admin v2.3，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
@@ -36,6 +35,7 @@
 <body>
 <article class="page-container">
     <form action="addAdmin.action" method="post" class="form form-horizontal" id="form-admin-add">
+
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>账号：</label>
             <div class="formControls col-xs-8 col-sm-9">
@@ -69,16 +69,14 @@
         </div>
     </form>
 </article>
-
 <!--_footer 作为公共模版分离出去-->
-<script type="text/javascript" src="http://lib.h-ui.net/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="http://lib.h-ui.net/layer/2.1/layer.js"></script>
-<script type="text/javascript" src="http://lib.h-ui.net/icheck/jquery.icheck.min.js"></script>
-<script type="text/javascript" src="http://lib.h-ui.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
-<script type="text/javascript" src="http://lib.h-ui.net/jquery.validation/1.14.0/validate-methods.js"></script>
-<script type="text/javascript" src="http://lib.h-ui.net/jquery.validation/1.14.0/messages_zh.min.js"></script>
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="lib/icheck/jquery.icheck.min.js"></script>
+
 <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
 <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 <!--/_footer /作为公共模版分离出去-->
 <script type="text/javascript" src="js/jquery-form.js"></script>
 
@@ -111,9 +109,10 @@
             success: "valid",
             submitHandler: function (form) {
                 $(form).ajaxSubmit();
-                var index = parent.layer.getFrameIndex(window.name);
-                parent.$('.btn-refresh').click();
-                parent.layer.close(index);
+                setTimeout(function () {
+                    parent.$('.a-refresh')[0].click();
+                }, 3000)
+                return false
             }
         });
     });

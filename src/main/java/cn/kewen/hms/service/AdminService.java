@@ -1,6 +1,8 @@
 package cn.kewen.hms.service;
 
 import cn.kewen.hms.pojo.Admin;
+import cn.kewen.hms.pojo.PageData;
+import cn.kewen.hms.pojo.PageParams;
 
 import java.util.List;
 
@@ -12,6 +14,7 @@ public interface AdminService {
      * @throws Exception
      */
     List<Admin> findAdmins() throws Exception;
+    PageData<Admin> findAdminsByPage(PageParams params) throws Exception;
 
     /**
      * 管理员登录，根据用户id和密码查找
@@ -28,6 +31,7 @@ public interface AdminService {
      * @throws Exception
      */
     List<Admin> findAdminById(int a_id) throws Exception;
+    PageData<Admin> findAdminPageById(Integer a_id) throws Exception;
 
     /**
      * 添加管理员信息
