@@ -50,6 +50,7 @@ public class WorkController {
         PageData<Work> works = workService.findWorks(params, tw_name);
         logger.info("works:" + works);
         mav.addObject("works", works);
+        mav.addObject("tw_name", tw_name);
         mav.setViewName("jsp/work/work-list");
         return mav;
     }
@@ -192,7 +193,7 @@ public class WorkController {
         work.setTw_addTime(new Date());
         work.setTw_deadLine(new SimpleDateFormat("yyyy-MM-dd").parse(tw_deadLine));
         work.setTw_file_name(fileName);
-        if (tw_id != null) {
+        if (tw_id != null && !((String) tw_id).equalsIgnoreCase("")) {
             work.setTw_id(Integer.parseInt(tw_id.toString()));
             workService.updateWork(work);
         } else {
