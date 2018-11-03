@@ -37,6 +37,7 @@ public class StudentController {
         PageData<Student> students = studentService.findStudents(params, s_name);
         logger.info("findStudents:" + students);
         mav.addObject("students", students);
+        mav.addObject("s_name", s_name);
         mav.setViewName("student-list");
         return mav;
     }

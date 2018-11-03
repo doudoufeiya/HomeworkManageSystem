@@ -176,7 +176,7 @@ public class AdminController {
                 e.printStackTrace();
             }
         });
-        List<Admin> adminlist = adminService.findAdmins();
+        PageData<Admin> adminlist = adminService.findAdminsByPage(new PageParams());
         mav.addObject("adminlist", adminlist);
         mav.setViewName("admin-list");
         return mav;

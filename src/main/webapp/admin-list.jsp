@@ -70,7 +70,7 @@
             <tbody>
             <c:forEach items="${adminlist.data}" var="a">
                 <tr class="text-c">
-                    <td><input type="checkbox" value="1" name=""></td>
+                    <td><input type="checkbox" value="${a.a_id}" name="muticheck-${a.a_id}" onclick="toChkSon(this);"></td>
                     <td>${a.a_id}</td>
                     <td>${a.a_pwd}</td>
                     <td>${a.a_name}</td>

@@ -95,14 +95,14 @@
             </div>
         </div>
 
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>照片：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" autocomplete="off" value="${student.s_phone}" placeholder="照片"
-                       id="s_photo"
-                       name="s_photo">
-            </div>
-        </div>
+        <%--<div class="row cl">--%>
+            <%--<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>照片：</label>--%>
+            <%--<div class="formControls col-xs-8 col-sm-9">--%>
+                <%--<input type="text" class="input-text" autocomplete="off" value="${student.s_phone}" placeholder="照片"--%>
+                       <%--id="s_photo"--%>
+                       <%--name="s_photo">--%>
+            <%--</div>--%>
+        <%--</div>--%>
 
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>班级编号：</label>

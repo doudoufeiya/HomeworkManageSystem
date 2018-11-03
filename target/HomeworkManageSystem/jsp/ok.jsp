@@ -8,7 +8,7 @@
 </head>
 <body>
 登录成功
-<a href="${pageContext.request.contextPath}/admin/findAdmins.action">所有管理员信息</a>
+<a href="${pageContext.request.contextPath}/admin/findAdminPages.action">所有管理员信息</a>
 <a href="">修改个人信息</a>
 </body>
 </html>

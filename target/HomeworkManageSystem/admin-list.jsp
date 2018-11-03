@@ -12,6 +12,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <LINK rel="Bookmark" href="/favicon.ico">
     <LINK rel="Shortcut Icon" href="/favicon.ico"/>
+    <link rel="stylesheet" href="bPage/b.page.bootstrap3.css" type="text/css">
     <!--[if lt IE 9]>
     <script type="text/javascript" src="lib/html5.js"></script>
     <script type="text/javascript" src="lib/respond.min.js"></script>
@@ -23,6 +24,8 @@
     <link rel="stylesheet" type="text/css" href="lib/icheck/icheck.css"/>
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin"/>
     <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css"/>
+    <link rel="stylesheet" href="https://terryz.github.io/lib/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
     <!--[if IE 6]>
     <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js"></script>
     <script>DD_belatedPNG.fix('*');</script>
@@ -31,7 +34,8 @@
 </head>
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span
-        class="c-gray en">&gt;</span> 管理员列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
+        class="c-gray en">&gt;</span> 管理员列表 <a class="a-refresh btn btn-success radius r"
+                                               style="line-height:1.6em;margin-top:3px"
                                                href="javascript:location.replace(location.href);" title="刷新"><i
         class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
@@ -46,7 +50,9 @@
         <a href="javascript:;" onclick="submitForm()"
            class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a
             href="javascript:;" onclick="admin_add('添加管理员','admin-add.jsp','800','500')" class="btn btn-primary radius"><i
-            class="Hui-iconfont">&#xe600;</i> 添加管理员</a></span> <span class="r">共有数据：<strong>54</strong> 条</span></div>
+            class="Hui-iconfont">&#xe600;</i> 添加管理员</a></span>
+        <%--<span class="r">共有数据：<strong>54</strong> 条</span>--%>
+    </div>
     <form name="myForm" id="myForm" action="batchDeleteAdmin.action" method="post">
         <table class="table table-border table-bordered table-bg">
             <thead>
@@ -62,28 +68,39 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${adminlist}" var="a">
+            <c:forEach items="${adminlist.data}" var="a">
                 <tr class="text-c">
-                    <td><input type="checkbox" value="1" name=""></td>
+                    <td><input type="checkbox" value="${a.a_id}" name="muticheck-${a.a_id}" onclick="toChkSon(this);"></td>
                     <td>${a.a_id}</td>
                     <td>${a.a_pwd}</td>
                     <td>${a.a_name}</td>
-                    <td>
-                        <a href="deleteAdmin.action?a_id=${a.a_id}">删除</a>
-                    </td>
-                    <td class="td-status"><span class="label label-success radius">已启用</span></td>
-                    <td class="td-manage"><a style="text-decoration:none" onClick="admin_stop(this,'10001')"
-                                             href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a> <a
-                            title="编辑" href="javascript:;"
-                            onclick="admin_edit('管理员编辑','showAdminById.action?a_id=${a.a_id}','1','800','500')"
-                            class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a
-                            title="删除" href="javascript:;" onclick="admin_del(this,'1')" class="ml-5"
+                        <%--<td>--%>
+                        <%--<a href="deleteAdmin.action?a_id=${a.a_id}">删除</a>--%>
+                        <%--</td>--%>
+                        <%--<td class="td-status"><span class="label label-success radius">已启用</span></td>--%>
+                    <td class="td-manage">
+                            <%--<a style="text-decoration:none" onClick="admin_stop(this,'10001')"--%>
+                            <%--href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>--%>
+                        <a title="编辑" href="javascript:;"
+                           onclick="admin_edit('管理员编辑','showAdminById.action?a_id=${a.a_id}','1','800','500')"
+                           class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a
+                            title="删除" href="deleteAdmin.action?a_id=${a.a_id}"
+                            class="ml-5"
                             style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
     </form>
+    <c:if test="${adminlist != null}">
+        <input type="hidden" id="pageNumber" value="${adminlist.pageNumber}">
+        <input type="hidden" id="pageSize" value="${adminlist.pageSize}">
+        <input type="hidden" id="totalPage" value="${adminlist.totalPage}">
+        <input type="hidden" id="totalRow" value="${adminlist.totalRow}">
+    </c:if>
+    <div class="row-fluid">
+        <div id="page1"></div>
+    </div>
 </div>
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="lib/layer/2.1/layer.js"></script>
@@ -91,6 +108,8 @@
 <script type="text/javascript" src="lib/My97DatePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
 <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
+<script type="text/javascript" src="bPage/b.page.min.js"></script>
+<script type="text/javascript" src="jsp/class/page.js"></script>
 <script type="text/javascript">
     /*
         参数解释：
