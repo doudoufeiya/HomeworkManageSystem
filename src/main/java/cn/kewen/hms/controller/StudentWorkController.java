@@ -46,6 +46,7 @@ public class StudentWorkController {
         PageData<StudentWork> studentWorks = studentWorkService.findStudentWorks(params, Integer.parseInt(session.getAttribute("s_id").toString()), tw_name);
         logger.info("findStudentWorks:" + studentWorks);
         mav.addObject("studentWorks", studentWorks);
+        mav.addObject("tw_name", tw_name);
         mav.setViewName("/jsp/student/student-work-list");
         return mav;
     }

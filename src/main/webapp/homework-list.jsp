@@ -39,14 +39,14 @@
 
 </head>
 <body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>   作业管理 <span
+        class="c-gray en">&gt;</span> 作业管理
+    <a class="a-refresh btn btn-success radius r"
+       style="line-height:1.6em;margin-top:3px"
+       href="javascript:location.replace(location.href);" title="刷新"><i
+            class="Hui-iconfont">&#xe68f;</i></a>
+</nav>
 <div class="admin-content-body">
-    <div class="am-cf am-padding am-padding-bottom-0">
-        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">学生作业</strong>
-            <small></small>
-        </div>
-    </div>
-
-    <hr>
 
     <div class="am-g">
         <div class="am-u-sm-12 am-u-md-3">
@@ -63,7 +63,7 @@
         <%--</div>--%>
         <div class="text-c">
             <form action="findStudentHomework.action" method="post">
-                <input type="text" class="input-text" style="width:250px" placeholder="请输入作业名" id="sw_name" name="sw_name">
+                <input type="text" class="input-text" style="width:250px" value="${sw_name}" placeholder="请输入作业名" id="sw_name" name="sw_name">
                 <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜索
                 </button>
             </form>

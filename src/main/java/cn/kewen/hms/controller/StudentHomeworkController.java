@@ -29,6 +29,7 @@ public class StudentHomeworkController {
         String sw_name = request.getParameter("sw_name");
         PageData<StudentHomework> homeworks = studentHomeworkService.findStudentHomework(Integer.parseInt(session.getAttribute("t_id").toString()), params, sw_name);
         mav.addObject("homeworks", homeworks);
+        mav.addObject("sw_name", sw_name);
         mav.setViewName("homework-list");
         return mav;
     }
@@ -49,12 +50,10 @@ public class StudentHomeworkController {
      * @throws Exception
      */
     @RequestMapping("addReadHomework")
-    public ModelAndView addReadHomework(ModelAndView mav, Integer sworkId,
+    public void addReadHomework(ModelAndView mav, Integer sworkId,
                                         Integer sw_grade,
                                         @RequestParam(value = "sw_remark", required = false) String sw_remark) throws Exception {
         studentHomeworkService.addReadHomework(sworkId, sw_grade, sw_remark);
-        mav.setViewName("login");
-        return mav;
     }
 
 

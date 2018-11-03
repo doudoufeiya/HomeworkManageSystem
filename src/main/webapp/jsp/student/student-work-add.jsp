@@ -102,10 +102,10 @@
             focusCleanup: true,
             success: "valid",
             submitHandler: function (form) {
-                debugger
                 $(form).ajaxSubmit();
-                var index = parent.layer.getFrameIndex(window.name);
-                parent.layer.close(index);
+                setTimeout(function () {
+                    parent.$('.a-refresh')[0].click();
+                }, 3000)
                 return false
             }
         });

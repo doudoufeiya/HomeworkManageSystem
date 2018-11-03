@@ -35,13 +35,16 @@
 </head>
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 作业管理 <span
-        class="c-gray en">&gt;</span> 作业列表 <a class="a-refresh btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
+        class="c-gray en">&gt;</span> 作业列表 <a class="a-refresh btn btn-success radius r"
+                                              style="line-height:1.6em;margin-top:3px"
                                               href="javascript:location.replace(location.href);" title="刷新"><i
-        class="Hui-iconfont">&#xe68f;</i></a></nav>
+        class="Hui-iconfont">&#xe68f;</i></a>
+</nav>
 <div class="page-container container">
     <div class="text-c">
         <form action="findWorks.action" method="post">
-            <input type="text" class="input-text" style="width:250px" value="${tw_name}" placeholder="输入作业名称" id="tw_name" name="tw_name">
+            <input type="text" class="input-text" style="width:250px" value="${tw_name}" placeholder="输入作业名称"
+                   id="tw_name" name="tw_name">
             <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜作业
             </button>
         </form>

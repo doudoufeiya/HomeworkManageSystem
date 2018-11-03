@@ -34,7 +34,7 @@
 <body>
 <article class="page-container">
     <form action="addReadHomework.action" method="post" class="form form-horizontal" enctype="multipart/form-data"
-          id="form-student-work-add">
+          id="form-student-work-edit">
         <input type="text" style="display: none;" class="input-text" value="${sworkId}" placeholder="" id="sworkId"
                name="sworkId">
         <div class="row cl">
@@ -72,7 +72,6 @@
 <script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 <!--/_footer /作为公共模版分离出去-->
 <script type="text/javascript" src="js/jquery-form.js"></script>
-
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript">
     $(function () {
@@ -96,7 +95,7 @@
             }
         });
 
-        $("#form-student-work-add").validate({
+        $("#form-student-work-edit").validate({
             rules: {
                 roleName: {
                     required: true,
@@ -106,10 +105,10 @@
             focusCleanup: true,
             success: "valid",
             submitHandler: function (form) {
-                debugger
                 $(form).ajaxSubmit();
-                var index = parent.layer.getFrameIndex(window.name);
-                parent.layer.close(index);
+                setTimeout(function () {
+                    parent.$('.a-refresh')[0].click();
+                }, 3000)
                 return false
             }
         });
@@ -130,6 +129,8 @@
         }
     }
 </script>
+
+
 <!--/请在上方写此页面业务相关的脚本-->
 </body>
 </html>
