@@ -7,7 +7,8 @@
     <select id="findStudentWorks" resultType="StudentWork">
 
         SELECT *
-        FROM (SELECT twork.*, lesson.l_name, swork.*, teacher.t_name
+        FROM (SELECT twork.*, lesson.l_name, swork.*, teacher.t_name,swork.sw_grade as sw_gradle,swork.sw_correctTime as
+        correctTime
         FROM twork
         LEFT JOIN teacher ON teacher.t_id = twork.tw_tid
         LEFT JOIN lesson ON lesson.l_id = teacher.t_lesson

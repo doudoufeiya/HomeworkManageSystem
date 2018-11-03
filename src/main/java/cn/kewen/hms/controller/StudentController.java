@@ -166,7 +166,7 @@ public class StudentController {
             file.transferTo(new File(path + File.separator + filename));
             student.setS_photo("http://localhost:8080/filedown?fileName=" + URLEncoder.encode(filename));
         }
-        student.setS_id(Integer.parseInt(session.getAttribute("t_id").toString()));
+        student.setS_id(Integer.parseInt(session.getAttribute("s_id").toString()));
         studentService.updateStudent(student);
     }
 

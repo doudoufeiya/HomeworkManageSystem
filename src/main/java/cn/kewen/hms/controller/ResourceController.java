@@ -156,7 +156,7 @@ public class ResourceController {
         resource.setR_name(r_name);
         resource.setR_tid(Integer.parseInt(null == tId ? aId.toString() : tId.toString()));
 
-        if (r_id == null) {
+        if (r_id == null || ((String) r_id).equalsIgnoreCase("")) {
             resourceService.addResource(resource);
         } else {
             resource.setR_id(Integer.parseInt(r_id.toString()));

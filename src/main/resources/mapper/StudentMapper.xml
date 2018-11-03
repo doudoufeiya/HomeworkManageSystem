@@ -34,7 +34,7 @@
     <!-- 修改学生信息 -->
     <update id="updateStudent" parameterType="Student">
         update student
-        set s_number = #{s_number},
+        set
             s_pwd    = #{s_pwd},
             s_name   = #{s_name},
             s_cid    = #{s_cid},
