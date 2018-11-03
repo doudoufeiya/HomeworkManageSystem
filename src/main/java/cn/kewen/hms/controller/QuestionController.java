@@ -34,6 +34,7 @@ public class QuestionController {
         PageData<Question> questions = questionService.findQuestions(params, title);
         logger.info("questions:" + questions);
         mav.addObject("questions", questions);
+        mav.addObject("title", title);
         mav.setViewName("jsp/question/question-list");
         return mav;
     }

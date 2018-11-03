@@ -34,7 +34,7 @@
 <body>
 <article class="page-container">
     <form action="answerQuestions.action" method="post" class="form form-horizontal"
-          id="form-student-work-add">
+          id="form-class-add">
         <input type="text" style="display: none;" class="input-text" value="${question_id}" placeholder="" id="question_id"
                name="question_id">
 
@@ -99,10 +99,10 @@
             focusCleanup: true,
             success: "valid",
             submitHandler: function (form) {
-                debugger
                 $(form).ajaxSubmit();
-                var index = parent.layer.getFrameIndex(window.name);
-                parent.layer.close(index);
+                setTimeout(function () {
+                    parent.$('.a-refresh')[0].click();
+                }, 3000)
                 return false
             }
         });

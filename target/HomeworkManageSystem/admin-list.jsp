@@ -34,10 +34,12 @@
 </head>
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span
-        class="c-gray en">&gt;</span> 管理员列表 <a class="a-refresh btn btn-success radius r"
-                                               style="line-height:1.6em;margin-top:3px"
-                                               href="javascript:location.replace(location.href);" title="刷新"><i
-        class="Hui-iconfont">&#xe68f;</i></a></nav>
+        class="c-gray en">&gt;</span> 管理员列表
+    <a class="a-refresh btn btn-success radius r"
+       style="line-height:1.6em;margin-top:3px"
+       href="javascript:location.replace(location.href);" title="刷新"><i
+            class="Hui-iconfont">&#xe68f;</i></a>
+</nav>
 <div class="page-container">
     <div class="text-c">
         <form action="findAdminById.action" method="post">
@@ -70,7 +72,8 @@
             <tbody>
             <c:forEach items="${adminlist.data}" var="a">
                 <tr class="text-c">
-                    <td><input type="checkbox" value="${a.a_id}" name="muticheck-${a.a_id}" onclick="toChkSon(this);"></td>
+                    <td><input type="checkbox" value="${a.a_id}" name="muticheck-${a.a_id}" onclick="toChkSon(this);">
+                    </td>
                     <td>${a.a_id}</td>
                     <td>${a.a_pwd}</td>
                     <td>${a.a_name}</td>

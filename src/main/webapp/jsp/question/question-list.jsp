@@ -41,17 +41,17 @@
 <div class="page-container container">
     <div class="text-c">
         <form action="findQuestions.action" method="post">
-            <input type="text" class="input-text" style="width:250px" placeholder="输入问题标题" id="title" name="title">
+            <input type="text" class="input-text" style="width:250px" value="${title}" placeholder="输入问题标题" id="title" name="title">
             <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜问题
             </button>
         </form>
     </div>
     <div class="cl pd-5 bg-1 bk-gray mt-20">
         <span class="l">
-        <a href="javascript:;" onclick="submitForm()" class="btn btn-danger radius">
-            <i class="Hui-iconfont">&#xe6e2;</i>
-            批量删除
-        </a>
+        <%--<a href="javascript:;" onclick="submitForm()" class="btn btn-danger radius">--%>
+            <%--<i class="Hui-iconfont">&#xe6e2;</i>--%>
+            <%--批量删除--%>
+        <%--</a>--%>
         <a onclick="stu_add('添加问题','addQuestionPage.action','800','500')"
            class="btn btn-primary radius">
             <i class="Hui-iconfont">&#xe600;</i>

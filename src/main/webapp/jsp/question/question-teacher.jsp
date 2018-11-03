@@ -35,7 +35,7 @@
 </head>
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 答疑管理 <span
-        class="c-gray en">&gt;</span> 答疑列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
+        class="c-gray en">&gt;</span> 答疑列表 <a class="a-refresh btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
                                               href="javascript:location.replace(location.href);" title="刷新"><i
         class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container container">
@@ -52,11 +52,11 @@
             <%--<i class="Hui-iconfont">&#xe6e2;</i>--%>
             <%--批量删除--%>
         <%--</a>--%>
-        <a onclick="stu_add('添加问题','addQuestionPage.action','800','500')"
-           class="btn btn-primary radius">
-            <i class="Hui-iconfont">&#xe600;</i>
-            添加问题
-        </a>
+        <%--<a onclick="stu_add('添加问题','addQuestionPage.action','800','500')"--%>
+           <%--class="btn btn-primary radius">--%>
+            <%--<i class="Hui-iconfont">&#xe600;</i>--%>
+            <%--添加问题--%>
+        <%--</a>--%>
     </span>
     </div>
     <form name="myForm" id="myForm" action="batchDeleteQuestion.action" method="post">
