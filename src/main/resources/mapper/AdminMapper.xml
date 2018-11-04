@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.kewen.hms.mapper.AdminMapper">
+    <!-- 显示所有管理员信息 -->
+    <select id="findAdmins" resultType="Admin">
+        select *
+        from admin
+    </select>
+    <!-- 登录查询 -->
+    <select id="findPwdById" parameterType="int" resultType="String">
+        select a_pwd
+        from admin
+        where a_id = #{a_id}
+    </select>
+    <!-- 根据id查询管理员信息 -->
+    <select id="findAdminById" parameterType="int" resultType="Admin">
+        select a_id, a_pwd, a_name
+        from admin
+        where a_id = #{a_id}
+    </select>
+    <!-- 修改管理员信息 -->
+    <update id="updateAdmin" parameterType="Admin">
+        update admin
+        set a_id   = #{a_id},
+            a_pwd  = #{a_pwd},
+            a_name = #{a_name}
+        where a_id = #{a_id}
+    </update>
+    <!-- 添加信息 -->
+    <insert id="addAdmin" parameterType="Admin">
+        insert into admin (a_id, a_pwd, a_name)
+        values (#{a_id}, #{a_pwd}, #{a_name})
+    </insert>
+    <!-- 根据id删除信息 -->
+    <delete id="deleteAdmin" parameterType="int">
+        delete
+        from admin
+        where a_id = #{a_id}
+    </delete>
+</mapper>

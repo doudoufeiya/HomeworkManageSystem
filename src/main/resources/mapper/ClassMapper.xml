@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.kewen.hms.mapper.ClassMapper">
+    <!-- 显示所有学生信息 -->
+    <select id="findClasss" parameterType="String" resultType="cn.kewen.hms.pojo.Class">
+        select *
+        from class where 1= 1
+        <if test="c_name != null and c_name != ''">
+            and c_name like concat("%",#{c_name},"%")
+        </if>
+    </select>
+
+    <!-- 根据名字查询学生信息 -->
+    <select id="findClassByName" parameterType="String" resultType="cn.kewen.hms.pojo.Class">
+        select *
+        from class
+        where c_name = #{c_name}
+    </select>
+    <!-- 根据账号查询学生信息 -->
+    <select id="findClassById" parameterType="int" resultType="cn.kewen.hms.pojo.Class">
+        select *
+        from class
+        where c_id = #{c_id}
+    </select>
+    <select id="findClasssById" resultType="cn.kewen.hms.pojo.Class">
+        select *
+        from class
+        where c_id = #{c_id}
+        limit 1
+    </select>
+    <!-- 修改学生信息 -->
+    <update id="updateClass" parameterType="Class">
+        update class
+        set c_name = #{c_name}
+        where c_id = #{c_id}
+    </update>
+    <!-- 添加信息 -->
+    <insert id="addClass" parameterType="Class">
+        insert into class (c_name)
+        values (#{c_name})
+        <selectKey keyProperty="c_id" order="AFTER" resultType="int">
+            select last_insert_id()
+        </selectKey>
+    </insert>
+    <!-- 根据id删除信息 -->
+    <delete id="deleteClass" parameterType="int">
+        delete
+        from class
+        where c_id = #{c_id}
+    </delete>
+</mapper>
