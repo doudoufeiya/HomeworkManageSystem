@@ -50,3 +50,12 @@ src/main/webapp/template/shop/
 target/generated-sources/
 /.idea/
 /.settings/
+.DS_Store
+src/main/.DS_Store
+src/main/webapp/.DS_Store
+src/main/webapp/bPage/.DS_Store
+src/main/webapp/jsp/.DS_Store
+src/main/webapp/static/h-ui.admin/.DS_Store
+src/main/webapp/static/h-ui/.DS_Store
+src/main/webapp/static/h-ui/css/.DS_Store
+.idea/
