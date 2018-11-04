@@ -20,9 +20,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class WorkController {
@@ -124,13 +122,12 @@ public class WorkController {
      */
     @RequestMapping("batchDeleteWork")
     public ModelAndView batchDeleteWork(ModelAndView mav, HttpServletRequest request) throws Exception {
-        request.getParameterMap().forEach((s, strings) -> {
-            try {
-                workService.deleteWork(Integer.parseInt(strings[0]));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+
+        Iterator<Map.Entry<String, String[]>> iterator = request.getParameterMap().entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, String[]> entry = iterator.next();
+            workService.deleteWork(Integer.parseInt(entry.getValue()[0]));
+        }
         PageData<Work> works = workService.findWorks(null, null);
         logger.info("works:" + works);
         mav.addObject("works", works);

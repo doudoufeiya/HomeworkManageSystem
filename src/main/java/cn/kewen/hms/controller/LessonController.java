@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class LessonController {
@@ -140,13 +142,12 @@ public class LessonController {
      */
     @RequestMapping("batchDeleteLesson")
     public ModelAndView batchDeleteLesson(ModelAndView mav, HttpServletRequest request) throws Exception {
-        request.getParameterMap().forEach((s, strings) -> {
-            try {
-                lessonService.deleteLesson(Integer.parseInt(strings[0]));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+
+        Iterator<Map.Entry<String, String[]>> iterator = request.getParameterMap().entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, String[]> entry = iterator.next();
+            lessonService.deleteLesson(Integer.parseInt(entry.getValue()[0]));
+        }
         PageData<Lesson> lessons = lessonService.findLessons(null, null);
         logger.info("lessons:" + lessons);
         mav.addObject("lessons", lessons);

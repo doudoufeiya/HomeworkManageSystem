@@ -15,7 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class AdminController {
@@ -62,7 +64,7 @@ public class AdminController {
         ModelAndView mav = new ModelAndView();
         try {
             Integer.parseInt(a_id);
-        }catch (Exception e){
+        } catch (Exception e) {
             mav.setViewName("admin-list");
             return mav;
         }
@@ -169,13 +171,12 @@ public class AdminController {
      */
     @RequestMapping("batchDeleteAdmin")
     public ModelAndView batchDeleteAdmin(ModelAndView mav, HttpServletRequest request) throws Exception {
-        request.getParameterMap().forEach((s, strings) -> {
-            try {
-                adminService.deleteAdmin(Integer.parseInt(strings[0]));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        Iterator<Map.Entry<String, String[]>> iterator = request.getParameterMap().entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, String[]> entry = iterator.next();
+            adminService.deleteAdmin(Integer.parseInt(entry.getValue()[0]));
+        }
+
         PageData<Admin> adminlist = adminService.findAdminsByPage(new PageParams());
         mav.addObject("adminlist", adminlist);
         mav.setViewName("admin-list");

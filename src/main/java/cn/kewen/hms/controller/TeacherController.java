@@ -16,7 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.net.URLEncoder;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class TeacherController {
@@ -133,13 +135,12 @@ public class TeacherController {
      */
     @RequestMapping("batchDeleteTeacher")
     public ModelAndView batchDeleteTeacher(ModelAndView mav, HttpServletRequest request) throws Exception {
-        request.getParameterMap().forEach((s, strings) -> {
-            try {
-                teacherService.deleteTeacher(Integer.parseInt(strings[0]));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+
+        Iterator<Map.Entry<String, String[]>> iterator = request.getParameterMap().entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, String[]> entry = iterator.next();
+            teacherService.deleteTeacher(Integer.parseInt(entry.getValue()[0]));
+        }
         PageData<Teacher> teachers = teacherService.findTeachers(null, null);
         mav.addObject("teachers", teachers);
         mav.setViewName("teacher-list");

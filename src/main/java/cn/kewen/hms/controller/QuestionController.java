@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Iterator;
+import java.util.Map;
 
 @Controller
 public class QuestionController {
@@ -135,13 +137,12 @@ public class QuestionController {
      */
     @RequestMapping("batchDeleteQuestion")
     public ModelAndView batchDeleteQuestion(ModelAndView mav, HttpServletRequest request) throws Exception {
-        request.getParameterMap().forEach((s, strings) -> {
-            try {
-                questionService.deleteQuestion(Integer.parseInt(strings[0]));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+
+        Iterator<Map.Entry<String, String[]>> iterator = request.getParameterMap().entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, String[]> entry = iterator.next();
+            questionService.deleteQuestion(Integer.parseInt(entry.getValue()[0]));
+        }
         PageData<Question> questions = questionService.findQuestions(null, null);
         logger.info("questions:" + questions);
         mav.addObject("questions", questions);

@@ -19,7 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.URLEncoder;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class StudentController {
@@ -100,7 +102,15 @@ public class StudentController {
                 List<String> notCommitWorks = studentService.getToCommitWorkName(student.getS_id());
                 String alertMsg = "";
                 if (!CollectionUtils.isEmpty(notCommitWorks)) {
-                    alertMsg = "还未提交" + notCommitWorks.stream().reduce((x, y) -> x + "、" + y).orElse("");
+                    alertMsg = "还未提交";
+                    boolean hasInsert = false;
+                    for (int i = 0; i < notCommitWorks.size(); i++) {
+                        alertMsg += notCommitWorks.get(i) + "、";
+                        hasInsert = true;
+                    }
+                    if (hasInsert) {
+                        alertMsg = alertMsg.substring(0, alertMsg.length() - 1);
+                    }
                 }
                 Student studentInfo = studentService.findStudentById(student.getS_id());
                 if (studentInfo.getS_points() < 5 && studentInfo.getS_points() > 0) {
@@ -265,13 +275,13 @@ public class StudentController {
      */
     @RequestMapping("batchDeleteStudent")
     public ModelAndView batchDeleteStudent(ModelAndView mav, HttpServletRequest request) throws Exception {
-        request.getParameterMap().forEach((s, strings) -> {
-            try {
-                studentService.deleteStudent(Integer.parseInt(strings[0]));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+
+        Iterator<Map.Entry<String, String[]>> iterator = request.getParameterMap().entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, String[]> entry = iterator.next();
+            studentService.deleteStudent(Integer.parseInt(entry.getValue()[0]));
+
+        }
         PageData<Student> students = studentService.findStudents(null, null);
         logger.info("findStudents:" + students);
         mav.addObject("students", students);
